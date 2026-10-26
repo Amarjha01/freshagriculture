@@ -1,672 +1,1026 @@
 
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  FiArrowUpRight,
-  FiDroplet,
-  FiTrendingUp,
-  FiUsers,
-  FiSettings,
-  FiCheckCircle,
-  FiMapPin,
-  FiSun,
-  FiActivity,
-  FiShield,
-  FiHeart,
-  FiGlobe,
-  FiLayers,
-} from "react-icons/fi";
+  LuArrowRight,
+  LuChevronLeft,
+  LuChevronRight,
+  LuPlay,
+  LuSprout,
+  LuLeaf,
+  LuHouse,
+  LuDroplets,
+  LuFish,
+  LuFlower2,
+  LuTrees,
+  LuRabbit,
+  LuShieldCheck,
+  LuUsers,
+  LuHandshake,
+  LuTrendingUp,
+  LuChartNoAxesCombined,
+  LuSettings2,
+  LuHeadset,
+  LuCircleCheck,
+  LuMapPin,
+  LuCalendarDays,
+  LuQuote,
+  LuPhone,
+  LuWheat,
+  LuFlaskConical,
+  LuGlobe,
+  LuHeartHandshake,
+  LuBadgeCheck,
+  LuSun,
+  LuBuilding2,
+  LuCog,
+  LuMenu,
+  LuX,
+} from "react-icons/lu";
 
 import SiteShell from "@/components/SiteShell";
-import Button from "@/components/Button";
-import Reveal from "@/components/Reveal";
 
-const image = {
-  hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=85",
-  polyhouse: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=900&q=80",
-  hydroponics: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=900&q=80",
-  mushroom: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=900&q=80",
-  aqua: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80",
-  flowers: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80",
-  nursery: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=80",
-  goats: "https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=900&q=80",
-  irrigation: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=80",
-  seedling: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1400&q=85",
-  field: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1800&q=85",
-  tomato: "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=900&q=80",
-  greens: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=900&q=80",
-  mushroomFarm: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=900&q=80",
-  fish: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80",
+const IMAGES = {
+  hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
+  farmer: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=90",
+  seedling: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1000&q=85",
+  polyhouse: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1000&q=85",
+  hydroponics: "https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?auto=format&fit=crop&w=1000&q=85",
+  mushroom: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=1000&q=85",
+  aquaculture: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&w=1000&q=85",
+  flowers: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1000&q=85",
+  nursery: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=85",
+  livestock: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1000&q=85",
+  irrigation: "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1000&q=85",
+  tomatoes: "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=1000&q=85",
+  capsicum: "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=1000&q=85",
+  field: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1600&q=90",
 };
 
 const services = [
   {
     title: "Polyhouse Farming",
-    description: "Protected cultivation for controlled growing conditions.",
-    src: image.polyhouse,
-    icon: FiLayers,
-    href: "/services/polyhouse",
+    description: "Protected cultivation for improved crop management.",
+    image: IMAGES.polyhouse,
+    icon: LuHouse,
+    category: "Protected Farming",
   },
   {
     title: "Hydroponics",
-    description: "Soilless growing systems for selected crops.",
-    src: image.hydroponics,
-    icon: FiDroplet,
-    href: "/services/hydroponics",
+    description: "Soilless farming for better growth and quality.",
+    image: IMAGES.hydroponics,
+    icon: LuDroplets,
+    category: "Modern Farming",
   },
   {
     title: "Mushroom Farming",
-    description: "Explore a controlled, space-efficient cultivation model.",
-    src: image.mushroom,
-    icon: FiSun,
-    href: "/services/mushroom-farming",
+    description: "Space-conscious mushroom production systems.",
+    image: IMAGES.mushroom,
+    icon: LuTrees,
+    category: "Specialized Farming",
   },
   {
     title: "Aquaculture",
-    description: "Farming systems for fish and other aquatic species.",
-    src: image.aqua,
-    icon: FiActivity,
-    href: "/services/aquaculture",
+    description: "Modern fish and shrimp farming systems.",
+    image: IMAGES.aquaculture,
+    icon: LuFish,
+    category: "Allied Farming",
   },
   {
     title: "Floriculture",
-    description: "Flower cultivation with crop-specific planning.",
-    src: image.flowers,
-    icon: FiSun,
-    href: "/services/floriculture",
+    description: "Commercial flower cultivation and planning.",
+    image: IMAGES.flowers,
+    icon: LuFlower2,
+    category: "Horticulture",
   },
   {
     title: "Nursery",
-    description: "Plant propagation and nursery planning solutions.",
-    src: image.nursery,
-    icon: FiSun,
-    href: "/services/nursery",
+    description: "Quality plants for a greener tomorrow.",
+    image: IMAGES.nursery,
+    icon: LuSprout,
+    category: "Horticulture",
   },
   {
     title: "Goat Farming",
-    description: "Livestock infrastructure and practical farm planning.",
-    src: image.goats,
-    icon: FiHeart,
-    href: "/services/goat-farming",
+    description: "Livestock farming infrastructure and planning.",
+    image: IMAGES.livestock,
+    icon: LuRabbit,
+    category: "Allied Farming",
   },
   {
     title: "Smart Irrigation",
-    description: "Irrigation approaches that help manage water use.",
-    src: image.irrigation,
-    icon: FiDroplet,
-    href: "/services/smart-irrigation",
+    description: "Efficient water management with smart technology.",
+    image: IMAGES.irrigation,
+    icon: LuDroplets,
+    category: "Modern Farming",
   },
 ];
 
 const projects = [
   {
     title: "Polyhouse Tomato Cultivation",
-    category: "Protected cultivation",
-    location: "Project showcase",
-    src: image.tomato,
+    location: "Telangana",
+    category: "Protected Farming",
+    image: IMAGES.tomatoes,
   },
   {
     title: "Hydroponic Leafy Greens",
-    category: "Soilless farming",
-    location: "Project showcase",
-    src: image.greens,
+    location: "Hyderabad",
+    category: "Modern Farming",
+    image: IMAGES.hydroponics,
   },
   {
     title: "Mushroom Cultivation Unit",
-    category: "Controlled cultivation",
-    location: "Project showcase",
-    src: image.mushroomFarm,
+    location: "Siddipet",
+    category: "Specialized Farming",
+    image: IMAGES.mushroom,
   },
   {
-    title: "Aquaculture Systems",
-    category: "Aquaculture",
-    location: "Project showcase",
-    src: image.fish,
+    title: "Fish Farming Project",
+    location: "Andhra Pradesh",
+    category: "Allied Farming",
+    image: IMAGES.aquaculture,
+  },
+  {
+    title: "Commercial Floriculture",
+    location: "Hyderabad",
+    category: "Horticulture",
+    image: IMAGES.flowers,
+  },
+  {
+    title: "Plant Nursery Project",
+    location: "Siddipet",
+    category: "Horticulture",
+    image: IMAGES.nursery,
   },
 ];
 
 const products = [
   {
     name: "Azoto-Green",
-    detail: "Nitrogen-fixing biofertilizer",
-    color: "#267c48",
-    label: "BIOFERTILIZER",
+    type: "Nitrogen-fixing biofertilizer",
+    image: "/images/products/azoto-green.png",
   },
   {
     name: "Phos-Bio",
-    detail: "Phosphate-solubilizing biofertilizer",
-    color: "#57437f",
-    label: "BIOFERTILIZER",
+    type: "Phosphate-mobilizing biofertilizer",
+    image: "/images/products/phos-bio.png",
   },
   {
     name: "Potash-Solv",
-    detail: "Potassium-solubilizing solution",
-    color: "#d86c24",
-    label: "BIOFERTILIZER",
+    type: "Potash-mobilizing solution",
+    image: "/images/products/potash-solv.png",
   },
   {
     name: "Root-Max",
-    detail: "Mycorrhiza-based soil support",
-    color: "#d3a32c",
-    label: "SOIL SUPPORT",
+    type: "Plant growth promoter",
+    image: "/images/products/root-max.png",
   },
   {
     name: "Tricho-Guard",
-    detail: "Biological crop protection",
-    color: "#1b6395",
-    label: "BIO-PROTECTION",
+    type: "Biological crop protection",
+    image: "/images/products/tricho-guard.png",
   },
 ];
+
+const testimonials = [
+  {
+    quote:
+      "The project helped us plan protected cultivation more systematically. Crop management and technical guidance are important parts of building a reliable farming operation.",
+    name: "Ramesh Kumar",
+    role: "Tomato Farmer",
+    location: "Telangana",
+    image: IMAGES.farmer,
+  },
+  {
+    quote:
+      "Understanding growing conditions, water management, and routine crop monitoring gave us a clearer approach to our farming plans.",
+    name: "Suresh Reddy",
+    role: "Vegetable Farmer",
+    location: "Hyderabad",
+    image: IMAGES.seedling,
+  },
+  {
+    quote:
+      "Exploring modern farming methods helped us evaluate the practical requirements before making decisions about our next growing season.",
+    name: "Anita Sharma",
+    role: "Agricultural Entrepreneur",
+    location: "Siddipet",
+    image: IMAGES.nursery,
+  },
+];
+
+const processSteps = [
+  {
+    number: "01",
+    title: "Consultation",
+    description: "Understand your goals and requirements.",
+    icon: LuUsers,
+  },
+  {
+    number: "02",
+    title: "Planning",
+    description: "Design the best solution for your land and budget.",
+    icon: LuChartNoAxesCombined,
+  },
+  {
+    number: "03",
+    title: "Implementation",
+    description: "Setup, installation and training support.",
+    icon: LuSettings2,
+  },
+  {
+    number: "04",
+    title: "Ongoing Support",
+    description: "Technical guidance and farm management.",
+    icon: LuSprout,
+  },
+];
+
+const benefits = [
+  {
+    icon: LuShieldCheck,
+    title: "Advanced Technology",
+    text: "Modern and efficient farming systems.",
+  },
+  {
+    icon: LuUsers,
+    title: "Expert Guidance",
+    text: "Practical agricultural guidance and support.",
+  },
+  {
+    icon: LuLeaf,
+    title: "Sustainable Solutions",
+    text: "Resource-conscious farming approaches.",
+  },
+  {
+    icon: LuHandshake,
+    title: "End-to-End Support",
+    text: "From planning to implementation.",
+  },
+];
+
+const iconButton =
+  "inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#cbdcc9] bg-white/95 text-[#145b39] shadow-sm transition hover:border-[#075332] hover:bg-[#075332] hover:text-white disabled:cursor-not-allowed disabled:opacity-40";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: "easeOut" },
+  },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
+};
+
+function Eyebrow({ children, light = false }) {
+  return (
+    <p
+      className={`mb-2 text-[9px] font-bold uppercase tracking-[0.24em] ${
+        light ? "text-[#b9d6a2]" : "text-[#477c53]"
+      }`}
+    >
+      {children}
+    </p>
+  );
+}
 
 function SectionHeading({
   eyebrow,
   title,
   description,
-  href,
-  linkLabel = "View All",
+  link,
+  href = "#",
+  light = false,
 }) {
   return (
-    <div className="mb-7 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+    <div className="mb-4 flex flex-wrap items-end justify-between gap-4">
       <div className="max-w-2xl">
-        <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.23em] text-forest">
-          {eyebrow}
-        </p>
-
-        <h2 className="font-display text-3xl leading-[1.05] text-forest sm:text-4xl md:text-5xl">
+        {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
+        <h2
+          className={`font-display text-2xl leading-[1.12] sm:text-3xl ${
+            light ? "text-white" : "text-[#172b43]"
+          }`}
+        >
           {title}
         </h2>
-
         {description && (
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
+          <p
+            className={`mt-2 max-w-2xl text-[11px] leading-5 ${
+              light ? "text-white/75" : "text-[#697286]"
+            }`}
+          >
             {description}
           </p>
         )}
       </div>
 
-      {href && (
-        <Button
+      {link && (
+        <a
           href={href}
-          variant="outline"
-          backgroundColor="transparent"
-          color="#153F2B"
-          hoverBackgroundColor="#E8EEDD"
-          borderColor="#B9CDBB"
-          showArrow
-          className="self-start md:self-auto"
+          className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-[10px] font-semibold transition ${
+            light
+              ? "border-white/40 text-white hover:bg-white hover:text-[#075332]"
+              : "border-[#c6d9c7] bg-white/80 text-[#315943] hover:border-[#075332] hover:bg-[#075332] hover:text-white"
+          }`}
         >
-          {linkLabel}
-        </Button>
+          {link}
+          <LuArrowRight size={13} />
+        </a>
       )}
     </div>
   );
 }
 
-function ImageCard({ item, index }) {
-  const Icon = item.icon;
+function ServiceCard({ service }) {
+  const Icon = service.icon;
 
   return (
-    <Reveal delay={index * 0.04} className="h-full">
-      <Link
-        href={item.href}
-        className="group block h-full overflow-hidden rounded-2xl border border-forest/5 bg-white shadow-[0_4px_18px_rgba(20,55,35,.045)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(20,55,35,.12)]"
-      >
-        <div className="relative h-40 overflow-hidden sm:h-44">
+    <motion.a
+      variants={fadeUp}
+      href="/services"
+      className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-[#edf0e8] bg-white/90 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+    >
+      <div className="relative h-[100px] overflow-hidden sm:h-[90px] lg:h-[88px] xl:h-[100px]">
+        <img
+          src={service.image}
+          alt={service.title}
+          loading="lazy"
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        />
+        <span className="absolute bottom-0 left-3 flex h-8 w-8 translate-y-1/2 items-center justify-center rounded-full border border-[#dcebd9] bg-white text-[#17623b] shadow-sm">
+          <Icon size={17} strokeWidth={1.9} />
+        </span>
+      </div>
+
+      <div className="flex flex-1 items-start justify-between gap-2 p-3 pt-5">
+        <div className="min-w-0">
+          <h3 className="text-[11px] font-bold leading-4 text-[#172b43]">
+            {service.title}
+          </h3>
+          <p className="mt-1 text-[9px] leading-[1.45] text-[#727c85]">
+            {service.description}
+          </p>
+        </div>
+
+        <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#91b7a0] text-[#17623b] transition group-hover:bg-[#075332] group-hover:text-white">
+          <LuArrowRight size={12} />
+        </span>
+      </div>
+    </motion.a>
+  );
+}
+
+function ProjectCard({ project }) {
+  return (
+    <a
+      href="/projects"
+      className="group min-w-0 overflow-hidden rounded-xl border border-[#edf0e8] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+    >
+      <div className="relative h-[100px] overflow-hidden sm:h-[105px]">
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        />
+      </div>
+
+      <div className="p-3">
+        <h3 className="line-clamp-2 text-[10px] font-bold leading-4 text-[#172b43]">
+          {project.title}
+        </h3>
+        <div className="mt-2 flex items-center gap-1.5 text-[9px] text-[#6f7b83]">
+          <LuMapPin size={11} className="shrink-0 text-[#17623b]" />
+          {project.location}
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function ProductCard({ product }) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  return (
+    <a
+      href="/products"
+      className="group flex min-w-0 flex-col items-center rounded-xl border border-[#edf0e8] bg-white p-3 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+    >
+      <div className="flex h-[92px] w-full items-center justify-center overflow-hidden rounded-lg bg-[#fbfcf7]">
+        {!imageFailed ? (
           <img
-            src={item.src}
-            alt={item.title}
+            src={product.image}
+            alt={product.name}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            onError={() => setImageFailed(true)}
+            className="h-full w-full object-contain p-1 transition duration-300 group-hover:scale-105"
           />
-
-          <span className="absolute bottom-0 left-4 flex h-10 w-10 translate-y-1/2 items-center justify-center rounded-xl border border-forest/10 bg-ivory text-forest shadow-sm">
-            <Icon size={19} />
-          </span>
-        </div>
-
-        <div className="flex min-h-[105px] items-end justify-between gap-3 p-4 pt-7">
-          <div>
-            <h3 className="text-sm font-semibold text-ink">
-              {item.title}
-            </h3>
-
-            <p className="mt-1 text-[11px] leading-5 text-muted">
-              {item.description}
-            </p>
+        ) : (
+          <div className="flex flex-col items-center gap-2 text-[#277044]">
+            <LuFlaskConical size={27} strokeWidth={1.5} />
+            <span className="text-[8px]">Product image</span>
           </div>
+        )}
+      </div>
 
-          <span className="mb-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-forest/25 text-forest transition-all group-hover:border-forest group-hover:bg-forest group-hover:text-white">
-            <FiArrowUpRight size={16} />
-          </span>
-        </div>
-      </Link>
-    </Reveal>
+      <h3 className="mt-2 text-[10px] font-bold text-[#172b43]">
+        {product.name}
+      </h3>
+      <p className="mt-1 line-clamp-2 text-[9px] leading-4 text-[#727c85]">
+        {product.type}
+      </p>
+    </a>
   );
 }
 
 export default function HomePage() {
+  const [serviceFilter, setServiceFilter] = useState("All");
+  const [projectIndex, setProjectIndex] = useState(0);
+  const [productIndex, setProductIndex] = useState(0);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [showVideoNote, setShowVideoNote] = useState(false);
+
+  const filteredServices =
+    serviceFilter === "All"
+      ? services
+      : services.filter((service) => service.category === serviceFilter);
+
+  const visibleProjects = Array.from({ length: 4 }, (_, index) => {
+    return projects[(projectIndex + index) % projects.length];
+  });
+
+  const visibleProducts = Array.from({ length: 5 }, (_, index) => {
+    return products[(productIndex + index) % products.length];
+  });
+
+  const testimonial = testimonials[testimonialIndex];
+
+  function moveProjects(direction) {
+    setProjectIndex((current) =>
+      (current + direction + projects.length) % projects.length
+    );
+  }
+
+  function moveProducts(direction) {
+    setProductIndex((current) =>
+      (current + direction + products.length) % products.length
+    );
+  }
+
   return (
     <SiteShell>
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden bg-[#edf0df]">
-        <div className="absolute inset-0 -z-20">
-          <img
-            src={image.hero}
-            alt="Sunrise over agricultural fields"
-            className="h-full w-full object-cover object-center"
-            fetchPriority="high"
-          />
-        </div>
+      <main className="overflow-hidden bg-[#fbfaf4] text-[#193c27]">
 
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#f7f6ef] via-[#f7f6ef]/95 to-[#f7f6ef]/25 md:via-[#f7f6ef]/82 md:to-transparent" />
+{/* HERO */}
+<section className="relative isolate overflow-hidden bg-[#fafaf2]">
+  {/* Wide panoramic background image */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+    style={{
+      backgroundImage: "url('/images/home-hero-bg.png')",
+    }}
+  />
 
-        <div className="absolute inset-y-0 right-0 -z-10 hidden w-[52%] bg-gradient-to-l from-transparent via-transparent to-[#f7f6ef]/15 md:block" />
+  {/* Soft overlay protects text readability */}
+  <div
+    aria-hidden="true"
+    className="absolute inset-0 -z-10 bg-gradient-to-r from-[#fbfaf4]/95 via-[#fbfaf4]/85 to-[#fbfaf4]/5 lg:via-[#fbfaf4]/75 lg:to-transparent"
+  />
 
-        <div className="mx-auto grid min-h-[580px] max-w-[1600px] items-center gap-10 px-5 py-14 sm:px-8 md:min-h-[610px] md:grid-cols-[.92fr_1.08fr] md:px-12 md:py-16 lg:min-h-[650px] lg:px-16">
-          <Reveal className="max-w-2xl">
-            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.25em] text-forest">
-              Smart farming <span className="mx-2 text-leaf">•</span>
-              Sustainable future
-            </p>
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={stagger}
+    className="mx-auto grid min-h-[440px] max-w-7xl items-center px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[520px] lg:grid-cols-[1fr_1fr] lg:px-12 lg:py-14"
+  >
+    {/* LEFT: All content stays editable HTML */}
+    <div className="relative z-10 max-w-[590px]">
+      <motion.div variants={fadeUp}>
+        <Eyebrow>Smart Farming · Sustainable Tomorrow</Eyebrow>
+      </motion.div>
 
-            <h1 className="font-display text-5xl leading-[.99] tracking-tight text-[#102f22] sm:text-6xl lg:text-[clamp(4rem,5.4vw,5.7rem)]">
-              Growing Better Today for a{" "}
-              <span className="text-forest">Brighter Tomorrow</span>
-            </h1>
+      <motion.h1
+        variants={fadeUp}
+        className="max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
+      >
+        Modern
+        <br />
+        Agriculture
+        <br />
+        for a <span className="text-[#126139]">Better</span>
+        <br />
+        <span className="text-[#126139]">Tomorrow</span>
+      </motion.h1>
 
-            <p className="mt-5 max-w-lg text-sm leading-6 text-[#424b41] sm:text-base">
-              Fresh Agriculture by Green Bio-Tech helps farmers and
-              entrepreneurs explore practical, sustainable, and
-              technology-driven farming solutions.
-            </p>
+      <motion.p
+        variants={fadeUp}
+        className="mt-5 max-w-[460px] text-sm leading-6 text-[#657064] sm:text-base sm:leading-7"
+      >
+        Fresh Agriculture by Green Bio-Tech LLP helps farmers and
+        entrepreneurs build successful, sustainable, and technology-driven
+        farming systems.
+      </motion.p>
 
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button href="/contact" showArrow>
-                Get a Free Consultation
-              </Button>
+      {/* CTA buttons */}
+      <motion.div
+        variants={fadeUp}
+        className="mt-6 flex flex-wrap items-center gap-3"
+      >
+        <a
+          href="/contact"
+          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#075332] px-6 py-3 text-xs font-semibold text-white shadow-md transition duration-300 hover:-translate-y-0.5 hover:bg-[#0b6941] hover:shadow-lg sm:px-7"
+        >
+          Get a Free Consultation
+          <LuArrowRight size={16} strokeWidth={2} />
+        </a>
 
-              <Button
-                href="/services"
-                variant="outline"
-                backgroundColor="transparent"
-                color="#153F2B"
-                borderColor="#B9CDBB"
-                hoverBackgroundColor="#E8EEDD"
-                showArrow
-              >
-                Explore Our Services
-              </Button>
-            </div>
+        <a
+          href="/projects"
+          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-[#a9c8ae] bg-white/85 px-6 py-3 text-xs font-semibold text-[#315943] transition duration-300 hover:-translate-y-0.5 hover:border-[#075332] hover:bg-[#edf4e8] sm:px-7"
+        >
+          Explore Our Projects
+        </a>
+      </motion.div>
 
-            <div className="mt-9 grid max-w-xl grid-cols-2 gap-x-5 gap-y-4 border-t border-forest/15 pt-5 sm:grid-cols-4">
-              {[
-                {
-                  Icon: FiSun,
-                  title: "Farmer-first",
-                  sub: "Practical solutions",
-                },
-                {
-                  Icon: FiUsers,
-                  title: "Expertise",
-                  sub: "Agricultural guidance",
-                },
-                {
-                  Icon: FiSettings,
-                  title: "End-to-end",
-                  sub: "Project support",
-                },
-                {
-                  Icon: FiSun,
-                  title: "Sustainable",
-                  sub: "Resource awareness",
-                },
-              ].map(({ Icon, title, sub }) => (
-                <div key={title} className="flex items-start gap-2">
-                  <Icon
-                    className="mt-0.5 shrink-0 text-forest"
-                    size={19}
-                  />
+      {/* Statistics */}
+      <motion.div
+        variants={fadeUp}
+        className="mt-8 grid max-w-[600px] grid-cols-2 gap-y-5 sm:mt-10 sm:grid-cols-4 sm:gap-x-3"
+      >
+        {[
+          {
+            icon: LuBadgeCheck,
+            value: "3+",
+            label: "Years of Experience",
+          },
+          {
+            icon: LuUsers,
+            value: "1000+",
+            label: "Happy Farmers",
+          },
+          {
+            icon: LuHandshake,
+            value: "End-to-End",
+            label: "Project Support",
+          },
+          {
+            icon: LuLeaf,
+            value: "Sustainable",
+            label: "Farming Solutions",
+          },
+        ].map((item, index) => {
+          const Icon = item.icon;
 
-                  <div>
-                    <p className="text-xs font-semibold text-ink">
-                      {title}
-                    </p>
-                    <p className="mt-1 text-[10px] leading-4 text-muted">
-                      {sub}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <div className="relative hidden min-h-[470px] md:block">
-            <div className="absolute right-0 top-1/2 h-[410px] w-[88%] -translate-y-1/2 overflow-hidden rounded-[46%_46%_24px_24px] border-[8px] border-white/45 shadow-2xl">
-              <img
-                src={image.field}
-                alt="Cultivated field in warm sunlight"
-                className="h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="absolute right-5 top-8 max-w-[210px] rotate-[-5deg] font-display text-3xl leading-none text-forest drop-shadow-sm">
-              Healthy Farms
-              <br />
-              Brighter Future <span className="text-leaf">↗</span>
-            </div>
-
-            <div className="absolute bottom-8 left-0 grid w-[94%] grid-cols-4 gap-2 rounded-2xl border border-white/70 bg-white/85 p-3 shadow-xl backdrop-blur-md">
-              {[
-                { Icon: FiSun, title: "Modern", sub: "Farming" },
-                { Icon: FiDroplet, title: "Efficient", sub: "Water Use" },
-                { Icon: FiTrendingUp, title: "Crop", sub: "Management" },
-                { Icon: FiGlobe, title: "Sustainable", sub: "Growth" },
-              ].map(({ Icon, title, sub }) => (
-                <div
-                  key={title}
-                  className="flex flex-col items-center rounded-xl bg-white/80 px-1 py-3 text-center"
-                >
-                  <Icon size={22} className="mb-2 text-forest" />
-
-                  <p className="text-[10px] font-semibold leading-4 text-ink">
-                    {title}
-                    <br />
-                    {sub}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="pointer-events-none absolute -left-12 top-20 hidden h-48 w-48 rounded-full border border-forest/10 md:block" />
-      </section>
-
-      {/* Services */}
-      <section className="relative overflow-hidden bg-ivory px-5 py-16 sm:px-8 md:py-20 lg:px-12">
-        <div className="pointer-events-none absolute -right-14 top-14 text-[180px] leading-none text-forest/[0.035]">
-          ❧
-        </div>
-
-        <div className="mx-auto max-w-[1440px]">
-          <SectionHeading
-            eyebrow="Our services"
-            title="Complete Agricultural Solutions Under One Roof"
-            description="From modern farming infrastructure to crop advisory and agricultural inputs, explore solutions designed around different farming needs."
-            href="/services"
-            linkLabel="View All Services"
-          />
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((item, index) => (
-              <ImageCard key={item.title} item={item} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why choose us */}
-      <section className="relative isolate overflow-hidden bg-forest-dark text-white">
-        <div className="absolute inset-0 -z-20">
-          <img
-            src={image.seedling}
-            alt="Young plant growing in rich soil"
-            loading="lazy"
-            className="h-full w-full object-cover object-center"
-          />
-        </div>
-
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#061e14]/95 via-[#082d1f]/85 to-[#082d1f]/65" />
-
-        <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-16 sm:px-8 md:grid-cols-2 md:items-center md:py-20 lg:px-12">
-          <Reveal>
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.23em] text-[#c3dc8c]">
-              Why choose us
-            </p>
-
-            <h2 className="max-w-xl font-display text-4xl leading-tight sm:text-5xl">
-              Your Partner in Sustainable Growth
-            </h2>
-
-            <p className="mt-4 max-w-lg text-sm leading-6 text-white/75">
-              We bring together practical agricultural knowledge,
-              modern farming approaches, and a farmer-first mindset
-              to help you explore the right next step.
-            </p>
-
-            <Button
-              href="/about"
-              backgroundColor="#A8C96A"
-              color="#0D2C1D"
-              hoverBackgroundColor="#D0E6A4"
-              showArrow
-              className="mt-6"
+          return (
+            <div
+              key={item.label}
+              className={`flex min-w-0 items-start gap-2.5 sm:pr-3 ${
+                index !== 3 ? "sm:border-r sm:border-[#dfe6d8]" : ""
+              }`}
             >
-              Know More About Us
-            </Button>
-          </Reveal>
+              <Icon
+                size={23}
+                strokeWidth={1.8}
+                className="mt-0.5 shrink-0 text-[#15583b]"
+              />
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {[
-              {
-                Icon: FiLayers,
-                title: "Modern Approaches",
-                text: "Farming systems suited to different growing needs.",
-              },
-              {
-                Icon: FiUsers,
-                title: "Practical Guidance",
-                text: "Discuss requirements with the agriculture team.",
-              },
-              {
-                Icon: FiDroplet,
-                title: "Resource Awareness",
-                text: "Consider water, soil, and operational needs.",
-              },
-              {
-                Icon: FiShield,
-                title: "Project Support",
-                text: "Explore the steps from planning to implementation.",
-              },
-            ].map(({ Icon, title, text }, i) => (
-              <Reveal key={title} delay={i * 0.06}>
-                <div className="h-full rounded-2xl border border-white/20 bg-white/[0.07] p-4 backdrop-blur-sm transition-colors hover:bg-white/[0.12]">
-                  <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#126b43] text-[#d9edb5]">
-                    <Icon size={20} />
-                  </span>
+              <div className="min-w-0">
+                <p className="break-words text-[11px] font-bold leading-4 text-[#172b43] sm:text-xs">
+                  {item.value}
+                </p>
+                <p className="mt-1 text-[10px] leading-4 text-[#707b76]">
+                  {item.label}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </motion.div>
+    </div>
 
-                  <h3 className="text-sm font-semibold">{title}</h3>
-                  <p className="mt-2 text-xs leading-5 text-white/65">
-                    {text}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+    {/* RIGHT: The farmer and greenhouse collage are already in the image */}
+    <div
+      aria-hidden="true"
+      className="hidden min-h-[300px] lg:block"
+    />
+  </motion.div>
+</section>
 
-      {/* Featured projects */}
-      <section className="bg-[#f0f1e7] px-5 py-16 sm:px-8 md:py-20 lg:px-12">
-        <div className="mx-auto max-w-[1440px]">
-          <SectionHeading
-            eyebrow="Featured projects"
-            title="Farming Ideas, Made Practical"
-            description="Explore examples of farming systems and cultivation types featured in our agricultural portfolio."
-            href="/projects"
-            linkLabel="View All Projects"
-          />
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {projects.map((project, i) => (
-              <Reveal key={project.title} delay={i * 0.05}>
-                <Link
-                  href="/projects"
-                  className="group block overflow-hidden rounded-2xl border border-forest/5 bg-white transition hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <div className="h-44 overflow-hidden">
-                    <img
-                      src={project.src}
-                      alt={project.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="p-4">
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-forest/70">
-                      {project.category}
-                    </p>
-
-                    <h3 className="mt-2 text-sm font-semibold text-ink">
-                      {project.title}
-                    </h3>
-
-                    <p className="mt-2 flex items-center gap-1 text-[10px] text-muted">
-                      <FiMapPin size={12} />
-                      {project.location}
-                    </p>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-
-          <p className="mt-4 text-[10px] leading-5 text-muted">
-            Illustrative project categories. Replace these cards with
-            verified completed projects and actual locations before
-            publishing.
-          </p>
-        </div>
-      </section>
-
-      {/* Products */}
-      <section className="overflow-hidden bg-ivory">
-        <div className="grid min-h-[470px] lg:grid-cols-[.85fr_1.15fr]">
-          <div className="relative min-h-[300px] overflow-hidden lg:min-h-full">
-            <img
-              src={image.seedling}
-              alt="Hands caring for a young plant"
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
+        {/* SERVICES */}
+        <section id="services" className="px-4 py-7 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="Our Services"
+              title={
+                <>
+                  Complete Agricultural
+                  <br />
+                  Solutions <span className="text-[#126139]">Under One Roof</span>
+                </>
+              }
+              description="From modern farming infrastructure to crop advisory and agricultural inputs, explore solutions for farmers, entrepreneurs, and institutions."
+              link="View All Services"
+              href="/services"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-forest/35 to-transparent" />
+            <div className="mb-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:thin]">
+              {[
+                "All",
+                "Protected Farming",
+                "Modern Farming",
+                "Specialized Farming",
+                "Allied Farming",
+                "Horticulture",
+              ].map((filter) => (
+                <button
+                  key={filter}
+                  type="button"
+                  onClick={() => setServiceFilter(filter)}
+                  aria-pressed={serviceFilter === filter}
+                  className={`shrink-0 rounded-full border px-3 py-2 text-[9px] font-medium transition ${
+                    serviceFilter === filter
+                      ? "border-[#075332] bg-[#075332] text-white"
+                      : "border-[#e2e9dd] bg-white text-[#315943] hover:bg-[#eff5e9]"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
 
-            <div className="absolute bottom-7 left-6 rounded-full border border-white/70 bg-white/85 px-4 py-2 text-xs font-medium text-forest backdrop-blur">
-              Thoughtful inputs. Healthier growing.
+            <motion.div
+              layout
+              className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredServices.map((service) => (
+                  <ServiceCard key={service.title} service={service} />
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* WHY CHOOSE US */}
+        <section className="relative isolate overflow-hidden bg-[#062f1f]">
+          <div className="absolute inset-0 -z-20">
+            <img
+              src={IMAGES.seedling}
+              alt=""
+              className="h-full w-full object-cover opacity-35"
+            />
+          </div>
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#052c1b]/95 via-[#06351f]/90 to-[#062c1b]/70" />
+
+          <div className="mx-auto grid max-w-7xl gap-7 px-5 py-9 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-12 lg:py-12">
+            <div className="max-w-lg">
+              <Eyebrow light>Why Choose Fresh Agriculture</Eyebrow>
+              <h2 className="font-display text-3xl leading-[1.12] text-white sm:text-4xl">
+                Your Partner in
+                <br />
+                Sustainable Growth
+              </h2>
+              <p className="mt-3 max-w-md text-xs leading-5 text-white/80">
+                We bring together practical agricultural knowledge,
+                technology-led solutions, and a farmer-focused approach to
+                support better-informed decisions.
+              </p>
+              <a
+                href="/about"
+                className="mt-5 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-[10px] font-semibold text-[#245c3b] transition hover:bg-[#eaf2e6]"
+              >
+                Know More About Us
+                <LuArrowRight size={13} />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {benefits.map((benefit) => {
+                const Icon = benefit.icon;
+
+                return (
+                  <div
+                    key={benefit.title}
+                    className="flex gap-3 rounded-xl border border-white/15 bg-white/[0.045] p-4 transition hover:bg-white/[0.09]"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1d8050] text-white">
+                      <Icon size={19} strokeWidth={1.8} />
+                    </span>
+                    <div>
+                      <h3 className="text-[11px] font-semibold text-white">
+                        {benefit.title}
+                      </h3>
+                      <p className="mt-1 text-[9px] leading-4 text-white/70">
+                        {benefit.text}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
+        </section>
 
-          <div className="px-5 py-14 sm:px-8 md:py-16 lg:px-12 lg:py-20">
+        {/* FEATURED PROJECTS */}
+        <section id="projects" className="px-4 py-8 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
             <SectionHeading
-              eyebrow="Our products"
-              title="Agricultural Inputs for Growing Needs"
-              description="Explore selected biofertilizer and biological crop-support products listed in the catalog. Product suitability depends on crop, conditions, and label guidance."
-              href="/products"
-              linkLabel="View All Products"
+              eyebrow="Featured Projects"
+              title="Real Projects. Real Impact."
+              description="Explore agricultural project types and practical farming solutions across different sectors."
+              link="View All Projects"
+              href="/projects"
             />
 
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
-              {products.map((product, i) => (
-                <Reveal key={product.name} delay={i * 0.04}>
-                  <Link
-                    href="/products"
-                    className="group flex h-full flex-col items-center rounded-xl border border-forest/5 bg-white px-3 py-4 text-center transition hover:-translate-y-1 hover:shadow-lg"
+            <div className="relative">
+              <button
+                type="button"
+                aria-label="Previous projects"
+                onClick={() => moveProjects(-1)}
+                className={`absolute -left-3 top-1/2 z-10 -translate-y-1/2 ${iconButton}`}
+              >
+                <LuChevronLeft size={19} />
+              </button>
+
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                {visibleProjects.map((project, index) => (
+                  <motion.div
+                    key={`${project.title}-${projectIndex}-${index}`}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.25 }}
                   >
-                    <span
-                      className="mb-3 flex h-20 w-12 items-center justify-center rounded-t-lg rounded-b-md border border-black/10 shadow-sm transition-transform group-hover:-rotate-2"
-                      style={{
-                        background: `linear-gradient(90deg, ${product.color} 0%, ${product.color} 24%, #f8f8f2 25%, #fff 85%, #d9dfd0 100%)`,
-                      }}
-                    >
-                      <span className="h-12 w-8 rounded-sm border border-black/10 bg-white/90 p-1">
-                        <span
-                          className="block h-1 w-full rounded-full"
-                          style={{ backgroundColor: product.color }}
-                        />
+                    <ProjectCard project={project} />
+                  </motion.div>
+                ))}
+              </div>
 
-                        <span className="mt-2 block text-[4px] font-bold leading-tight text-forest">
-                          FRESH
-                          <br />
-                          AGRI
-                        </span>
+              <button
+                type="button"
+                aria-label="Next projects"
+                onClick={() => moveProjects(1)}
+                className={`absolute -right-3 top-1/2 z-10 -translate-y-1/2 ${iconButton}`}
+              >
+                <LuChevronRight size={19} />
+              </button>
+            </div>
 
-                        <span className="mt-1 block h-1 w-3 rounded-full bg-leaf" />
-                      </span>
-                    </span>
-
-                    <span className="text-[8px] font-bold tracking-[0.08em] text-forest">
-                      {product.label}
-                    </span>
-
-                    <h3 className="mt-2 text-xs font-semibold text-ink">
-                      {product.name}
-                    </h3>
-
-                    <p className="mt-2 text-[10px] leading-4 text-muted">
-                      {product.detail}
-                    </p>
-                  </Link>
-                </Reveal>
+            <div className="mt-4 flex justify-center gap-1.5">
+              {projects.map((project, index) => (
+                <button
+                  key={project.title}
+                  type="button"
+                  aria-label={`Show project group ${index + 1}`}
+                  onClick={() => setProjectIndex(index)}
+                  className={`h-1.5 rounded-full transition-all ${
+                    projectIndex === index
+                      ? "w-6 bg-[#075332]"
+                      : "w-1.5 bg-[#cbd8c8] hover:bg-[#70977b]"
+                  }`}
+                />
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact CTA */}
-      <section className="relative overflow-hidden bg-forest px-5 py-14 text-white sm:px-8 md:py-16 lg:px-12">
-        <div className="absolute inset-0 opacity-20">
-          <img
-            src={image.field}
-            alt=""
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-        </div>
+        {/* PROCESS */}
+        <section className="relative px-4 py-7 sm:px-8 lg:px-12">
+          <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1fr_0.8fr]">
+            <div>
+              <SectionHeading
+                eyebrow="Our Process"
+                title="From Idea to Harvest"
+                description="A structured approach to planning and supporting agricultural projects."
+              />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/95 to-forest/60" />
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {processSteps.map((step) => {
+                  const Icon = step.icon;
 
-        <div className="relative mx-auto grid max-w-[1440px] gap-8 rounded-3xl border border-white/20 bg-[#f7f6ef] p-6 text-forest shadow-2xl sm:p-9 md:grid-cols-[1.15fr_.85fr] md:items-center lg:p-12">
-          <div>
-            <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em]">
-              Let's grow together
-            </p>
+                  return (
+                    <div key={step.number} className="relative">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d8e9d5] bg-[#e9f5e5] text-[#23683f]">
+                        <Icon size={19} strokeWidth={1.8} />
+                      </span>
 
-            <h2 className="max-w-xl font-display text-4xl leading-tight sm:text-5xl">
-              Ready to Start Your Farming Journey?
-            </h2>
-
-            <p className="mt-3 max-w-lg text-sm leading-6 text-muted">
-              Talk to our team about your land, crop plans, or
-              agricultural project requirements.
-            </p>
-
-            <Button href="/contact" showArrow className="mt-6">
-              Get a Call Back
-            </Button>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              "Initial consultation",
-              "Project-specific discussion",
-              "Agricultural guidance",
-              "Resource-conscious planning",
-            ].map((item) => (
-              <div
-                key={item}
-                className="flex items-center gap-2 text-xs font-medium"
-              >
-                <FiCheckCircle
-                  className="shrink-0 text-forest"
-                  size={17}
-                />
-                {item}
+                      <p className="mt-3 text-[9px] font-bold text-[#477c53]">
+                        {step.number}
+                      </p>
+                      <h3 className="mt-1 text-[10px] font-bold text-[#172b43]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 text-[9px] leading-4 text-[#727c85]">
+                        {step.description}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
+            </div>
+
+            <div className="relative mx-auto w-full max-w-md">
+              <div className="h-[230px] overflow-hidden rounded-[45%_20%_42%_20%] border-4 border-white shadow-xl sm:h-[270px]">
+                <img
+                  src={IMAGES.seedling}
+                  alt="Hands holding a young green plant"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+
+              <div className="absolute bottom-3 right-0 max-w-[190px] rounded-xl border border-white/80 bg-white/95 p-4 shadow-xl">
+                <LuSprout size={21} className="mb-2 text-[#17623b]" />
+                <p className="font-display text-lg leading-tight text-[#172b43]">
+                  Agriculture for a Greener Planet
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* PRODUCTS */}
+        <section id="products" className="px-4 py-7 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="Our Products"
+              title="High-Quality Agricultural Inputs"
+              description="Explore the product range for soil health, crop nutrition, plant growth, and crop protection."
+              link="View All Products"
+              href="/products"
+            />
+
+            <div className="relative">
+              <button
+                type="button"
+                aria-label="Previous products"
+                onClick={() => moveProducts(-1)}
+                className={`absolute -left-3 top-1/2 z-10 -translate-y-1/2 ${iconButton}`}
+              >
+                <LuChevronLeft size={19} />
+              </button>
+
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                {visibleProducts.map((product) => (
+                  <ProductCard key={product.name} product={product} />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                aria-label="Next products"
+                onClick={() => moveProducts(1)}
+                className={`absolute -right-3 top-1/2 z-10 -translate-y-1/2 ${iconButton}`}
+              >
+                <LuChevronRight size={19} />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* TESTIMONIALS */}
+        <section className="px-4 py-8 sm:px-8 lg:px-12">
+          <div className="mx-auto grid max-w-7xl items-start gap-5 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <Eyebrow>What Farmers Say</Eyebrow>
+              <h2 className="font-display text-3xl leading-tight text-[#172b43]">
+                Trusted by Farmers
+                <br />
+                Across India
+              </h2>
+              <p className="mt-3 text-[11px] leading-5 text-[#697286]">
+                Learn about farming experiences, practical considerations,
+                and the value of technical guidance.
+              </p>
+
+              <div className="mt-4 flex gap-2">
+                <button
+                  type="button"
+                  aria-label="Previous testimonial"
+                  onClick={() =>
+                    setTestimonialIndex(
+                      (current) =>
+                        (current - 1 + testimonials.length) %
+                        testimonials.length
+                    )
+                  }
+                  className={iconButton}
+                >
+                  <LuChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next testimonial"
+                  onClick={() =>
+                    setTestimonialIndex(
+                      (current) => (current + 1) % testimonials.length
+                    )
+                  }
+                  className={iconButton}
+                >
+                  <LuChevronRight size={18} />
+                </button>
+              </div>
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, x: 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -12 }}
+                transition={{ duration: 0.25 }}
+                className="rounded-2xl border border-[#e9eee3] bg-white p-5 shadow-sm sm:p-6"
+              >
+                <LuQuote size={27} className="text-[#65b989]" />
+
+                <blockquote className="mt-3 text-sm leading-6 text-[#56645c]">
+                  “{testimonial.quote}”
+                </blockquote>
+
+                <div className="mt-5 flex items-center gap-3 border-t border-[#edf0e8] pt-4">
+                  <img
+                    src={testimonial.image}
+                    alt=""
+                    className="h-11 w-11 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="text-[11px] font-bold text-[#172b43]">
+                      {testimonial.name}
+                    </p>
+                    <p className="mt-1 text-[9px] text-[#758073]">
+                      {testimonial.role} · {testimonial.location}
+                    </p>
+                  </div>
+                  <span className="ml-auto rounded-full bg-[#edf5e8] px-2.5 py-1 text-[9px] font-semibold text-[#315943]">
+                    Farmer Story
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+        <section className="relative isolate overflow-hidden">
+          <img
+            src={IMAGES.field}
+            alt="Agricultural field at sunset"
+            loading="lazy"
+            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#f8f8ef]/95 via-[#f8f8ef]/90 to-[#f8f8ef]/30" />
+
+          <div className="mx-auto grid max-w-7xl gap-6 px-5 py-8 sm:px-8 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:px-12">
+            <div>
+              <Eyebrow>Let's Grow Together</Eyebrow>
+              <h2 className="font-display text-3xl leading-tight text-[#075332] sm:text-4xl">
+                Build a Better
+                <br />
+                Farming Future
+              </h2>
+              <p className="mt-2 max-w-lg text-xs leading-5 text-[#58675d]">
+                Talk to our team about your land, crop, farm infrastructure,
+                or agricultural business plans.
+              </p>
+              <a
+                href="/contact"
+                className="mt-4 inline-flex items-center gap-3 rounded-full bg-[#075332] px-5 py-3 text-[10px] font-semibold text-white transition hover:bg-[#0b6941]"
+              >
+                Get a Call Back
+                <LuArrowRight size={14} />
+              </a>
+            </div>
+
+            <div className="rounded-2xl border border-white/80 bg-white/95 p-5 shadow-xl">
+              {[
+                "Free Consultation",
+                "Customized Solutions",
+                "Expert Support",
+                "Sustainable Growth",
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3 py-2">
+                  <LuCircleCheck
+                    size={17}
+                    className="shrink-0 text-[#17623b]"
+                  />
+                  <span className="text-[10px] font-medium text-[#315943]">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
     </SiteShell>
   );
 }
