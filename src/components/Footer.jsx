@@ -54,7 +54,7 @@ export default function Footer({
   mutedColor = defaultTheme.mutedColor,
   accentColor = defaultTheme.accentColor,
   dividerColor = defaultTheme.dividerColor,
-  logoSrc = "/images/logo.png",
+  logoSrc = "/logo.png",
   phone = "+91 8639976550",
   email = "freshagriculturebygreenbiotech@gmail.com",
   website = "https://freshagriculture.in",

@@ -79,7 +79,7 @@ export default function Navbar({
   textColor = defaultTheme.textColor,
   accentColor = defaultTheme.accentColor,
   mobileMenuBackground = defaultTheme.mobileMenuBackground,
-  logoSrc = "/images/logo.png",
+  logoSrc = "/logo.png",
   phone = "+91 8639976550",
   ctaLabel = "Get a Call Back",
   ctaHref = "/contact",
