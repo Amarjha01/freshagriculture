@@ -64,7 +64,6 @@ export default function Footer({
   services = serviceLinks,
   socials = socialLinks,
 }) {
-  const year = new Date().getFullYear();
 
   return (
     <footer
@@ -188,7 +187,7 @@ export default function Footer({
 
         <div className="mt-12 flex flex-col gap-3 border-t border-[var(--footer-divider)] pt-6 text-xs text-[var(--footer-muted)] md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} {companyName}. All rights reserved.
+            © 2026 {companyName}. All rights reserved.
           </p>
           <p>Growing a better future, together.</p>
         </div>
