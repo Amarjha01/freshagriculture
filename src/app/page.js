@@ -41,6 +41,7 @@ import {
 } from "react-icons/lu";
 
 import SiteShell from "@/components/SiteShell";
+import { FaCanadianMapleLeaf } from "react-icons/fa";
 
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
@@ -478,38 +479,47 @@ export default function HomePage() {
     <SiteShell>
       <main className="overflow-hidden bg-[#fbfaf4] text-[#193c27]">
 
+
 {/* HERO */}
-<section className="relative isolate overflow-hidden bg-[#fafaf2]">
+<section className="relative isolate overflow-y-hidden bg-[#fafaf2]">
   {/* Wide panoramic background image */}
-  <div
-    aria-hidden="true"
-    className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
-    style={{
-      backgroundImage: "url('/images/home-hero-bg.png')",
-    }}
-  />
 
-  {/* Soft overlay protects text readability */}
-  <div
-    aria-hidden="true"
-    className="absolute inset-0 -z-10 bg-gradient-to-r from-[#fbfaf4]/95 via-[#fbfaf4]/85 to-[#fbfaf4]/5 lg:via-[#fbfaf4]/75 lg:to-transparent"
-  />
 
+
+  {/* HERO CONTENT */}
   <motion.div
     initial="hidden"
     animate="visible"
     variants={stagger}
-    className="mx-auto grid min-h-[440px] max-w-7xl items-center px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[520px] lg:grid-cols-[1fr_1fr] lg:px-12 lg:py-14"
+    className="relative z-10 mx-auto grid min-h-130 max-w-7xl items-center px-5 py-12 sm:px-8 lg:min-h-150 lg:grid-cols-2 lg:px-12 lg:py-14"
   >
-    {/* LEFT: All content stays editable HTML */}
-    <div className="relative z-10 max-w-[590px]">
+    {/* LEFT CONTENT */}
+    <div className="relative z-10 max-w-147.5">
+      {/* LEFT DECORATIVE IMAGE */}
+  <motion.div
+    initial={{ opacity: 0, x: -30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+    aria-hidden="true"
+    className="pointer-events-none absolute -left-40 -top-40 -z-10 h-fit "
+  >
+    <img
+      src="/Images/home-hero-left.png"
+      alt=""
+      priority
+      className="h-full w-full object-"
+      sizes=""
+    />
+  </motion.div>
       <motion.div variants={fadeUp}>
-        <Eyebrow>Smart Farming · Sustainable Tomorrow</Eyebrow>
+        <Eyebrow>
+          Smart Farming · Sustainable Tomorrow
+        </Eyebrow>
       </motion.div>
 
       <motion.h1
         variants={fadeUp}
-        className="max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
+        className="mt-4 max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
       >
         Modern
         <br />
@@ -529,7 +539,7 @@ export default function HomePage() {
         farming systems.
       </motion.p>
 
-      {/* CTA buttons */}
+      {/* CTA BUTTONS */}
       <motion.div
         variants={fadeUp}
         className="mt-6 flex flex-wrap items-center gap-3"
@@ -550,10 +560,10 @@ export default function HomePage() {
         </a>
       </motion.div>
 
-      {/* Statistics */}
+      {/* STATISTICS */}
       <motion.div
         variants={fadeUp}
-        className="mt-8 grid max-w-[600px] grid-cols-2 gap-y-5 sm:mt-10 sm:grid-cols-4 sm:gap-x-3"
+        className="mt-8 grid max-w-150 grid-cols-2 gap-x-3 gap-y-5 sm:mt-10 sm:grid-cols-4"
       >
         {[
           {
@@ -583,7 +593,9 @@ export default function HomePage() {
             <div
               key={item.label}
               className={`flex min-w-0 items-start gap-2.5 sm:pr-3 ${
-                index !== 3 ? "sm:border-r sm:border-[#dfe6d8]" : ""
+                index !== 3
+                  ? "sm:border-r sm:border-[#dfe6d8]"
+                  : ""
               }`}
             >
               <Icon
@@ -593,7 +605,7 @@ export default function HomePage() {
               />
 
               <div className="min-w-0">
-                <p className="break-words text-[11px] font-bold leading-4 text-[#172b43] sm:text-xs">
+                <p className="wrap-break-word text-[11px] font-bold leading-4 text-[#172b43] sm:text-xs">
                   {item.value}
                 </p>
                 <p className="mt-1 text-[10px] leading-4 text-[#707b76]">
@@ -606,13 +618,84 @@ export default function HomePage() {
       </motion.div>
     </div>
 
-    {/* RIGHT: The farmer and greenhouse collage are already in the image */}
+    {/* RIGHT CONTENT SPACE */}
     <div
-      aria-hidden="true"
-      className="hidden min-h-[300px] lg:block"
+    aria-hidden="true"
+    className=" min-h-75 hidden sm:block"
+    >
+      
+  <motion.div
+    initial={{ opacity: 0, x: 30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+    aria-hidden="true"
+    className="pointer-events-none absolute  right-0 top-0 z-0 w-[62%]  md:w-[65%] lg:w-[70%] hidden sm:block"
+  >
+    <img
+      src="/Images/home-hero-right.png"
+      alt=""
+      priority
+      className="h-auto w-full object-contain object-bottom "
     />
   </motion.div>
+<motion.div 
+initial={{ opacity: 0, x: 30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+    aria-hidden="true"
+className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center gap-3 rounded-2xl bg-[#fafaf2] p-4">
+
+{/* LEFT: Leaf icon + decorative dots */}
+<div className="flex shrink-0 flex-col items-center gap-2 text-2xl text-green-700">
+  <FaCanadianMapleLeaf />
+
+  <motion.div className="flex flex-col items-center gap-1.5">
+  {Array.from({ length: 5 }).map((_, index) => (
+    <motion.span
+      key={index}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{
+        opacity: [0.3, 1, 0.3],
+        scale: [0.7, 1.2, 0.7],
+      }}
+      transition={{
+        delay: index * 0.15,
+        duration: 1.8,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className="h-1 w-1 rounded-full bg-green-700"
+    />
+  ))}
+</motion.div>
+</div>
+
+  {/* RIGHT: Vertical list */}
+  <div className="flex flex-col gap-2 uppercase">
+    {[
+      "Quality Crops",
+      "Modern Farming",
+      "Sustainable Growth",
+      "Green Future",
+    ].map((item, index) => (
+      <motion.span
+        key={item}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.2 }}
+        className="text-xs font-black text-green-700"
+      >
+        {item}
+      </motion.span>
+    ))}
+  </div>
+
+</motion.div>
+    </div>
+    
+  </motion.div>
 </section>
+
 
 
         {/* SERVICES */}
