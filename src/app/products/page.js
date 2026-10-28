@@ -253,7 +253,7 @@ function ProductBottle({ product, large = false }) {
   return (
     <div
       className={`relative flex items-center justify-center ${
-        large ? "h-full min-h-[250px]" : "h-28"
+        large ? "h-full min-h-62.5" : "h-28"
       }`}
     >
       <div
@@ -323,7 +323,7 @@ function ProductCard({ product, onSelect }) {
       <button
         type="button"
         onClick={() => onSelect(product)}
-        className="relative block w-full bg-gradient-to-b from-[#f5f6ed] to-white px-3 pt-3 text-left"
+        className="relative block w-full bg-linear-to-b from-[#f5f6ed] to-white px-3 pt-3 text-left"
         aria-label={`View ${product.name} details`}
       >
         <ProductBottle product={product} />
@@ -677,7 +677,7 @@ export default function ProductsPage() {
             {/* Product image */}
             <div className="relative min-h-[290px] overflow-hidden rounded-2xl bg-[#f0f4e8]">
               <img
-                src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=85"
+              src={`${selectedProduct.image}`}
                 alt={`${selectedProduct.name} product setting`}
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"

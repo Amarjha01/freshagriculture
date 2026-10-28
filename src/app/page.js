@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   LuArrowRight,
   LuChevronLeft,
@@ -46,7 +46,7 @@ import { FaCanadianMapleLeaf } from "react-icons/fa";
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
   farmer: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=90",
-  seedling: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1000&q=85",
+  seedling: "/Images/Sunlit Seedling in Rich Soil.png",
   polyhouse: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1000&q=85",
   hydroponics: "https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?auto=format&fit=crop&w=1000&q=85",
   mushroom: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=1000&q=85",
@@ -189,7 +189,7 @@ const products = [
 const testimonials = [
   {
     quote:
-      "The project helped us plan protected cultivation more systematically. Crop management and technical guidance are important parts of building a reliable farming operation.",
+      "Polyhouse farming ko lekar humein planning aur crop management mein sahi guidance ki zarurat thi. Technical support se humein apne farming process ko zyada systematically samajhne mein madad mili.",
     name: "Ramesh Kumar",
     role: "Tomato Farmer",
     location: "Telangana",
@@ -197,7 +197,7 @@ const testimonials = [
   },
   {
     quote:
-      "Understanding growing conditions, water management, and routine crop monitoring gave us a clearer approach to our farming plans.",
+      "Paani ka management aur fasal ki regular monitoring hamare liye important hai. Growing conditions ko samajhkar farming decisions lene mein clarity milti hai.",
     name: "Suresh Reddy",
     role: "Vegetable Farmer",
     location: "Hyderabad",
@@ -205,10 +205,34 @@ const testimonials = [
   },
   {
     quote:
-      "Exploring modern farming methods helped us evaluate the practical requirements before making decisions about our next growing season.",
+      "Modern farming shuru karne se pehle uski requirements aur practical challenges samajhna zaroori hai. Sahi information se hum apne agle growing season ki planning behtar kar sakte hain.",
     name: "Anita Sharma",
     role: "Agricultural Entrepreneur",
     location: "Siddipet",
+    image: IMAGES.nursery,
+  },
+   {
+    quote:
+      "पॉलीहाउस खेती शुरू करने से पहले हमें सही योजना और तकनीकी मार्गदर्शन की आवश्यकता थी। खेती की प्रक्रिया को बेहतर ढंग से समझने और व्यवस्थित करने में इस मार्गदर्शन से मदद मिली।",
+    name: "Ramesh Kumar",
+    role: "टमाटर उत्पादक किसान",
+    location: "तेलंगाना",
+    image: IMAGES.farmer,
+  },
+  {
+    quote:
+      "खेती में पानी का सही उपयोग और फसलों की नियमित देखभाल बहुत जरूरी है। इन बातों को समझकर हम अपनी खेती से जुड़े फैसले अधिक सोच-समझकर ले पाते हैं।",
+    name: "Suresh Reddy",
+    role: "सब्जी उत्पादक किसान",
+    location: "हैदराबाद",
+    image: IMAGES.seedling,
+  },
+  {
+    quote:
+      "नई खेती पद्धति अपनाने से पहले उसकी लागत, जरूरतों और चुनौतियों को समझना जरूरी है। सही जानकारी मिलने से अगली फसल की तैयारी और योजना बनाने में आसानी होती है।",
+    name: "Anita Sharma",
+    role: "कृषि उद्यमी",
+    location: "सिद्दीपेट",
     image: IMAGES.nursery,
   },
 ];
@@ -348,14 +372,14 @@ function ServiceCard({ service }) {
       href="/services"
       className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-[#edf0e8] bg-white/90 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
-      <div className="relative h-[100px] overflow-hidden sm:h-[90px] lg:h-[88px] xl:h-[100px]">
+      <div className="relative h-25 overflow-hidden sm:h-22.5 lg:h-22 xl:h-25">
         <img
           src={service.image}
           alt={service.title}
           loading="lazy"
           className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
         />
-        <span className="absolute bottom-0 left-3 flex h-8 w-8 translate-y-1/2 items-center justify-center rounded-full border border-[#dcebd9] bg-white text-[#17623b] shadow-sm">
+        <span className="absolute bottom-5 left-3 flex h-8 w-8 translate-y-1/2 items-center justify-center rounded-full border border-[#dcebd9] bg-white text-[#17623b] shadow-sm">
           <Icon size={17} strokeWidth={1.9} />
         </span>
       </div>
@@ -384,7 +408,7 @@ function ProjectCard({ project }) {
       href="/projects"
       className="group min-w-0 overflow-hidden rounded-xl border border-[#edf0e8] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
     >
-      <div className="relative h-[100px] overflow-hidden sm:h-[105px]">
+      <div className="relative h-25 overflow-hidden sm:h-26.25">
         <img
           src={project.image}
           alt={project.title}
@@ -453,13 +477,51 @@ export default function HomePage() {
       ? services
       : services.filter((service) => service.category === serviceFilter);
 
-  const visibleProjects = Array.from({ length: 4 }, (_, index) => {
-    return projects[(projectIndex + index) % projects.length];
-  });
+const [screenSize, setScreenSize] = useState("mobile");
 
-  const visibleProducts = Array.from({ length: 5 }, (_, index) => {
-    return products[(productIndex + index) % products.length];
-  });
+const shouldReduceMotion = useReducedMotion();
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.14,
+        delayChildren: 0.15,
+      },
+    },
+  };
+useEffect(() => {
+  const updateScreenSize = () => {
+    if (window.innerWidth >= 1024) {
+      setScreenSize("lg");
+    } else if (window.innerWidth >= 640) {
+      setScreenSize("md");
+    } else {
+      setScreenSize("mobile");
+    }
+  };
+
+  updateScreenSize();
+  window.addEventListener("resize", updateScreenSize);
+
+  return () => window.removeEventListener("resize", updateScreenSize);
+}, []);
+
+const visibleProjectCount =
+  screenSize === "lg" ? 4 : screenSize === "md" ? 3 : 2;
+
+const visibleProductCount =
+  screenSize === "lg" ? 5 : screenSize === "md" ? 3 : 2;
+
+const visibleProjects = Array.from(
+  { length: Math.min(visibleProjectCount, projects.length) },
+  (_, index) => projects[(projectIndex + index) % projects.length]
+);
+
+const visibleProducts = Array.from(
+  { length: Math.min(visibleProductCount, products.length) },
+  (_, index) => products[(productIndex + index) % products.length]
+);
 
   const testimonial = testimonials[testimonialIndex];
 
@@ -715,7 +777,7 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
               href="/services"
             />
 
-            <div className="mb-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:thin]">
+            <div className="mb-4 flex gap-2 overflow-x-auto pb-1 scrollbar-none">
               {[
                 "All",
                 "Protected Farming",
@@ -759,12 +821,12 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
             <img
               src={IMAGES.seedling}
               alt=""
-              className="h-full w-full object-cover opacity-35"
+              className="h-full w-full object-cover opacity-65"
             />
           </div>
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#052c1b]/95 via-[#06351f]/90 to-[#062c1b]/70" />
+          
 
-          <div className="mx-auto grid max-w-7xl gap-7 px-5 py-9 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-12 lg:py-12">
+          <div className=" grid gap-7 px-5 py-9 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-12 lg:py-12">
             <div className="max-w-lg">
               <Eyebrow light>Why Choose Fresh Agriculture</Eyebrow>
               <h2 className="font-display text-3xl leading-[1.12] text-white sm:text-4xl">
@@ -793,13 +855,13 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
                 return (
                   <div
                     key={benefit.title}
-                    className="flex gap-3 rounded-xl border border-white/15 bg-white/[0.045] p-4 transition hover:bg-white/[0.09]"
+                    className="flex gap-3 rounded-xl border border-white/15 bg-white/4.5 p-4 transition hover:bg-white/9 backdrop-blur-sm"
                   >
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1d8050] text-white">
                       <Icon size={19} strokeWidth={1.8} />
                     </span>
                     <div>
-                      <h3 className="text-[11px] font-semibold text-white">
+                      <h3 className="text-[11px] font-medium text-white">
                         {benefit.title}
                       </h3>
                       <p className="mt-1 text-[9px] leading-4 text-white/70">
@@ -876,59 +938,160 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
         </section>
 
         {/* PROCESS */}
-        <section className="relative px-4 py-7 sm:px-8 lg:px-12">
-          <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1fr_0.8fr]">
-            <div>
-              <SectionHeading
-                eyebrow="Our Process"
-                title="From Idea to Harvest"
-                description="A structured approach to planning and supporting agricultural projects."
-              />
+<section className="relative overflow-hidden px-4 py-16 sm:px-8 sm:py-20 lg:px-12">
+      {/* Soft background decoration */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-24 top-12 h-64 w-64 rounded-full bg-[#e9f5e5]/60 blur-3xl"
+      />
 
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                {processSteps.map((step) => {
-                  const Icon = step.icon;
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        {/* Left: Process content */}
+        <div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <SectionHeading
+              eyebrow="Our Process"
+              title="From Idea to Harvest"
+              description="A structured approach to planning and supporting agricultural projects."
+            />
+          </motion.div>
 
-                  return (
-                    <div key={step.number} className="relative">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d8e9d5] bg-[#e9f5e5] text-[#23683f]">
-                        <Icon size={19} strokeWidth={1.8} />
-                      </span>
+          {/* Animated process steps */}
+          <motion.div
+            className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4 sm:gap-5"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+          >
+            {processSteps.map((step) => {
+              const Icon = step.icon;
 
-                      <p className="mt-3 text-[9px] font-bold text-[#477c53]">
-                        {step.number}
-                      </p>
-                      <h3 className="mt-1 text-[10px] font-bold text-[#172b43]">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1 text-[9px] leading-4 text-[#727c85]">
-                        {step.description}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+              return (
+                <motion.div
+                  key={step.number}
+                  variants={fadeUp}
+                  whileHover={
+                    shouldReduceMotion
+                      ? undefined
+                      : { y: -6, transition: { duration: 0.2 } }
+                  }
+                  className="group relative"
+                >
+                  {/* Icon */}
+                  <motion.span
+                    whileHover={
+                      shouldReduceMotion ? undefined : { scale: 1.08 }
+                    }
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d8e9d5] bg-[#e9f5e5] text-[#23683f] shadow-sm transition-colors duration-300 group-hover:bg-[#23683f] group-hover:text-white"
+                  >
+                    <Icon size={21} strokeWidth={1.8} />
+                  </motion.span>
 
-            <div className="relative mx-auto w-full max-w-md">
-              <div className="h-[230px] overflow-hidden rounded-[45%_20%_42%_20%] border-4 border-white shadow-xl sm:h-[270px]">
-                <img
-                  src={IMAGES.seedling}
-                  alt="Hands holding a young green plant"
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+                  <p className="mt-4 text-xs font-bold tracking-[0.18em] text-[#477c53]">
+                    STEP {step.number}
+                  </p>
 
-              <div className="absolute bottom-3 right-0 max-w-[190px] rounded-xl border border-white/80 bg-white/95 p-4 shadow-xl">
-                <LuSprout size={21} className="mb-2 text-[#17623b]" />
-                <p className="font-display text-lg leading-tight text-[#172b43]">
-                  Agriculture for a Greener Planet
-                </p>
-              </div>
-            </div>
+                  <h3 className="mt-2 text-sm font-bold leading-snug text-[#172b43] sm:text-base">
+                    {step.title}
+                  </h3>
+
+                  <p className="mt-2 text-xs leading-5 text-[#727c85] sm:text-sm sm:leading-6">
+                    {step.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* Right: Image composition */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            x: shouldReduceMotion ? 0 : 35,
+          }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+          }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative mx-auto w-full max-w-lg"
+        >
+          {/* Image background panel */}
+          <div className="absolute inset-x-5 bottom-0 top-10 rounded-[2rem] bg-[#eaf0dc]" />
+
+          <div className="relative overflow-hidden rounded-[2rem]">
+            <motion.img
+              src="/Images/Hands Nurturing a Young Seedling.png"
+              alt="Hands nurturing a young green seedling"
+              loading="lazy"
+              whileHover={
+                shouldReduceMotion ? undefined : { scale: 1.035 }
+              }
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="relative z-10 h-[320px] w-full object-contain object-bottom sm:h-[420px]"
+            />
           </div>
-        </section>
+
+          {/* Decorative label */}
+          <div className="absolute left-0 top-8 z-20 rounded-full border border-white/80 bg-white/90 px-4 py-2 shadow-md backdrop-blur-md">
+            <span className="flex items-center gap-2 text-xs font-semibold text-[#23683f]">
+              <span className="h-2 w-2 rounded-full bg-[#70a65b]" />
+              Growing a sustainable future
+            </span>
+          </div>
+
+          {/* Floating information card */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: shouldReduceMotion ? 0 : 18,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ delay: 0.35, duration: 0.6 }}
+            animate={
+              shouldReduceMotion
+                ? undefined
+                : { y: [0, -7, 0] }
+            }
+            className="absolute -bottom-5 right-2 z-20 max-w-[245px] rounded-2xl border border-white/80 bg-white/95 p-4 shadow-[0_16px_45px_rgba(23,43,67,0.13)] backdrop-blur-md sm:right-0 sm:p-5"
+          >
+            <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#e9f5e5] text-[#17623b]">
+              <LuSprout size={23} />
+            </span>
+
+            <p className="font-display text-lg font-semibold leading-snug text-[#172b43] sm:text-xl">
+              Agriculture for a Greener Planet
+            </p>
+
+            <p className="mt-2 text-xs leading-5 text-[#727c85]">
+              Nurturing ideas into sustainable growth.
+            </p>
+
+            <div className="mt-4 h-1 w-14 overflow-hidden rounded-full bg-[#e2edda]">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.6 }}
+                className="h-full rounded-full bg-[#477c53]"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
 
         {/* PRODUCTS */}
         <section id="products" className="px-4 py-7 sm:px-8 lg:px-12">

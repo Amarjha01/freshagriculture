@@ -29,7 +29,7 @@ import {
 } from "react-icons/lu";
 
 import SiteShell from "@/components/SiteShell";
-
+import IndiaCoverage from "@/components/sections/IndiaCoverage";
 const photos = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
   farmer: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=85",
@@ -279,7 +279,7 @@ export default function AboutPage() {
             })}
           </motion.div>
         </section>
-
+<IndiaCoverage />
         {/* WHO WE ARE + LEADERSHIP */}
         <section className="relative isolate px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-20">
           <BotanicalDecoration className="-right-14 top-28 h-64 w-48 opacity-60" />

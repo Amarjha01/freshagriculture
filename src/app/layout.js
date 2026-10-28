@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${poppins.variable} ${dmSerif.variable}`}
     >
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased max-w-7xl mx-auto">
         <SmoothScroll />
         {children}
       </body>

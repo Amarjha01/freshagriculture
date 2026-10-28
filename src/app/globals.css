@@ -14,16 +14,12 @@
   --color-surface: #eeefe5;
 }
 
-* {
-  box-sizing: border-box;
-}
 
 html {
   scroll-behavior: auto;
 }
 
 body {
-  margin: 0;
   background: var(--color-ivory);
   color: var(--color-ink);
   font-family: var(--font-poppins), sans-serif;

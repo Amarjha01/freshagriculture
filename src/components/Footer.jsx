@@ -56,7 +56,7 @@ export default function Footer({
   dividerColor = defaultTheme.dividerColor,
   logoSrc = "/logo.png",
   phone = "+91 8639976550",
-  email = "freshagriculturebygreenbiotech@gmail.com",
+  email = "info@freshagriculture.in",
   website = "https://freshagriculture.in",
   address = "Kukunoorpally, District Siddipet, Telangana, India",
   companyName = "Fresh Agriculture by Green Bio-Tech LLP",
@@ -160,15 +160,6 @@ export default function Footer({
               >
                 <FiMail className="mt-1 shrink-0" style={{ color: accentColor }} />
                 {email}
-              </a>
-
-              <a
-                href={website}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 transition-colors hover:text-white"
-              >
-                Visit our website <FiArrowUpRight />
               </a>
             </div>
 
