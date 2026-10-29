@@ -723,7 +723,7 @@ export default function AboutPage() {
                     hidden: { opacity: 0, x: 15 },
                     visible: { opacity: 1, x: 0 },
                   }}
-                  className="relative flex gap-4 pb-7 last:pb-0"
+                  className="relative flex gap-4 pb-7 last:pb-0"ḥ
                 >
                   {index !== milestones.length - 1 && (
                     <span className="absolute bottom-0 left-[7px] top-4 w-px bg-[#a8c8a1]" />
