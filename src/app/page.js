@@ -47,17 +47,17 @@ const IMAGES = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
   farmer: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=90",
   seedling: "/Images/Sunlit Seedling in Rich Soil.png",
-  polyhouse: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1000&q=85",
-  hydroponics: "https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?auto=format&fit=crop&w=1000&q=85",
-  mushroom: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=1000&q=85",
-  aquaculture: "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&w=1000&q=85",
-  flowers: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1000&q=85",
-  nursery: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=85",
-  livestock: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1000&q=85",
-  irrigation: "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1000&q=85",
+  polyhouse:  "/services/polyhouse Farming/Polyhouse Farm.png",
+  hydroponics:      "/services/Hydroponics/Hydroponics Farm.png",
+  mushroom:   "/services/Mushroom Farming/Mushrooms Farm.png",
+  aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
+  flowers: "/services/Floriculture/Floriculture.png",
+  nursery: "/services/Nursery/nursery.png",
+  livestock: "/services/open cultivation/Goat Farming/Goat Farm.png",
+  irrigation: "services/Smart Irrigation/Smart Irrigation.png",
   tomatoes: "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=1000&q=85",
   capsicum: "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=1000&q=85",
-  field: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1600&q=90",
+  field: "/Images/Golden Sunrise Over Lush Crop Fields.webp"
 };
 
 const services = [
@@ -1223,7 +1223,7 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
             loading="lazy"
             className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#f8f8ef]/95 via-[#f8f8ef]/90 to-[#f8f8ef]/30" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#f8f8ef]/85 via-[#f8f8ef]/70 to-[#f8f8ef]/30" />
 
           <div className="mx-auto grid max-w-7xl gap-6 px-5 py-8 sm:px-8 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:px-12">
             <div>
@@ -1246,7 +1246,7 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
               </a>
             </div>
 
-            <div className="rounded-2xl border border-white/80 bg-white/95 p-5 shadow-xl">
+            <div className="rounded-2xl border border-white/80 bg-white/10 backdrop-blur-xl p-5 shadow-xl">
               {[
                 "Free Consultation",
                 "Customized Solutions",

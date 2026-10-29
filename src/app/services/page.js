@@ -39,31 +39,85 @@ import SiteShell from "@/components/SiteShell";
 const images = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=90",
   polyhouse:
-    "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1200&q=85",
+    "/services/polyhouse Farming/Polyhouse Farm.png",
   hydroponics:
-    "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1000&q=85",
+     "/services/Hydroponics/Hydroponics Farm.png",
   mushroom:
-    "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=1000&q=85",
+  "/services/Mushroom Farming/Mushrooms Farm.png",
   aquaculture:
-    "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1000&q=85",
+    "/services/Aquaculture/Aquaculture Farm.png",
   floriculture:
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1000&q=85",
+    "/services/Floriculture/Floriculture.png",
   nursery:
-    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1000&q=85",
+  "/services/Nursery/nursery.png",
   goat:
-    "https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=1000&q=85",
-  irrigation:
-    "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=85",
+ "/services/open cultivation/Goat Farming/Goat Farm.png",
+   irrigation:
+    "services/Smart Irrigation/Smart Irrigation.png",
   cropAdvisory:
-    "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=85",
-  project:
-    "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1000&q=85",
+ "services/Advisory/Advisory.png",
+   project:
+     "services/Project & AMC/Project & AMC.png",
   hands:
     "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90",
   consultation:
     "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=85",
 };
-
+const gallery = {
+  polyhouse:[
+     "/services/polyhouse Farming/Polyhouse Farm.png",
+     "/services/polyhouse Farming/blueberries.jpeg",
+     "/services/polyhouse Farming/broccoli .jpeg",
+     "/services/polyhouse Farming/Capsicum.png",
+     "/services/polyhouse Farming/cherry tomato.jpeg",
+     "/services/polyhouse Farming/cucumber.jpeg",
+     "/services/polyhouse Farming/GINGER.png",
+     "/services/polyhouse Farming/Strawberries.jpeg",
+  ],
+  hydroponics:[
+     "/services/Hydroponics/Hydroponics Farm.png",
+  ],
+  mushroom:[
+     "/services/Mushroom Farming/Mushrooms Farm.png",
+     "/services/Mushroom Farming/button mushroom.jpeg",
+     "/services/Mushroom Farming/oyster mushroom.jpeg",
+     "/services/Mushroom Farming/mushroom1.jpeg",
+     "/services/Mushroom Farming/mushroom2.jpeg",
+     "/services/Mushroom Farming/mushroom3.jpeg",
+  ],
+  aquaculture:[
+     "/services/Aquaculture/Aquaculture Farm.png",
+     "/services/Aquaculture/Aquaculture1.jpeg",
+     "/services/Aquaculture/RAS Aquaculture.jpeg",
+     "/services/Aquaculture/fish.jpeg",
+     "/services/Aquaculture/fish2.jpeg",
+     "/services/Aquaculture/Aquaculture2.jpeg",
+  ],
+  floriculture:[
+     "/services/Floriculture/Floriculture.png",
+     "/services/Floriculture/Floriculture1.jpeg",
+     "/services/Floriculture/Floriculture2.jpeg",
+     "/services/Floriculture/Floriculture3.jpeg",
+  ],
+  nursery:[
+     "/services/Nursery/nursery.png",
+  ],
+  goat:[
+     "/services/open cultivation/Goat Farming/Goat Farm.png",
+     "/services/open cultivation/Goat Farming/goat1.jpeg",
+     "/services/open cultivation/Goat Farming/goat2.jpeg",
+     "/services/open cultivation/Goat Farming/goat3.jpeg",
+  ],
+  smartIrrigation:[
+     "services/Smart Irrigation/Smart Irrigation.png",
+  ],
+  advisory:[
+     "services/Advisory/Advisory.png",
+  ],
+  project_AMC:[
+     "services/Project & AMC/Project & AMC.png",
+  ],
+}
 const services = [
   {
     id: "polyhouse",
@@ -87,13 +141,7 @@ const services = [
       { icon: LuSprout, title: "Controlled", subtitle: "Growing environment" },
       { icon: LuChartNoAxesCombined, title: "Crop-focused", subtitle: "Production planning" },
     ],
-    gallery: [
-      images.polyhouse,
-      images.hydroponics,
-      images.nursery,
-      images.irrigation,
-      images.cropAdvisory,
-    ],
+    gallery: gallery.polyhouse
   },
   {
     id: "hydroponics",
@@ -117,13 +165,7 @@ const services = [
       { icon: LuDroplets, title: "Managed", subtitle: "Water and nutrients" },
       { icon: LuLeaf, title: "Soilless", subtitle: "Growing systems" },
     ],
-    gallery: [
-      images.hydroponics,
-      images.polyhouse,
-      images.nursery,
-      images.cropAdvisory,
-      images.irrigation,
-    ],
+    gallery: gallery.hydroponics
   },
   {
     id: "mushroom",
@@ -147,13 +189,8 @@ const services = [
       { icon: LuSprout, title: "Purpose-built", subtitle: "Growing setup" },
       { icon: LuShieldCheck, title: "Hygiene", subtitle: "Planning" },
     ],
-    gallery: [
-      images.mushroom,
-      images.nursery,
-      images.hydroponics,
-      images.polyhouse,
-      images.cropAdvisory,
-    ],
+    gallery: gallery.mushroom
+
   },
   {
     id: "aquaculture",
@@ -177,13 +214,7 @@ const services = [
       { icon: LuDroplets, title: "Water", subtitle: "Management planning" },
       { icon: LuWaves, title: "Aquatic", subtitle: "Growing systems" },
     ],
-    gallery: [
-      images.aquaculture,
-      images.irrigation,
-      images.polyhouse,
-      images.hydroponics,
-      images.nursery,
-    ],
+    gallery: gallery.aquaculture
   },
   {
     id: "floriculture",
@@ -207,13 +238,7 @@ const services = [
       { icon: LuFlower2, title: "Crop-specific", subtitle: "Growing plans" },
       { icon: LuLeaf, title: "Plant care", subtitle: "Considerations" },
     ],
-    gallery: [
-      images.floriculture,
-      images.nursery,
-      images.polyhouse,
-      images.hydroponics,
-      images.cropAdvisory,
-    ],
+    gallery: gallery.floriculture
   },
   {
     id: "nursery",
@@ -237,13 +262,7 @@ const services = [
       { icon: LuSprout, title: "Plant", subtitle: "Propagation" },
       { icon: LuDroplets, title: "Watering", subtitle: "Planning" },
     ],
-    gallery: [
-      images.nursery,
-      images.hydroponics,
-      images.polyhouse,
-      images.floriculture,
-      images.cropAdvisory,
-    ],
+    gallery: gallery.nursery
   },
   {
     id: "goat",
@@ -267,13 +286,7 @@ const services = [
       { icon: LuHouse, title: "Housing", subtitle: "Considerations" },
       { icon: LuHeart, title: "Animal", subtitle: "Welfare planning" },
     ],
-    gallery: [
-      images.goat,
-      images.nursery,
-      images.polyhouse,
-      images.irrigation,
-      images.cropAdvisory,
-    ],
+    gallery: gallery.goat
   },
   {
     id: "irrigation",
@@ -297,13 +310,7 @@ const services = [
       { icon: LuDroplets, title: "Water", subtitle: "Use planning" },
       { icon: LuSettings, title: "Automation", subtitle: "Options" },
     ],
-    gallery: [
-      images.irrigation,
-      images.hydroponics,
-      images.polyhouse,
-      images.nursery,
-      images.cropAdvisory,
-    ],
+    gallery: gallery.smartIrrigation
   },
   {
     id: "advisory",
@@ -327,13 +334,7 @@ const services = [
       { icon: LuMicroscope, title: "Crop", subtitle: "Assessment" },
       { icon: LuLeaf, title: "Practical", subtitle: "Guidance" },
     ],
-    gallery: [
-      images.cropAdvisory,
-      images.polyhouse,
-      images.nursery,
-      images.hydroponics,
-      images.irrigation,
-    ],
+    gallery: gallery.advisory
   },
   {
     id: "project-amc",
@@ -357,13 +358,7 @@ const services = [
       { icon: LuClipboardList, title: "Project", subtitle: "Coordination" },
       { icon: LuSettings, title: "Maintenance", subtitle: "Planning" },
     ],
-    gallery: [
-      images.project,
-      images.polyhouse,
-      images.irrigation,
-      images.hydroponics,
-      images.nursery,
-    ],
+    gallery: gallery.project_AMC
   },
 ];
 

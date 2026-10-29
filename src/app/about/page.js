@@ -31,11 +31,14 @@ import {
 import SiteShell from "@/components/SiteShell";
 import IndiaCoverage from "@/components/sections/IndiaCoverage";
 const photos = {
-  hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
-  farmer: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=85",
-  founder: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=85",
-  partner: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=85",
-  fields: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1800&q=85",
+  hero: "/Images/aboutpage-right side.webp",
+  heroLeft: "/Images/home-hero-left.png",
+  founder: "/team/founder.jpeg",
+  director: "/team/director.jpeg",
+  production_operations_head: "/team/production_operations_head.jpeg",
+  sr_data_analysts_smo: "/team/sr_data_analysts_smo.jpeg",
+  fields: "/Images/Golden Sunrise Over Lush Crop Fields.webp",
+  greenValley: "/Images/Transparent Green Valley Farm Banner.webp",
   facility1: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=85",
   facility2: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=85",
   facility3: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=600&q=85",
@@ -125,18 +128,7 @@ function LuHeadphonesIcon(props) {
   return <LuPhone {...props} />;
 }
 
-function BotanicalDecoration({ className = "" }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`pointer-events-none absolute z-0 select-none ${className}`}
-    >
-      <LuLeaf className="absolute h-20 w-20 -rotate-45 text-[#b5cb91]/50 sm:h-28 sm:w-28" />
-      <LuLeaf className="absolute left-9 top-12 h-16 w-16 rotate-12 text-[#739b54]/35 sm:left-14 sm:top-16 sm:h-24 sm:w-24" />
-      <LuLeaf className="absolute left-2 top-24 h-12 w-12 rotate-[-80deg] text-[#d0dfb9]/70 sm:left-5 sm:top-32 sm:h-16 sm:w-16" />
-    </div>
-  );
-}
+
 
 function SectionLabel({ children, light = false }) {
   return (
@@ -162,127 +154,203 @@ function LeafBullet({ children }) {
   );
 }
 
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: "easeOut" },
+  },
+};
+
 export default function AboutPage() {
   return (
     <SiteShell>
       <main className="overflow-hidden bg-[#fbfaf4] text-[#182d24]">
-        {/* HERO */}
-        <section className="relative isolate min-h-[560px] overflow-hidden sm:min-h-[610px] lg:min-h-[540px]">
-          <div className="absolute inset-0 -z-20">
-            <img
-              src={photos.hero}
-              alt="Green agricultural fields in natural sunlight"
-              className="h-full w-full object-cover object-center"
-            />
+
+{/* HERO */}
+<section className="relative isolate overflow-hidden bg-[#fafaf2]">
+
+ 
+
+  {/* HERO CONTENT */}
+  <div className="relative z-10 mx-auto grid min-h-[560px] max-w-7xl items-center px-5 py-12 sm:px-8 sm:py-14 lg:min-h-[600px] lg:grid-cols-2 lg:px-12 lg:py-14">
+
+    {/* LEFT CONTENT */}
+          {/* LEFT DECORATIVE IMAGE */}
+  <motion.div
+    initial={{ opacity: 0, x: -30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+    aria-hidden="true"
+    className="pointer-events-none absolute -left-40 -top-40 -z-10 h-fit "
+  >
+    <img
+      src={photos.heroLeft}
+      alt=""
+      priority
+      className="h-full w-full object-"
+      sizes=""
+    />
+  </motion.div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={stagger}
+      className="relative z-10 max-w-xl"
+    >
+      {/* BREADCRUMB */}
+      <motion.div
+        variants={fadeUp}
+        className="mb-6 flex items-center gap-2 text-xs text-[#477c53]"
+      >
+        <a href="/" className="transition hover:underline">
+          Home
+        </a>
+        <LuChevronRight size={13} />
+        <span>About Us</span>
+      </motion.div>
+
+      {/* EYEBROW */}
+      <motion.div variants={fadeUp}>
+        <SectionLabel>Our Story</SectionLabel>
+      </motion.div>
+
+      {/* HEADING */}
+      <motion.h1
+        variants={fadeUp}
+        className="mt-4 max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
+      >
+        About Us
+      </motion.h1>
+
+      {/* SUBHEADING */}
+      <motion.h2
+        variants={fadeUp}
+        className="mt-4 max-w-lg text-xl font-medium leading-snug text-[#243c37] sm:text-2xl"
+      >
+        Innovation in Agriculture for a Greener, Healthier and More
+        Prosperous Tomorrow.
+      </motion.h2>
+
+      {/* DESCRIPTION */}
+      <motion.p
+        variants={fadeUp}
+        className="mt-5 max-w-[460px] text-sm leading-6 text-[#657064] sm:text-base sm:leading-7"
+      >
+        Fresh Agriculture by Green Bio-Tech brings together
+        agricultural solutions, practical knowledge, and modern
+        farming approaches to support growers and agricultural
+        communities.
+      </motion.p>
+
+      {/* CTA BUTTON */}
+      <motion.div variants={fadeUp} className="mt-7">
+        <a
+          href="/contact"
+          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#075332] px-6 py-3 text-xs font-semibold text-white shadow-md shadow-[#075332]/15 transition duration-300 hover:-translate-y-0.5 hover:bg-[#0b6941] hover:shadow-lg sm:px-7"
+        >
+          Get a Free Consultation
+          <LuArrowRight size={16} strokeWidth={2} />
+        </a>
+      </motion.div>
+    </motion.div>
+
+    {/* RIGHT CONTENT */}
+ 
+ {/* RIGHT CONTENT SPACE */}
+    <div
+    aria-hidden="true"
+    className=" min-h-75 hidden sm:block"
+    >
+      
+  <motion.div
+    initial={{ opacity: 0, x: 30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+    aria-hidden="true"
+    className="pointer-events-none absolute  right-0 top-0 z-0 w-[62%]  md:w-[65%] lg:w-[70%] hidden sm:block"
+  >
+    <img
+      src={photos.hero}
+      alt=""
+      priority
+      className="h-auto w-full object-contain object-bottom "
+    />
+  </motion.div>
+    </div>
+
+  </div>
+
+  {/* FLOATING METRICS */}
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.65, delay: 0.35 }}
+    className="relative z-20 mx-5 mb-6 grid grid-cols-2 gap-x-3 gap-y-5 rounded-2xl border border-[#e5eadf] bg-[#fbfcf3]/95 p-4 shadow-xl shadow-[#243c37]/10 backdrop-blur-md sm:mx-auto sm:mb-8 sm:max-w-4xl sm:grid-cols-4 sm:gap-3 sm:px-6 sm:py-5 lg:mt-[-15px]"
+  >
+    {[
+      {
+        icon: LuShieldCheck,
+        title: "Responsible",
+        subtitle: "Agricultural approach",
+      },
+      {
+        icon: LuUsers,
+        title: "Collaborative",
+        subtitle: "Grower-focused",
+      },
+      {
+        icon: LuSprout,
+        title: "Connected",
+        subtitle: "Farming solutions",
+      },
+      {
+        icon: LuLeaf,
+        title: "Sustainable",
+        subtitle: "Growth mindset",
+      },
+    ].map((item, index) => {
+      const Icon = item.icon;
+
+      return (
+        <div
+          key={item.title}
+          className={`flex min-w-0 items-start gap-2.5 sm:pr-3 ${
+            index !== 3
+              ? "sm:border-r sm:border-[#dfe6d8]"
+              : ""
+          }`}
+        >
+          <Icon
+            size={23}
+            strokeWidth={1.8}
+            className="mt-0.5 shrink-0 text-[#15583b]"
+          />
+
+          <div className="min-w-0">
+            <p className="wrap-break-word text-[11px] font-bold leading-4 text-[#243c37] sm:text-xs">
+              {item.title}
+            </p>
+
+            <p className="mt-1 text-[10px] leading-4 text-[#69756a]">
+              {item.subtitle}
+            </p>
           </div>
+        </div>
+      );
+    })}
+  </motion.div>
+</section>
 
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#fbfaf4]/35 via-transparent to-white/10" />
-
-          <BotanicalDecoration className="-left-9 top-5 h-56 w-44" />
-
-          <div className="mx-auto grid min-h-[560px] max-w-7xl items-center gap-8 px-5 pb-28 pt-12 sm:min-h-[610px] sm:px-8 sm:pb-32 lg:min-h-[540px] lg:grid-cols-[0.95fr_1.05fr] lg:px-12 lg:pb-28 lg:pt-10">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="relative z-10 max-w-xl"
-            >
-              <div className="mb-7 flex items-center gap-2 text-xs text-[#477c53]">
-                <a href="/" className="hover:underline">
-                  Home
-                </a>
-                <LuChevronRight size={13} />
-                <span>About Us</span>
-              </div>
-
-              <SectionLabel>Our Story</SectionLabel>
-
-              <h1 className="font-display text-5xl leading-[1.04] tracking-tight text-[#152a43] sm:text-6xl lg:text-7xl">
-                About Us
-              </h1>
-
-              <h2 className="mt-3 max-w-lg text-xl font-medium leading-snug text-[#243c37] sm:text-2xl">
-                Innovation in Agriculture for a Greener, Healthier and More
-                Prosperous Tomorrow.
-              </h2>
-
-              <p className="mt-5 max-w-lg text-sm leading-6 text-[#5f6b62] sm:text-base sm:leading-7">
-                Fresh Agriculture by Green Bio-Tech brings together
-                agricultural solutions, practical knowledge, and modern
-                farming approaches to support growers and agricultural
-                communities.
-              </p>
-
-              <a
-                href="/contact"
-                className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#075332] px-6 py-3.5 text-xs font-semibold text-white shadow-lg shadow-[#075332]/15 transition hover:bg-[#0b6941]"
-              >
-                Get a Free Consultation
-                <LuArrowRight size={16} />
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.85, delay: 0.1 }}
-              className="relative hidden h-full min-h-[400px] lg:block"
-            >
-              <div className="absolute right-0 top-5 max-w-[220px] rotate-[-5deg] text-center">
-                <p className="font-display text-3xl leading-tight text-[#183d2b]">
-                  Healthy Farms,
-                  <br />
-                  Brighter Future
-                </p>
-                <LuSprout className="mx-auto mt-2 text-[#2e7a3e]" size={30} />
-              </div>
-
-              <div className="absolute bottom-12 left-0 h-60 w-56 rotate-[-10deg] rounded-[45%] bg-white/15 blur-2xl" />
-              <div className="absolute bottom-5 right-0 h-[310px] w-[70%] overflow-hidden rounded-[2rem]">
-                <img
-                  src={photos.farmer}
-                  alt="Agricultural work among growing plants"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Floating metrics bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.35 }}
-            className="absolute bottom-4 left-5 right-5 z-20 mx-auto grid max-w-4xl grid-cols-2 gap-4 rounded-2xl border border-white/70 bg-[#fbfcf3]/95 p-4 shadow-xl shadow-[#243c37]/10 backdrop-blur-md sm:bottom-5 sm:grid-cols-4 sm:gap-3 sm:px-6 sm:py-5"
-          >
-            {[
-              { icon: LuShieldCheck, title: "Responsible", subtitle: "Agricultural approach" },
-              { icon: LuUsers, title: "Collaborative", subtitle: "Grower-focused" },
-              { icon: LuSprout, title: "Connected", subtitle: "Farming solutions" },
-              { icon: LuLeaf, title: "Sustainable", subtitle: "Growth mindset" },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.title} className="flex items-center gap-2.5">
-                  <Icon size={23} className="shrink-0 text-[#236443]" />
-                  <div>
-                    <p className="text-[11px] font-bold text-[#243c37] sm:text-xs">
-                      {item.title}
-                    </p>
-                    <p className="mt-1 text-[9px] leading-4 text-[#69756a] sm:text-[10px]">
-                      {item.subtitle}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </motion.div>
-        </section>
 <IndiaCoverage />
         {/* WHO WE ARE + LEADERSHIP */}
         <section className="relative isolate px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-20">
-          <BotanicalDecoration className="-right-14 top-28 h-64 w-48 opacity-60" />
 
           <div className="relative mx-auto max-w-7xl">
             <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
@@ -387,14 +455,28 @@ export default function AboutPage() {
                   {
                     image: photos.founder,
                     role: "Founder & Managing Partner",
-                    name: "Leadership Profile",
+                    name: "Monu Kimar",
                     description:
                       "Add the verified founder biography, agricultural experience, and professional background here.",
                   },
                   {
-                    image: photos.partner,
-                    role: "Managing Partner",
-                    name: "Leadership Profile",
+                    image: photos.director,
+                    role: "Director",
+                    name: "Tirtha Mandal",
+                    description:
+                      "Add the verified partner biography, area of expertise, and responsibilities here.",
+                  },
+                  {
+                    image: photos.production_operations_head,
+                    role: "PRODUCTION AND OPERATIONS HEAD",
+                    name: "Md. Guphran Ali",
+                    description:
+                      "Add the verified partner biography, area of expertise, and responsibilities here.",
+                  },
+                  {
+                    image: photos.sr_data_analysts_smo,
+                    role: "Sr.DATA ANALYSIS/SMO",
+                    name: "Suraj Singh Mahar",
                     description:
                       "Add the verified partner biography, area of expertise, and responsibilities here.",
                   },
@@ -494,7 +576,7 @@ export default function AboutPage() {
             loading="lazy"
           />
 
-          <div className="absolute inset-0 -z-10 bg-[#063b27]/85" />
+          <div className="absolute inset-0 -z-10 bg-[#063b27]/45" />
 
           <div className="mx-auto grid max-w-7xl grid-cols-2 gap-7 px-5 sm:px-8 md:grid-cols-4 lg:px-12">
             {stats.map((stat) => {
@@ -525,7 +607,6 @@ export default function AboutPage() {
 
         {/* VALUES */}
         <section className="relative isolate px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-          <BotanicalDecoration className="-left-16 top-20 h-52 w-44 opacity-40" />
 
           <div className="relative mx-auto max-w-7xl">
             <motion.div
@@ -586,19 +667,15 @@ export default function AboutPage() {
           id="our-journey"
           className="relative isolate overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:px-12"
         >
-          <div className="absolute inset-x-0 bottom-0 -z-20 h-52">
+          <div className="absolute inset-x-0 bottom-0 -z-20 h-full ">
             <img
-              src={photos.fields}
-              alt=""
+              src={photos.greenValley}
+              alt="Transparent Green Valley Farm Banner"
               aria-hidden="true"
               loading="lazy"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover "
             />
           </div>
-
-          <div className="absolute inset-x-0 bottom-0 -z-10 h-60 bg-gradient-to-t from-[#eaf0dc]/75 to-[#fbfaf4]" />
-
-          <BotanicalDecoration className="-right-16 top-10 h-56 w-44 opacity-45" />
 
           <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:gap-20">
             <motion.div
@@ -658,17 +735,13 @@ export default function AboutPage() {
                     <h3 className="text-sm font-bold text-[#263c30]">
                       {milestone.title}
                     </h3>
-                    <p className="mt-1.5 text-xs leading-6 text-[#6b7569] sm:text-sm">
+                    <p className="mt-0.5 text-xs leading-6 text-[#6b7569] sm:text-sm">
                       {milestone.description}
                     </p>
                   </div>
                 </motion.div>
               ))}
             </motion.div>
-          </div>
-
-          <div className="pointer-events-none absolute bottom-0 left-[40%] -z-10 hidden lg:block">
-            <LuSprout size={90} className="text-[#568748]/80" />
           </div>
         </section>
 
@@ -695,7 +768,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+            <div className="grid grid-cols-3 gap-3 sm:gap-">
               {facilities.map((facility, index) => (
                 <motion.figure
                   key={facility.title}

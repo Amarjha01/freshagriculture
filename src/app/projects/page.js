@@ -36,14 +36,14 @@ import { FiCheckCircle } from "react-icons/fi";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=90",
-  polyhouse: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1000&q=85",
-  hydroponics: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1000&q=85",
-  mushroom: "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=1000&q=85",
-  aquaculture: "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1000&q=85",
-  floriculture: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1000&q=85",
-  nursery: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1000&q=85",
-  goat: "https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=1000&q=85",
-  irrigation: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=85",
+  polyhouse:  "/services/polyhouse Farming/Polyhouse Farm.png",
+  hydroponics:      "/services/Hydroponics/Hydroponics Farm.png",
+  mushroom:   "/services/Mushroom Farming/Mushrooms Farm.png",
+  aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
+  floriculture: "/services/Floriculture/Floriculture.png",
+  nursery: "/services/Nursery/nursery.png",
+  goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
+  irrigation: "services/Smart Irrigation/Smart Irrigation.png",
   farmer: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1000&q=85",
 };
 
