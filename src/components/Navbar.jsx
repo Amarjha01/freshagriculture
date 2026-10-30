@@ -135,7 +135,7 @@ export default function Navbar({
       }}
     >
       {/* Main Navbar */}
-      <div className="mx-10 flex min-h-19 max-w-360 rounded-full backdrop-blur-xl items-center justify-between gap-4 md:px-8 lg:px-12">
+      <div className="mx-5 lg:mx-10 flex min-h-19 max-w-360 rounded-full backdrop-blur-xl items-center justify-between gap-4 px-4 sm:px-5 md:px-8 lg:px-12">
         {/* Logo */}
         <Link
           href="/"
