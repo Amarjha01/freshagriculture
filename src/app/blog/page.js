@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useMemo, useState } from "react";
@@ -32,26 +31,19 @@ import SiteShell from "@/components/SiteShell";
 import { GoCheckCircle } from "react-icons/go";
 
 const images = {
-  hero:
-    "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90",
-  polyhouse:
-    "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1400&q=90",
-  tomato:
-    "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=900&q=85",
-  soil:
-    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85",
-  hydroponics:
-    "https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?auto=format&fit=crop&w=900&q=85",
-  floriculture:
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=85",
-  aquaculture:
-    "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&w=900&q=85",
-  irrigation:
-    "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85",
-  greenhouse:
-    "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=85",
-  dairy:
-    "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=900&q=85",
+  hero: "/Images/blogpage-right.webp",
+  heroLeft: "/Images/home-hero-left.png",
+  polyhouse: "/services/polyhouse Farming/Polyhouse Farm.png",
+  hydroponics: "/services/Hydroponics/Hydroponics Farm.png",
+  mushroom: "/services/Mushroom Farming/Mushrooms Farm.png",
+  aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
+  floriculture: "/services/Floriculture/Floriculture.png",
+  nursery: "/services/Nursery/nursery.png",
+  goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
+  irrigation: "services/Smart Irrigation/Smart Irrigation.png",
+  tomato: "",
+  soil: "",
+  dairy: "",
 };
 
 const topics = [
@@ -340,19 +332,6 @@ function SectionLabel({ children, light = false }) {
   );
 }
 
-function BotanicalLeaves({ className = "" }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`pointer-events-none absolute z-0 ${className}`}
-    >
-      <LuLeaf className="absolute h-20 w-20 -rotate-45 text-[#9fbd7e]/45 sm:h-28 sm:w-28" />
-      <LuLeaf className="absolute left-8 top-12 h-16 w-16 rotate-12 text-[#65904c]/35 sm:left-14 sm:top-16 sm:h-24 sm:w-24" />
-      <LuLeaf className="absolute left-1 top-24 h-12 w-12 -rotate-90 text-[#c5d9a8]/65 sm:top-32 sm:h-16 sm:w-16" />
-    </div>
-  );
-}
-
 function ArticleMeta({ date, readTime }) {
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[9px] text-[#6f7887]">
@@ -431,7 +410,7 @@ export default function BlogPage() {
         activeTopic === "All Articles" ||
         article.category === activeTopic ||
         article.tags.some(
-          (tag) => tag.toLowerCase() === activeTopic.toLowerCase()
+          (tag) => tag.toLowerCase() === activeTopic.toLowerCase(),
         );
 
       const matchesSearch =
@@ -456,16 +435,13 @@ export default function BlogPage() {
   }, [activeTopic, search, sortBy, featuredArticle.id]);
 
   const pageSize = 6;
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filteredArticles.length / pageSize)
-  );
+  const totalPages = Math.max(1, Math.ceil(filteredArticles.length / pageSize));
 
   const currentPage = Math.min(page, totalPages);
 
   const paginatedArticles = filteredArticles.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   function chooseTopic(topic) {
@@ -476,7 +452,7 @@ export default function BlogPage() {
   function choosePopularTopic(topic) {
     setSearch("");
     setActiveTopic(
-      topics.some((item) => item.name === topic) ? topic : "All Articles"
+      topics.some((item) => item.name === topic) ? topic : "All Articles",
     );
     setPage(1);
 
@@ -497,7 +473,7 @@ export default function BlogPage() {
     // UI demonstration only. Connect to your newsletter provider/API
     // before presenting this as a completed subscription.
     setSubscribeMessage(
-      "Thanks! Connect the newsletter API to complete your subscription."
+      "Thanks! Connect the newsletter API to complete your subscription.",
     );
   }
 
@@ -508,19 +484,33 @@ export default function BlogPage() {
         <section className="relative isolate overflow-hidden">
           <div className="absolute inset-0 -z-20 bg-[#f7f7ef]" />
 
-          <div className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden sm:w-[62%]">
+          <img
+            src={images.hero}
+            alt="Agricultural fields in natural sunlight"
+            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+          />
+
+          {/* LEFT DECORATIVE IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-10 lg:-left-15 h-full object-cover lg:object-none "
+          >
             <img
-              src={images.hero}
-              alt="Hands nurturing a young plant in healthy soil"
-              className="h-full w-full object-cover"
+              src={images.heroLeft}
+              alt=""
+              priority
+              className="h-full w-full"
+              sizes=""
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/75 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#fbfaf4]/10 to-transparent" />
-          </div>
+          </motion.div>
 
-          <BotanicalLeaves className="-left-10 top-4 h-64 w-48" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
-          <div className="mx-auto grid min-h-[310px] max-w-7xl items-center gap-6 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[325px] lg:grid-cols-[1fr_0.9fr] lg:px-12">
+          <div className="mx-auto grid min-h-77.5 max-w-7xl items-center gap-6 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-81.25 lg:grid-cols-[1fr_0.9fr] lg:px-12">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -553,9 +543,9 @@ export default function BlogPage() {
                 variants={fadeUp}
                 className="mt-4 max-w-lg text-xs leading-6 text-[#657064] sm:text-sm sm:leading-7"
               >
-                Insights, tips and updates from the world of modern
-                agriculture. Learn from practical guides and explore
-                technologies, farming practices, and industry topics.
+                Insights, tips and updates from the world of modern agriculture.
+                Learn from practical guides and explore technologies, farming
+                practices, and industry topics.
               </motion.p>
 
               <motion.div variants={fadeUp} className="mt-5">
@@ -569,31 +559,20 @@ export default function BlogPage() {
               </motion.div>
             </motion.div>
 
+            {/* right side*/}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.65 }}
-              className="relative hidden min-h-[245px] lg:block"
+              transition={{ duration: 0.8 }}
+              aria-hidden="true"
+              className="pointer-events-none absolute  right-0 -top-20 z-0 w-[50%] hidden lg:block"
             >
-              <div className="absolute right-0 top-0 h-[235px] w-[88%] overflow-hidden rounded-bl-[42%] rounded-tr-2xl">
-                <img
-                  src={images.hero}
-                  alt="A young plant growing in fertile soil"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="absolute left-0 top-2 z-10 max-w-[145px] rotate-[-5deg] text-center">
-                <p className="font-display text-3xl leading-[0.95] text-[#173b2b]">
-                  Healthy Farms,
-                  <br />
-                  Brighter Future
-                </p>
-                <LuSprout
-                  size={22}
-                  className="mx-auto mt-2 text-[#347d42]"
-                />
-              </div>
+              <img
+                src={images.hero}
+                alt=""
+                priority
+                className="h-auto w-full object-contain"
+              />
             </motion.div>
           </div>
         </section>
@@ -753,7 +732,7 @@ export default function BlogPage() {
                 <div className="mt-2">
                   {trendingArticles.map((item) => {
                     const article = articles.find(
-                      (entry) => entry.id === item.articleId
+                      (entry) => entry.id === item.articleId,
                     );
 
                     return (
@@ -846,8 +825,6 @@ export default function BlogPage() {
           id="latest-articles"
           className="relative isolate scroll-mt-24 px-4 pb-8 pt-1 sm:px-8 lg:px-12"
         >
-          <BotanicalLeaves className="-right-12 top-1/3 h-48 w-40 opacity-50" />
-
           <div className="relative mx-auto grid max-w-7xl gap-4 lg:grid-cols-[minmax(0,1fr)_270px] xl:grid-cols-[minmax(0,1fr)_300px]">
             <div className="min-w-0 lg:col-span-1">
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
@@ -896,10 +873,7 @@ export default function BlogPage() {
 
               {paginatedArticles.length === 0 && (
                 <div className="rounded-2xl border border-[#edf0e8] bg-white p-10 text-center">
-                  <LuSearch
-                    size={28}
-                    className="mx-auto text-[#6b9675]"
-                  />
+                  <LuSearch size={28} className="mx-auto text-[#6b9675]" />
                   <h3 className="mt-3 font-display text-xl text-[#172b43]">
                     No articles found
                   </h3>
@@ -957,9 +931,7 @@ export default function BlogPage() {
 
                   {totalPages > 4 && (
                     <>
-                      <span className="px-1 text-[10px] text-[#7b8491]">
-                        …
-                      </span>
+                      <span className="px-1 text-[10px] text-[#7b8491]">…</span>
                       <button
                         type="button"
                         onClick={() => setPage(totalPages)}
@@ -1087,9 +1059,7 @@ export default function BlogPage() {
             className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
 
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#062c1c]/90 via-[#062c1c]/75 to-[#062c1c]/35" />
-
-          <BotanicalLeaves className="-left-10 bottom-0 h-44 w-36 opacity-75" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#062c1c]/90 via-[#062c1c]/75 to-[#062c1c]/35" />
 
           <div className="mx-auto grid max-w-7xl items-center gap-6 px-5 py-9 sm:px-8 sm:py-11 lg:grid-cols-[1fr_0.7fr] lg:px-12">
             <div className="relative z-10">
@@ -1101,8 +1071,8 @@ export default function BlogPage() {
               </h2>
 
               <p className="mt-3 max-w-lg text-xs leading-5 text-white/85 sm:text-sm">
-                Explore practical guides, agricultural insights, and ideas
-                to help you make informed farming decisions.
+                Explore practical guides, agricultural insights, and ideas to
+                help you make informed farming decisions.
               </p>
 
               <a
@@ -1121,10 +1091,7 @@ export default function BlogPage() {
                 "Latest Technologies",
                 "Real Farmer Stories",
               ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 py-2"
-                >
+                <div key={item} className="flex items-center gap-3 py-2">
                   <GoCheckCircle
                     size={17}
                     className="shrink-0 text-[#286b42]"

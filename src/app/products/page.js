@@ -27,10 +27,30 @@ import {
 
 import SiteShell from "@/components/SiteShell";
 
-/*
- * Product photos below are placeholders.
- * Replace them with actual product images from /public/images/products/.
- */
+const images = {
+  hero: "/Images/productpage-right side.webp",
+  heroLeft:"/Images/home-hero-left.png",
+  polyhouse:
+    "/services/polyhouse Farming/Polyhouse Farm.png",
+  hydroponics:
+     "/services/Hydroponics/Hydroponics Farm.png",
+  mushroom:
+  "/services/Mushroom Farming/Mushrooms Farm.png",
+  aquaculture:
+    "/services/Aquaculture/Aquaculture Farm.png",
+  floriculture:
+    "/services/Floriculture/Floriculture.png",
+  nursery:
+  "/services/Nursery/nursery.png",
+  goat:
+ "/services/open cultivation/Goat Farming/Goat Farm.png",
+   irrigation:
+    "services/Smart Irrigation/Smart Irrigation.png",
+  cropAdvisory:
+ "services/Advisory/Advisory.png",
+   project:
+     "services/Project & AMC/Project & AMC.png",
+};
 
 const categories = [
   { name: "All Products", icon: LuSprout },
@@ -406,8 +426,6 @@ export default function ProductsPage() {
       (product) => product.category === activeCategory
     );
 
-    // Some categories in the catalog may not have been entered yet.
-    // Show the complete range rather than a blank grid.
     return categoryMatches.length > 0 ? categoryMatches : products;
   }, [activeCategory]);
 
@@ -437,16 +455,33 @@ export default function ProductsPage() {
       <main className="overflow-hidden bg-[#fbfaf4] text-[#193c27]">
         {/* HERO */}
         <section className="relative isolate min-h-[500px] overflow-hidden sm:min-h-[520px]">
+          
           <img
-            src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=90"
-            alt="Sunlit green agricultural fields"
-            className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+            src={images.hero}
+            alt=""
+            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover object-center"
           />
 
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/15" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#fbfaf4]/80 via-transparent to-white/10" />
 
-          <div className="mx-auto grid min-h-[500px] max-w-7xl items-center gap-8 px-5 pb-12 pt-10 sm:min-h-[520px] sm:px-8 lg:grid-cols-2 lg:px-12">
+              {/* LEFT DECORATIVE IMAGE */}
+  <motion.div
+    initial={{ opacity: 0, x: -30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+    aria-hidden="true"
+    className="pointer-events-none absolute -left-20 -top-50 z-0 hidden h-auto w-112.5 lg:block n"
+  >
+    <img
+      src={images.heroLeft}
+      alt=""
+      className="h-auto w-full object-contain"
+    />
+  </motion.div>
+
+          <div className="mx-auto grid min-h-125 max-w-7xl items-center gap-8 px-5 pb-12 pt-10 sm:min-h-130 sm:px-8 lg:grid-cols-2 lg:px-12">
+            {/* left content */}
             <motion.div
               initial="hidden"
               animate="visible"
@@ -484,7 +519,7 @@ export default function ProductsPage() {
 
               <motion.div
                 variants={fadeUp}
-                className="mt-7 flex flex-wrap gap-x-6 gap-y-4"
+                className="mt-7 flex flex-wrap gap-x-6 gap-y-4 w-fit p-2 rounded-2xl backdrop-blur-xs"
               >
                 {[
                   { icon: LuLeaf, label: "Quality Products" },
@@ -495,7 +530,7 @@ export default function ProductsPage() {
                   return (
                     <div key={item.label} className="flex items-center gap-2">
                       <Icon size={24} className="text-[#075332]" />
-                      <span className="max-w-[90px] text-[10px] font-semibold leading-4 text-[#35473a] sm:text-xs">
+                      <span className="max-w-22.5 text-[10px] font-semibold leading-4 text-[#35473a] sm:text-xs">
                         {item.label}
                       </span>
                     </div>
@@ -504,13 +539,15 @@ export default function ProductsPage() {
               </motion.div>
             </motion.div>
 
+                {/* right content */}
+
             <motion.div
               initial={{ opacity: 0, scale: 0.97, x: 20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative hidden min-h-[380px] items-center justify-center lg:flex"
+              className="relative hidden  min-h-full lg:block"
             >
-              <div className="absolute right-[8%] top-[6%] flex h-20 w-20 flex-col items-center justify-center rounded-full border border-white/80 bg-white/90 text-center shadow-lg">
+              <div className="absolute right-[8%] top-[6%] flex h-20 w-20 flex-col items-center justify-center rounded-full border border-white/80 bg-white/90 text-center shadow-lg z-10">
                 <LuTrendingUpIcon />
                 <span className="mt-1 text-[9px] font-semibold leading-3">
                   Better
@@ -519,7 +556,7 @@ export default function ProductsPage() {
                 </span>
               </div>
 
-              <div className="absolute right-[1%] top-[36%] flex h-20 w-20 flex-col items-center justify-center rounded-full border border-white/80 bg-white/90 text-center shadow-lg">
+              <div className="absolute right-[1%] top-[36%] flex h-20 w-20 flex-col items-center justify-center rounded-full border border-white/80 bg-white/90 text-center shadow-lg z-10">
                 <LuShieldCheck size={22} className="text-[#075332]" />
                 <span className="mt-1 text-[9px] font-semibold leading-3">
                   Crop
@@ -528,7 +565,7 @@ export default function ProductsPage() {
                 </span>
               </div>
 
-              <div className="absolute left-[10%] top-[20%] flex h-20 w-20 flex-col items-center justify-center rounded-full border border-white/80 bg-white/90 text-center shadow-lg">
+              <div className="absolute left-[10%] top-[20%] flex h-20 w-20 flex-col items-center justify-center rounded-full border border-white/80 bg-white/90 text-center shadow-lg z-10">
                 <LuSprout size={22} className="text-[#075332]" />
                 <span className="mt-1 text-[9px] font-semibold leading-3">
                   Soil
@@ -536,16 +573,22 @@ export default function ProductsPage() {
                   Health
                 </span>
               </div>
-
-              <div className="absolute inset-x-[12%] bottom-0 h-[75%] overflow-hidden rounded-t-[50%]">
-                <img
-                  src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=90"
-                  alt="Young green plant"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#523b1d]/20 to-transparent" />
-              </div>
+                     {/* RIGHT HERO IMAGE */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className=" relative hidden  min-h-full lg:block"
+                  >
+                    <img
+                      src={images.hero}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute min-h-auto min-w-190 -right-20 -top-30 object-center"
+                    />
+                  </motion.div>
             </motion.div>
+            
           </div>
         </section>
 

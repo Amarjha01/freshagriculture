@@ -44,8 +44,8 @@ import SiteShell from "@/components/SiteShell";
 import { FaCanadianMapleLeaf } from "react-icons/fa";
 
 const IMAGES = {
-  hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
-  farmer: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=90",
+  hero: "/Images/home-hero-right.png",
+  farmer: "",
   seedling: "/Images/Sunlit Seedling in Rich Soil.png",
   polyhouse:  "/services/polyhouse Farming/Polyhouse Farm.png",
   hydroponics:      "/services/Hydroponics/Hydroponics Farm.png",
@@ -694,7 +694,7 @@ const visibleProducts = Array.from(
     className="pointer-events-none absolute  right-0 top-0 z-0 w-[62%]  md:w-[65%] lg:w-[70%] hidden sm:block"
   >
     <img
-      src="/Images/home-hero-right.png"
+      src={IMAGES.hero}
       alt=""
       priority
       className="h-auto w-full object-contain object-bottom "

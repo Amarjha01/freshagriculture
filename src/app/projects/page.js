@@ -35,16 +35,16 @@ import SiteShell from "@/components/SiteShell";
 import { FiCheckCircle } from "react-icons/fi";
 
 const images = {
-  hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=90",
+  hero: "/Images/projectRight.webp",
+  heroLeft:"/Images/home-hero-left.png",
   polyhouse:  "/services/polyhouse Farming/Polyhouse Farm.png",
-  hydroponics:      "/services/Hydroponics/Hydroponics Farm.png",
+  hydroponics: "/services/Hydroponics/Hydroponics Farm.png",
   mushroom:   "/services/Mushroom Farming/Mushrooms Farm.png",
   aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
   floriculture: "/services/Floriculture/Floriculture.png",
   nursery: "/services/Nursery/nursery.png",
   goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
-  farmer: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1000&q=85",
 };
 
 const categories = [
@@ -402,13 +402,30 @@ export default function ProjectsPage() {
           <img
             src={images.hero}
             alt="Agricultural fields in natural sunlight"
-            className="absolute inset-0 -z-20 h-full w-full object-cover"
+            className="absolute md:hidden inset-0 -z-20 h-full w-full object-cover"
           />
+          
+            {/* LEFT DECORATIVE IMAGE */}
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      aria-hidden="true"
+      className="pointer-events-none absolute -left-40 -top-40  h-fit "
+    >
+      <img
+        src={images.heroLeft}
+        alt=""
+        priority
+        className="h-full w-full object-"
+        sizes=""
+      />
+    </motion.div>
 
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#fbfaf4]/65 to-transparent" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
-          <div className="mx-auto grid min-h-[390px] max-w-7xl items-center gap-7 px-5 py-12 sm:px-8 sm:py-14 lg:min-h-[400px] lg:grid-cols-[0.95fr_1.05fr] lg:px-12">
+          <div className="mx-auto grid min-h-97.5 max-w-7xl items-center gap-7 px-5 py-12 sm:px-8 sm:py-14 lg:min-h-[400px] lg:grid-cols-[0.95fr_1.05fr] lg:px-12">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -457,21 +474,24 @@ export default function ProjectsPage() {
               </motion.a>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              className="relative hidden min-h-[300px] lg:block"
-            >
-              <div className="absolute inset-y-0 left-0 w-[72%] overflow-hidden rounded-tl-[45%] rounded-br-[2rem]">
-                <img
-                  src={images.polyhouse}
-                  alt="Protected cultivation environment"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+    <div aria-hidden="true" className=" min-h-75 hidden sm:block" >
+          
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        aria-hidden="true"
+        className="pointer-events-none absolute  right-0 top-0 z-0 w-[62%]  md:w-[65%] lg:w-[70%] hidden sm:block"
+      >
+        <img
+          src={images.hero}
+          alt=""
+          priority
+          className="h-auto w-full object-contain object-bottom "
+        />
+      </motion.div>
 
-              <div className="absolute bottom-5 right-0 flex w-[34%] flex-col gap-5 rounded-2xl border border-white/70 bg-[#fffef6]/95 p-4 shadow-xl backdrop-blur-md">
+              <div className="absolute bottom-5 w-fit right-0 flex flex-col gap-5 rounded-2xl border border-white/70 bg-[#fffef6]/95 p-4 shadow-xl backdrop-blur-md">
                 {[
                   { icon: LuSprout, text: "Modern Technology" },
                   { icon: LuWheat, text: "Productivity Planning" },
@@ -492,8 +512,11 @@ export default function ProjectsPage() {
                   );
                 })}
               </div>
-            </motion.div>
+
+        </div>
+
           </div>
+          
         </section>
 
         {/* PROJECT CATEGORY SELECTOR */}
@@ -872,7 +895,7 @@ export default function ProjectsPage() {
         {/* FARMER IMPACT / TESTIMONIAL */}
         <section className="relative isolate overflow-hidden px-5 py-12 sm:px-8 sm:py-14 lg:px-12">
           <img
-            src={images.hero}
+            src={images.polyhouse}
             alt=""
             aria-hidden="true"
             loading="lazy"

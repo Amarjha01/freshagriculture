@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useMemo, useState } from "react";
@@ -38,32 +37,20 @@ import {
 import SiteShell from "@/components/SiteShell";
 
 const images = {
-  hero:
-    "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=90",
-  farmer:
-    "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=90",
-  tomatoes:
-    "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=1200&q=90",
-  polyhouse:
-    "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1000&q=85",
-  hydroponics:
-    "https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?auto=format&fit=crop&w=1000&q=85",
-  seedlings:
-    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1000&q=85",
-  aquaculture:
-    "https://images.unsplash.com/photo-1524704654690-b56c05c78a00?auto=format&fit=crop&w=1000&q=85",
-  irrigation:
-    "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1000&q=85",
-  mushroom:
-    "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=1000&q=85",
-  capsicum:
-    "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=1000&q=85",
-  nursery:
-    "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=85",
-  livestock:
-    "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1000&q=85",
-  hands:
-    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1600&q=90",
+  hero: "/Images/storypage-right.webp",
+  heroLeft: "/Images/home-hero-left.png",
+  polyhouse: "/services/polyhouse Farming/Polyhouse Farm.png",
+  hydroponics: "/services/Hydroponics/Hydroponics Farm.png",
+  mushroom: "/services/Mushroom Farming/Mushrooms Farm.png",
+  aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
+  floriculture: "/services/Floriculture/Floriculture.png",
+  nursery: "/services/Nursery/nursery.png",
+  livestock: "/services/open cultivation/Goat Farming/Goat Farm.png",
+  irrigation: "services/Smart Irrigation/Smart Irrigation.png",
+  cropAdvisory: "services/Advisory/Advisory.png",
+  project: "services/Project & AMC/Project & AMC.png",
+  farmer: "",
+  tomatoes:"",
 };
 
 const storyFilters = [
@@ -661,15 +648,14 @@ export default function StoriesPage() {
 
     return stories.filter(
       (story) =>
-        story.category === activeFilter ||
-        story.tags.includes(activeFilter)
+        story.category === activeFilter || story.tags.includes(activeFilter),
     );
   }, [activeFilter]);
 
   const featuredStory = filteredStories[0] || stories[0];
 
   const secondaryStories = filteredStories.filter(
-    (story) => story.id !== featuredStory.id
+    (story) => story.id !== featuredStory.id,
   );
 
   const featuredCards = secondaryStories.slice(0, 4);
@@ -694,7 +680,7 @@ export default function StoriesPage() {
     // Connect this form to your backend or enquiry service.
     // No submission is sent until an API is integrated.
     setFormMessage(
-      "Your form is ready. Connect your enquiry API to submit this story."
+      "Your form is ready. Connect your enquiry API to submit this story.",
     );
   }
 
@@ -703,19 +689,33 @@ export default function StoriesPage() {
       <main className="overflow-hidden bg-[#fbfaf4] text-[#193c27]">
         {/* HERO */}
         <section className="relative isolate overflow-hidden">
-          <div className="absolute inset-0 -z-20 bg-[#f8f8f0]" />
+          <img
+            src={images.hero}
+            alt="Agricultural fields in natural sunlight"
+            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+          />
 
-          <div className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden sm:w-[62%]">
+          {/* LEFT DECORATIVE IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-10 lg:-left-15 h-full object-cover lg:object-none "
+          >
             <img
-              src={images.hero}
-              alt="Agricultural land and green crops"
-              className="h-full w-full object-cover"
+              src={images.heroLeft}
+              alt=""
+              priority
+              className="h-full w-full"
+              sizes=""
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/70 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#fbfaf4]/15 to-transparent" />
-          </div>
+          </motion.div>
 
-          <div className="mx-auto grid min-h-[315px] max-w-7xl items-center gap-6 px-5 py-9 sm:px-8 lg:min-h-[325px] lg:grid-cols-[1fr_0.95fr] lg:px-12">
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
+
+          <div className="mx-auto grid min-h-78.75 max-w-7xl items-center gap-6 px-5 py-9 sm:px-8 lg:min-h-81.25 lg:grid-cols-[1fr_0.95fr] lg:px-12">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -753,8 +753,8 @@ export default function StoriesPage() {
                 className="mt-4 max-w-lg text-xs leading-6 text-[#657064] sm:text-sm"
               >
                 Discover how agricultural solutions, modern technology, and
-                practical support can help farmers work toward better yields
-                and sustainable growth.
+                practical support can help farmers work toward better yields and
+                sustainable growth.
               </motion.p>
 
               <motion.div variants={fadeUp} className="mt-5">
@@ -768,49 +768,59 @@ export default function StoriesPage() {
                 </button>
               </motion.div>
             </motion.div>
-
+            {/* right */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute  right-0 top-0 z-0 w-[62%]  md:w-[65%] lg:w-[70%] hidden lg:block"
+          >
+            <img
+              src={images.hero}
+              alt=""
+              priority
+              className="h-auto w-full object-contain object-bottom "
+            />
+          </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.65 }}
-              className="relative hidden min-h-[245px] lg:block"
+              className="relative hidden min-h-61.25 lg:block"
             >
-              <div className="absolute right-0 top-0 h-[250px] w-[90%] overflow-hidden rounded-bl-[38%] rounded-tr-2xl">
-                <img
-                  src={images.farmer}
-                  alt="Farmer working with crops"
-                  className="h-full w-full object-cover"
-                />
-              </div>
 
-              <div className="absolute left-0 top-2 z-10 max-w-[155px] rotate-[-5deg] text-center">
-                <p className="font-display text-3xl leading-[0.95] text-[#173b2b]">
-                  Healthy Farms,
-                  <br />
-                  Brighter Future
-                </p>
-                <LuSprout
-                  size={22}
-                  className="mx-auto mt-2 text-[#347d42]"
-                />
-              </div>
-
-              <div className="absolute bottom-0 right-0 z-10 w-48 rounded-2xl border border-white/80 bg-white/95 p-4 shadow-xl backdrop-blur-md">
+              <div className="absolute bottom-0 right-0 z-10 w-48 rounded-2xl border p-4 backdrop-blur-md">
                 {[
-                  { icon: LuUsers, title: "Farmer Stories", detail: "Real experiences" },
-                  { icon: LuHouse, title: "Farming Solutions", detail: "Practical approaches" },
-                  { icon: LuMapPin, title: "Regional Insights", detail: "Local perspectives" },
+                  {
+                    icon: LuUsers,
+                    title: "Farmer Stories",
+                    detail: "Real experiences",
+                  },
+                  {
+                    icon: LuHouse,
+                    title: "Farming Solutions",
+                    detail: "Practical approaches",
+                  },
+                  {
+                    icon: LuMapPin,
+                    title: "Regional Insights",
+                    detail: "Local perspectives",
+                  },
                 ].map((item) => {
                   const Icon = item.icon;
 
                   return (
-                    <div key={item.title} className="flex items-center gap-2.5 py-2">
+                    <div
+                      key={item.title}
+                      className="flex items-center gap-2.5 py-2"
+                    >
                       <Icon size={19} className="shrink-0 text-[#17623b]" />
                       <div>
                         <p className="text-[10px] font-semibold text-[#172b43]">
                           {item.title}
                         </p>
-                        <p className="mt-0.5 text-[9px] text-[#697286]">
+                        <p className="mt-0.5 text-[9px] text-[#192a54]">
                           {item.detail}
                         </p>
                       </div>
@@ -1164,8 +1174,8 @@ export default function StoriesPage() {
               </h2>
 
               <p className="mt-2 max-w-xl text-xs leading-5 text-white/85 sm:text-sm">
-                Have you worked with us? Share your experience and inspire
-                other farmers. Together, we can help grow a stronger farming
+                Have you worked with us? Share your experience and inspire other
+                farmers. Together, we can help grow a stronger farming
                 community.
               </p>
             </div>
@@ -1272,7 +1282,10 @@ export default function StoriesPage() {
                   </div>
 
                   {formMessage && (
-                    <p role="status" className="text-xs leading-5 text-[#386345]">
+                    <p
+                      role="status"
+                      className="text-xs leading-5 text-[#386345]"
+                    >
                       {formMessage}
                     </p>
                   )}

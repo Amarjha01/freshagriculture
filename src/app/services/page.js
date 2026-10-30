@@ -35,9 +35,9 @@ import {
 
 import SiteShell from "@/components/SiteShell";
 
-/* Replace these sample images with your verified company/project photos. */
 const images = {
-  hero: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=90",
+  hero: "/Images/services-right1.webp",
+  heroLeft:"/Images/home-hero-left.png",
   polyhouse:
     "/services/polyhouse Farming/Polyhouse Farm.png",
   hydroponics:
@@ -63,6 +63,7 @@ const images = {
   consultation:
     "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=85",
 };
+
 const gallery = {
   polyhouse:[
      "/services/polyhouse Farming/Polyhouse Farm.png",
@@ -425,18 +426,6 @@ function SectionLabel({ children, light = false }) {
   );
 }
 
-function BotanicalDecoration({ className = "" }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`pointer-events-none absolute z-0 ${className}`}
-    >
-      <LuLeaf className="absolute h-20 w-20 -rotate-45 text-[#9fbd7e]/45 sm:h-28 sm:w-28" />
-      <LuLeaf className="absolute left-8 top-12 h-16 w-16 rotate-12 text-[#65904c]/35 sm:left-14 sm:top-16 sm:h-24 sm:w-24" />
-      <LuLeaf className="absolute left-1 top-24 h-12 w-12 rotate-[-80deg] text-[#c5d9a8]/60 sm:top-32 sm:h-16 sm:w-16" />
-    </div>
-  );
-}
 
 function ServiceCard({ service, active, onClick }) {
   const Icon = service.icon;
@@ -516,141 +505,147 @@ export default function ServicesPage() {
   return (
     <SiteShell>
       <main className="overflow-hidden bg-[#fbfaf4] text-[#193c27]">
-        {/* HERO */}
-        <section className="relative isolate overflow-hidden">
-          <img
-            src={images.hero}
-            alt="Agricultural fields in morning sunlight"
-            className="absolute inset-0 -z-20 h-full w-full object-cover"
-          />
+ 
+{/* HERO */}
+<section className="relative isolate ">
 
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/10" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#fbfaf4]/40 to-transparent" />
+  {/* MOBILE BACKGROUND */}
+  <img
+    src={images.hero}
+    alt="Agricultural fields in morning sunlight"
+    className="absolute inset-0 -top-20 -z-20 h-full w-full object-cover lg:hidden"
+  />
 
-          <BotanicalDecoration className="-left-10 top-8 h-64 w-48" />
+  {/* LEFT DECORATIVE IMAGE */}
+  <motion.div
+    initial={{ opacity: 0, x: -30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8 }}
+    aria-hidden="true"
+    className="pointer-events-none absolute -left-20 -top-50 z-0 hidden h-auto w-112.5 lg:block n"
+  > 
+  
+  {/* BACKGROUND OVERLAYS */}
+  <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/10" />
+  <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/40 to-transparent" />
+  
+    <img
+      src={images.heroLeft}
+      alt=""
+      className="h-auto w-full object-contain"
+    />
+  </motion.div>
 
-          <div className="mx-auto grid min-h-[430px] max-w-7xl items-center gap-8 px-5 py-12 sm:px-8 sm:py-14 lg:min-h-[430px] lg:grid-cols-[1fr_1fr] lg:px-12">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-              className="relative z-10 max-w-xl"
-            >
-              <motion.div
-                variants={fadeUp}
-                className="mb-6 flex items-center gap-2 text-xs text-[#477c53]"
-              >
-                <a href="/" className="hover:underline">
-                  Home
-                </a>
-                <LuChevronRight size={13} />
-                <span>Services</span>
-              </motion.div>
+ 
 
-              <motion.div variants={fadeUp}>
-                <SectionLabel>Complete Agricultural Solutions</SectionLabel>
-              </motion.div>
+  {/* MAIN CONTENT */}
+  <div className="mx-auto grid min-h-140 max-w-7xl items-center gap-8 px-5 py-12 sm:px-8 sm:py-14 lg:min-h-150 lg:grid-cols-2 lg:px-12">
 
-              <motion.h1
-                variants={fadeUp}
-                className="font-display text-5xl leading-[1.04] tracking-tight text-[#152a43] sm:text-6xl"
-              >
-                Our Services for
-                <span className="block text-[#075332]">
-                  Modern & Sustainable Farming
-                </span>
-              </motion.h1>
+    {/* LEFT CONTENT */}
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={stagger}
+      className="relative z-10 max-w-xl"
+    >
+      <motion.div
+        variants={fadeUp}
+        className="mb-6 flex items-center gap-2 text-xs text-[#477c53]"
+      >
+        <a href="/" className="hover:underline">Home</a>
+        <LuChevronRight size={13} />
+        <span>Services</span>
+      </motion.div>
 
-              <motion.p
-                variants={fadeUp}
-                className="mt-5 max-w-lg text-sm leading-7 text-[#5f6b62] sm:text-base"
-              >
-                From farm infrastructure to crop advisory, explore
-                agricultural services designed around your land, crop,
-                resources, and business goals.
-              </motion.p>
+      <motion.div variants={fadeUp}>
+        <SectionLabel>Complete Agricultural Solutions</SectionLabel>
+      </motion.div>
 
-              <motion.div
-                variants={fadeUp}
-                className="mt-6 flex flex-wrap gap-3"
-              >
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-3 rounded-full bg-[#075332] px-5 py-3.5 text-xs font-semibold text-white shadow-lg shadow-[#075332]/10 transition hover:bg-[#0b6941]"
-                >
-                  Get a Free Consultation
-                  <LuArrowRight size={15} />
-                </a>
+      <motion.h1
+        variants={fadeUp}
+        className="font-display text-5xl leading-[1.04] tracking-tight text-[#152a43] sm:text-6xl"
+      >
+        Our Services for
+        <span className="block text-[#075332]">
+          Modern & Sustainable Farming
+        </span>
+      </motion.h1>
 
-                <a
-                  href="#all-services"
-                  className="inline-flex items-center gap-3 rounded-full border border-[#82ad8f] px-5 py-3.5 text-xs font-semibold text-[#245c3b] transition hover:bg-[#eef5e9]"
-                >
-                  Explore All Services
-                </a>
-              </motion.div>
-            </motion.div>
+      <motion.p
+        variants={fadeUp}
+        className="mt-5 max-w-lg text-sm leading-7 text-[#5f6b62] sm:text-base"
+      >
+        From farm infrastructure to crop advisory, explore
+        agricultural services designed around your land, crop,
+        resources, and business goals.
+      </motion.p>
 
-            {/* Hero image composition */}
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative hidden min-h-[350px] lg:block"
-            >
-              <div className="absolute right-0 top-0 h-[320px] w-[85%] overflow-hidden rounded-bl-[42%] rounded-tr-[1.5rem]">
-                <img
-                  src={images.polyhouse}
-                  alt="Protected crop cultivation"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+      <motion.div
+        variants={fadeUp}
+        className="mt-6 flex flex-wrap gap-3"
+      >
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-3 rounded-full bg-[#075332] px-5 py-3.5 text-xs font-semibold text-white shadow-lg shadow-[#075332]/10 transition hover:bg-[#0b6941]"
+        >
+          Get a Free Consultation
+          <LuArrowRight size={15} />
+        </a>
 
-              <div className="absolute right-[4%] top-3 z-10 max-w-[140px] rotate-[-5deg] text-center">
-                <p className="font-display text-2xl leading-tight text-[#173b2b]">
-                  Healthy Farms,
-                  <br />
-                  Brighter Future
-                </p>
-                <LuSprout className="mx-auto mt-1 text-[#347d42]" size={24} />
-              </div>
+        <a
+          href="#all-services"
+          className="inline-flex items-center gap-3 rounded-full border border-[#82ad8f] px-5 py-3.5 text-xs font-semibold text-[#245c3b] transition hover:bg-[#eef5e9]"
+        >
+          Explore All Services
+        </a>
+      </motion.div>
+    </motion.div>
 
-              <div className="absolute bottom-2 left-2 z-20 h-28 w-28 overflow-hidden rounded-full border-[5px] border-white shadow-xl">
-                <img
-                  src={images.cropAdvisory}
-                  alt="Young plant growing in soil"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+        {/* RIGHT HERO IMAGE */}
+    <motion.div
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className=" relative hidden  min-h-full lg:block"
+    >
+      <img
+        src={images.hero}
+        alt=""
+        aria-hidden="true"
+        className="absolute min-h-auto min-w-190 -right-20 -top-30 object-center"
+      />
+    </motion.div>
+  </div>
 
-              <div className="absolute bottom-6 right-0 z-10 flex w-[35%] flex-col gap-4 rounded-2xl border border-white/70 bg-[#fffef6]/95 p-4 shadow-xl backdrop-blur-md">
+                  <div className="absolute -bottom-5 md:-bottom-15 w-fit right-0 flex gap-5 rounded-2xl border border-white/70 bg-[#fffef6]/35 p-4 shadow-xl backdrop-blur-md">
                 {[
-                  { icon: LuSprout, label: "Modern Technology" },
-                  { icon: LuUsers, label: "Expert Support" },
-                  { icon: LuSettings, label: "Customized Solutions" },
-                  { icon: LuLeaf, label: "Sustainable Growth" },
+                  { icon: LuSprout, text: "Modern Technology" },
+                  { icon: LuWheat, text: "Productivity Planning" },
+                  { icon: LuUsers, text: "Sustainable Solutions" },
+                  { icon: LuShieldCheck, text: "Project Support" },
                 ].map((item) => {
                   const Icon = item.icon;
                   return (
-                    <div key={item.label} className="flex items-center gap-2">
-                      <Icon size={19} className="shrink-0 text-[#286b42]" />
+                    <div
+                      key={item.text}
+                      className="flex items-center gap-2.5"
+                    >
+                      <Icon size={22} className="shrink-0 text-[#286b42]" />
                       <span className="text-[10px] font-semibold leading-4 text-[#35473a]">
-                        {item.label}
+                        {item.text}
                       </span>
                     </div>
                   );
                 })}
               </div>
-            </motion.div>
-          </div>
-        </section>
+</section>
+
 
         {/* SERVICES INTRODUCTION */}
         <section
           id="all-services"
           className="relative isolate px-5 pb-8 pt-8 sm:px-8 sm:pt-10 lg:px-12"
         >
-          <BotanicalDecoration className="-right-12 top-16 h-48 w-40 opacity-50" />
 
           <div className="relative mx-auto max-w-7xl">
             <motion.div
@@ -878,8 +873,6 @@ export default function ServicesPage() {
 
         {/* PROCESS */}
         <section className="relative isolate overflow-hidden px-5 py-12 sm:px-8 sm:py-16 lg:px-12">
-          <BotanicalDecoration className="-left-12 top-12 h-48 w-40 opacity-50" />
-          <BotanicalDecoration className="-right-14 bottom-5 h-48 w-40 opacity-50" />
 
           <div className="relative mx-auto max-w-7xl">
             <motion.div

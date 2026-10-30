@@ -179,10 +179,10 @@ export default function AboutPage() {
  
 
   {/* HERO CONTENT */}
-  <div className="relative z-10 mx-auto grid min-h-[560px] max-w-7xl items-center px-5 py-12 sm:px-8 sm:py-14 lg:min-h-[600px] lg:grid-cols-2 lg:px-12 lg:py-14">
+  <div className="relative z-10 mx-auto grid min-h-140 max-w-7xl items-center px-5 py-12 sm:px-8 sm:py-14 lg:min-h-150 lg:grid-cols-2 lg:px-12 lg:py-14">
 
     {/* LEFT CONTENT */}
-          {/* LEFT DECORATIVE IMAGE */}
+  {/* LEFT DECORATIVE IMAGE */}
   <motion.div
     initial={{ opacity: 0, x: -30 }}
     animate={{ opacity: 1, x: 0 }}
@@ -198,6 +198,7 @@ export default function AboutPage() {
       sizes=""
     />
   </motion.div>
+
     <motion.div
       initial="hidden"
       animate="visible"
@@ -264,10 +265,8 @@ export default function AboutPage() {
     {/* RIGHT CONTENT */}
  
  {/* RIGHT CONTENT SPACE */}
-    <div
-    aria-hidden="true"
-    className=" min-h-75 hidden sm:block"
-    >
+
+<div aria-hidden="true" className=" min-h-75 hidden sm:block" >
       
   <motion.div
     initial={{ opacity: 0, x: 30 }}
@@ -292,7 +291,7 @@ export default function AboutPage() {
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.65, delay: 0.35 }}
-    className="relative z-20 mx-5 mb-6 grid grid-cols-2 gap-x-3 gap-y-5 rounded-2xl border border-[#e5eadf] bg-[#fbfcf3]/95 p-4 shadow-xl shadow-[#243c37]/10 backdrop-blur-md sm:mx-auto sm:mb-8 sm:max-w-4xl sm:grid-cols-4 sm:gap-3 sm:px-6 sm:py-5 lg:mt-[-15px]"
+    className="relative z-20 mx-5 mb-6 grid grid-cols-2 gap-x-3 gap-y-5 rounded-2xl border border-[#e5eadf] bg-[#fbfcf3]/95 p-4 shadow-xl shadow-[#243c37]/10 backdrop-blur-md sm:mx-auto sm:mb-8 sm:max-w-4xl sm:grid-cols-4 sm:gap-3 sm:px-6 sm:py-5 lg:-mt-3.75"
   >
     {[
       {

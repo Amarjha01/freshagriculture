@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useMemo, useState } from "react";
@@ -32,34 +31,21 @@ import SiteShell from "@/components/SiteShell";
 
 /* Replace these representative images with approved company photographs. */
 const images = {
-  hero:
-    "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1800&q=90",
-  tomatoes:
-    "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=1100&q=85",
-  hydroponics:
-    "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1100&q=85",
-  mushroom:
-    "https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=1100&q=85",
-  fish:
-    "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1100&q=85",
-  flowers:
-    "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1100&q=85",
-  nursery:
-    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1100&q=85",
-  goat:
-    "https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=1100&q=85",
-  irrigation:
-    "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1100&q=85",
-  capsicum:
-    "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=1100&q=85",
-  cucumber:
-    "https://images.unsplash.com/photo-1604977042946-1eecc30f269e?auto=format&fit=crop&w=1100&q=85",
-  strawberry:
-    "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=1100&q=85",
-  shadeNet:
-    "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1100&q=85",
-  hands:
-    "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90",
+  hero: "/Images/gallarypage-right.webp",
+  heroLeft: "/Images/home-hero-left.png",
+  hydroponics: "/services/Hydroponics/Hydroponics Farm.png",
+  mushroom: "/services/Mushroom Farming/Mushrooms Farm.png",
+  fish: "/services/Aquaculture/Aquaculture Farm.png",
+  flowers: "/services/Floriculture/Floriculture.png",
+  nursery: "/services/Nursery/nursery.png",
+  goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
+  irrigation: "services/Smart Irrigation/Smart Irrigation.png",
+  capsicum: "",
+  tomatoes: "",
+  cucumber: "",
+  strawberry: "",
+  shadeNet: "",
+  hands: "",
 };
 
 const categories = [
@@ -79,7 +65,8 @@ const galleryItems = [
     id: 1,
     title: "Polyhouse Tomato Cultivation",
     category: "Polyhouse",
-    description: "Year-round tomato production with controlled growing conditions.",
+    description:
+      "Year-round tomato production with controlled growing conditions.",
     location: "Telangana",
     image: images.tomatoes,
     photoCount: 12,
@@ -212,19 +199,6 @@ function SectionLabel({ children, light = false }) {
   );
 }
 
-function BotanicalLeaves({ className = "" }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`pointer-events-none absolute z-0 ${className}`}
-    >
-      <LuLeaf className="absolute h-20 w-20 -rotate-45 text-[#9fbd7e]/50 sm:h-28 sm:w-28" />
-      <LuLeaf className="absolute left-8 top-12 h-16 w-16 rotate-12 text-[#65904c]/40 sm:left-14 sm:top-16 sm:h-24 sm:w-24" />
-      <LuLeaf className="absolute left-1 top-24 h-12 w-12 -rotate-90 text-[#c5d9a8]/70 sm:top-32 sm:h-16 sm:w-16" />
-    </div>
-  );
-}
-
 function GalleryCard({ item, onOpen }) {
   return (
     <motion.article
@@ -289,9 +263,7 @@ export default function GalleryPage() {
   const filteredItems = useMemo(() => {
     if (activeCategory === "All") return galleryItems;
 
-    return galleryItems.filter(
-      (item) => item.category === activeCategory
-    );
+    return galleryItems.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
 
   const selectedIndex = selectedItem
@@ -313,8 +285,7 @@ export default function GalleryPage() {
 
     const currentIndex = Math.max(selectedIndex, 0);
     const nextIndex =
-      (currentIndex + direction + filteredItems.length) %
-      filteredItems.length;
+      (currentIndex + direction + filteredItems.length) % filteredItems.length;
 
     setSelectedItem(filteredItems[nextIndex]);
     setActiveImageIndex(0);
@@ -327,19 +298,33 @@ export default function GalleryPage() {
         <section className="relative isolate overflow-hidden">
           <div className="absolute inset-0 -z-20 bg-[#f5f6ed]" />
 
-          <div className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden sm:w-[72%]">
+          <img
+            src={images.hero}
+            alt="Agricultural fields in natural sunlight"
+            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+          />
+
+          {/* LEFT DECORATIVE IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-10 lg:-left-15 h-full object-cover lg:object-none "
+          >
             <img
-              src={images.hero}
-              alt="Protected agricultural cultivation"
-              className="h-full w-full object-cover object-center"
+              src={images.heroLeft}
+              alt=""
+              priority
+              className="h-full w-full"
+              sizes=""
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/75 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#fbfaf4]/35 to-transparent" />
-          </div>
+          </motion.div>
 
-          <BotanicalLeaves className="-left-10 top-8 h-64 w-48" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
-          <div className="mx-auto grid min-h-[320px] max-w-7xl items-center gap-6 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[340px] lg:grid-cols-[1fr_0.95fr] lg:px-12">
+          <div className="mx-auto grid min-h-80 max-w-7xl items-center gap-6 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-140 lg:grid-cols-[1fr_0.95fr] lg:px-12">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -379,9 +364,8 @@ export default function GalleryPage() {
                 variants={fadeUp}
                 className="mt-3 max-w-lg text-xs leading-6 text-[#657064] sm:text-sm"
               >
-                Explore glimpses of agricultural project concepts,
-                cultivation environments, and farming solutions across
-                different categories.
+                Explore glimpses of agricultural project concepts, cultivation
+                environments, and farming solutions across different categories.
               </motion.p>
 
               <motion.a
@@ -394,40 +378,20 @@ export default function GalleryPage() {
               </motion.a>
             </motion.div>
 
-            {/* Organic-shaped hero visual */}
+            {/* right side*/}
             <motion.div
-              initial={{ opacity: 0, x: 22 }}
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.75 }}
-              className="relative hidden min-h-[280px] lg:block"
+              transition={{ duration: 0.8 }}
+              aria-hidden="true"
+              className="pointer-events-none absolute  right-0 -top-20 z-0 w-[60%] hidden lg:block"
             >
-              <div className="absolute right-0 top-0 h-[285px] w-[90%] overflow-hidden rounded-bl-[42%] rounded-tr-2xl">
-                <img
-                  src={images.polyhouse || images.hero}
-                  alt="Plants growing in a protected agricultural structure"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="absolute left-[5%] top-[5%] z-10 h-[150px] w-[100px] overflow-hidden rounded-br-[55%] rounded-tl-[55%] border-[4px] border-[#fbfaf4] shadow-xl">
-                <img
-                  src={images.tomatoes}
-                  alt="Tomato crop"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="absolute right-[10%] top-1 z-10 max-w-[130px] rotate-[-5deg] text-center">
-                <p className="font-display text-2xl leading-tight text-[#173b2b]">
-                  Healthy Farms,
-                  <br />
-                  Brighter Future
-                </p>
-                <LuSprout
-                  size={22}
-                  className="mx-auto mt-1 text-[#347d42]"
-                />
-              </div>
+              <img
+                src={images.hero}
+                alt=""
+                priority
+                className="h-auto w-full object-contain"
+              />
             </motion.div>
           </div>
         </section>
@@ -465,9 +429,6 @@ export default function GalleryPage() {
 
         {/* GALLERY GRID */}
         <section className="relative isolate px-4 pb-8 sm:px-8 lg:px-12">
-          <BotanicalLeaves className="-left-14 top-[25%] h-52 w-40 opacity-70" />
-          <BotanicalLeaves className="-right-14 top-[55%] h-52 w-40 opacity-60" />
-
           <div className="relative mx-auto max-w-7xl">
             <div className="mb-4 flex items-center justify-between gap-4">
               <p className="text-xs text-[#788274]">
@@ -475,7 +436,9 @@ export default function GalleryPage() {
                 <span className="font-semibold text-[#245c3b]">
                   {filteredItems.length}
                 </span>{" "}
-                {filteredItems.length === 1 ? "photo collection" : "photo collections"}
+                {filteredItems.length === 1
+                  ? "photo collection"
+                  : "photo collections"}
               </p>
 
               {activeCategory !== "All" && (
@@ -499,21 +462,14 @@ export default function GalleryPage() {
             >
               <AnimatePresence mode="popLayout">
                 {filteredItems.map((item) => (
-                  <GalleryCard
-                    key={item.id}
-                    item={item}
-                    onOpen={openItem}
-                  />
+                  <GalleryCard key={item.id} item={item} onOpen={openItem} />
                 ))}
               </AnimatePresence>
             </motion.div>
 
             {filteredItems.length === 0 && (
               <div className="rounded-2xl border border-dashed border-[#d5dfd0] bg-white/70 px-5 py-16 text-center">
-                <LuImages
-                  size={32}
-                  className="mx-auto text-[#477c53]"
-                />
+                <LuImages size={32} className="mx-auto text-[#477c53]" />
                 <h3 className="mt-4 font-display text-2xl text-[#193c27]">
                   No images in this category yet
                 </h3>
@@ -629,8 +585,6 @@ export default function GalleryPage() {
 
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#062c1c]/90 via-[#082f20]/75 to-[#082f20]/50" />
 
-          <BotanicalLeaves className="-left-8 top-2 h-44 w-40 opacity-70" />
-
           <div className="mx-auto grid max-w-7xl items-center gap-7 px-5 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_0.75fr] lg:px-12">
             <div className="relative z-10">
               <SectionLabel light>Let's Grow Together</SectionLabel>
@@ -663,10 +617,7 @@ export default function GalleryPage() {
                 const Icon = item.icon;
 
                 return (
-                  <div
-                    key={item.text}
-                    className="flex items-center gap-3 py-2"
-                  >
+                  <div key={item.text} className="flex items-center gap-3 py-2">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e2f0dc] text-[#286b42]">
                       <Icon size={16} />
                     </span>
