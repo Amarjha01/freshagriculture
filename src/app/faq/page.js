@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useMemo, useState } from "react";
@@ -40,11 +39,9 @@ import SiteShell from "@/components/SiteShell";
 import { FiCheckCircle } from "react-icons/fi";
 
 const images = {
-  hero: "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1600&q=90",
-  seedling:
-    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1000&q=85",
-  hands:
-    "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90",
+  hero: "/Images/FAQpage-right.webp",
+  seedling: "",
+  hands: "/Images/Nurturing Seedlings in Golden Light.webp",
 };
 
 const topics = [
@@ -293,19 +290,6 @@ function SectionLabel({ children, light = false }) {
   );
 }
 
-function BotanicalLeaves({ className = "" }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`pointer-events-none absolute z-0 ${className}`}
-    >
-      <LuLeaf className="absolute h-20 w-20 -rotate-45 text-[#9fbd7e]/45 sm:h-28 sm:w-28" />
-      <LuLeaf className="absolute left-8 top-12 h-16 w-16 rotate-12 text-[#65904c]/35 sm:left-14 sm:top-16 sm:h-24 sm:w-24" />
-      <LuLeaf className="absolute left-1 top-24 h-12 w-12 -rotate-90 text-[#c5d9a8]/65 sm:top-32 sm:h-16 sm:w-16" />
-    </div>
-  );
-}
-
 function TopicCard({ topic, count, active, onClick }) {
   const Icon = topicIcons[topic];
 
@@ -350,9 +334,7 @@ function FAQItem({ faq, open, onClick }) {
       >
         <span
           className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition ${
-            open
-              ? "bg-[#65a783] text-white"
-              : "bg-[#e4ece5] text-[#234c35]"
+            open ? "bg-[#65a783] text-white" : "bg-[#e4ece5] text-[#234c35]"
           }`}
         >
           {open ? <LuMinus size={14} /> : <LuPlus size={14} />}
@@ -399,7 +381,7 @@ export default function FAQPage() {
   const topicCounts = useMemo(() => {
     return topics.reduce((result, topic) => {
       result[topic.name] = faqs.filter(
-        (faq) => faq.topic === topic.name
+        (faq) => faq.topic === topic.name,
       ).length;
       return result;
     }, {});
@@ -434,19 +416,33 @@ export default function FAQPage() {
         <section className="relative isolate overflow-hidden">
           <div className="absolute inset-0 -z-20 bg-[#f7f7ef]" />
 
-          <div className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden sm:w-[70%]">
+          <img
+            src={images.hero}
+            alt="Agricultural fields in natural sunlight"
+            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+          />
+
+          {/* LEFT DECORATIVE IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-10 lg:-left-15 h-full object-cover lg:object-none "
+          >
             <img
-              src={images.hero}
-              alt="Green plant growing in a natural environment"
-              className="h-full w-full object-cover"
+              src={images.heroLeft}
+              alt=""
+              priority
+              className="h-full w-full"
+              sizes=""
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/85 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#fbfaf4]/35 to-transparent" />
-          </div>
+          </motion.div>
 
-          <BotanicalLeaves className="-left-10 top-4 h-64 w-48" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
-          <div className="mx-auto grid min-h-[315px] max-w-7xl items-center gap-7 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[330px] lg:grid-cols-[1fr_0.9fr] lg:px-12">
+          <div className="mx-auto grid min-h-78.75 max-w-7xl items-center gap-7 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[330px] lg:grid-cols-[1fr_0.9fr] lg:px-12">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -508,52 +504,55 @@ export default function FAQPage() {
                 </a>
               </motion.div>
             </motion.div>
-
+            {/* right side*/}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              aria-hidden="true"
+              className="pointer-events-none absolute  right-0 -top-20 z-0 w-[50%] hidden lg:block"
+            >
+              <img
+                src={images.hero}
+                alt=""
+                priority
+                className="h-auto w-full object-contain"
+              />
+            </motion.div>
             {/* Hero support cards */}
             <motion.div
               initial={{ opacity: 0, x: 18 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.65 }}
-              className="relative hidden min-h-[270px] lg:block"
+              className="relative hidden min-h-67.5 lg:block"
             >
-              <div className="absolute right-[12%] top-3 max-w-[150px] rotate-[-5deg] text-center">
-                <p className="font-display text-3xl leading-[0.95] text-[#173b2b]">
-                  Healthy Farms,
-                  <br />
-                  Brighter Future
-                </p>
-                <LuSprout
-                  size={24}
-                  className="mx-auto mt-2 text-[#347d42]"
-                />
-              </div>
-
-              <div className="absolute bottom-0 left-0 flex h-44 w-44 items-center justify-center rounded-full border-[7px] border-white/80 bg-[#eaf1de]/70 shadow-lg">
-                <img
-                  src={images.seedling}
-                  alt="Young plants"
-                  className="h-full w-full rounded-full object-cover"
-                />
-              </div>
-
-              <div className="absolute right-0 top-12 flex w-[39%] flex-col gap-2">
+              <div className="absolute right-0 -bottom-20 flex gap-2">
                 {[
                   { icon: LuUsers, title: "Expert", subtitle: "Guidance" },
-                  { icon: LuShieldCheck, title: "Reliable", subtitle: "Support" },
-                  { icon: LuSettings, title: "Practical", subtitle: "Solutions" },
-                  { icon: LuSprout, title: "Farmer First", subtitle: "Approach" },
+                  {
+                    icon: LuShieldCheck,
+                    title: "Reliable",
+                    subtitle: "Support",
+                  },
+                  {
+                    icon: LuSettings,
+                    title: "Practical",
+                    subtitle: "Solutions",
+                  },
+                  {
+                    icon: LuSprout,
+                    title: "Farmer First",
+                    subtitle: "Approach",
+                  },
                 ].map((item) => {
                   const Icon = item.icon;
 
                   return (
                     <div
                       key={item.title}
-                      className="flex items-center gap-3 rounded-xl border border-white/70 bg-white/95 px-3 py-3 shadow-md backdrop-blur-sm"
+                      className="flex items-center gap-3 rounded-xl border border-white/70 bg-white/55 px-3 py-3 shadow-md backdrop-blur-sm"
                     >
-                      <Icon
-                        size={21}
-                        className="shrink-0 text-[#286b42]"
-                      />
+                      <Icon size={21} className="shrink-0 text-[#286b42]" />
                       <p className="text-[10px] font-medium leading-4 text-[#35473a]">
                         {item.title}
                         <br />
@@ -573,15 +572,17 @@ export default function FAQPage() {
             <SectionLabel>Browse by Topic</SectionLabel>
 
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-7">
-              {topics.slice(0, showAllTopics ? topics.length : 7).map((topic) => (
-                <TopicCard
-                  key={topic.name}
-                  topic={topic.name}
-                  count={topicCounts[topic.name]}
-                  active={activeTopic === topic.name}
-                  onClick={() => chooseTopic(topic.name)}
-                />
-              ))}
+              {topics
+                .slice(0, showAllTopics ? topics.length : 7)
+                .map((topic) => (
+                  <TopicCard
+                    key={topic.name}
+                    topic={topic.name}
+                    count={topicCounts[topic.name]}
+                    active={activeTopic === topic.name}
+                    onClick={() => chooseTopic(topic.name)}
+                  />
+                ))}
             </div>
 
             <div className="mt-3 flex justify-end">
@@ -609,8 +610,6 @@ export default function FAQPage() {
           id="questions"
           className="relative isolate px-4 pb-12 pt-3 sm:px-8 lg:px-12"
         >
-          <BotanicalLeaves className="-left-12 bottom-10 h-48 w-40 opacity-60" />
-
           <div className="relative mx-auto grid max-w-7xl items-start gap-6 lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_340px]">
             {/* FAQ column */}
             <div className="min-w-0">
@@ -633,10 +632,7 @@ export default function FAQPage() {
 
                 <div className="flex items-center gap-2">
                   <label className="flex min-w-0 flex-1 items-center gap-2 rounded-xl border border-[#d5dfd5] bg-white/85 px-3 py-2.5 sm:w-48 sm:flex-none">
-                    <LuSearch
-                      size={16}
-                      className="shrink-0 text-[#286b42]"
-                    />
+                    <LuSearch size={16} className="shrink-0 text-[#286b42]" />
                     <input
                       type="search"
                       value={search}
@@ -670,7 +666,7 @@ export default function FAQPage() {
                       open={openFAQ === faq.id}
                       onClick={() =>
                         setOpenFAQ((current) =>
-                          current === faq.id ? null : faq.id
+                          current === faq.id ? null : faq.id,
                         )
                       }
                     />
@@ -704,8 +700,8 @@ export default function FAQPage() {
 
               <p className="mt-3 text-[10px] text-[#8b9387]">
                 Showing {filteredFAQs.length}{" "}
-                {filteredFAQs.length === 1 ? "question" : "questions"}.
-                Answers may vary by product, service, location, and availability.
+                {filteredFAQs.length === 1 ? "question" : "questions"}. Answers
+                may vary by product, service, location, and availability.
               </p>
             </div>
 
@@ -831,9 +827,6 @@ export default function FAQPage() {
 
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#fbf6e8]/10 via-[#fbf6e8]/85 to-[#fbf6e8]/75" />
 
-          <BotanicalLeaves className="-left-10 bottom-1 h-40 w-36 opacity-75" />
-          <BotanicalLeaves className="-right-12 top-2 h-44 w-36 opacity-60" />
-
           <div className="mx-auto grid max-w-7xl items-center gap-6 px-5 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_0.8fr] lg:px-12">
             <div className="relative z-10 lg:pl-8">
               <SectionLabel>Need Personal Assistance?</SectionLabel>
@@ -843,8 +836,8 @@ export default function FAQPage() {
               </h2>
 
               <p className="mt-3 max-w-lg text-xs leading-6 text-[#5f6b62] sm:text-sm">
-                Talk to our team and discuss options based on your crops,
-                land, and goals.
+                Talk to our team and discuss options based on your crops, land,
+                and goals.
               </p>
 
               <a
@@ -864,10 +857,7 @@ export default function FAQPage() {
                 "Product Recommendations",
                 "Project Planning",
               ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 py-2"
-                >
+                <div key={item} className="flex items-center gap-3 py-2">
                   <FiCheckCircle
                     size={16}
                     className="shrink-0 fill-[#075332] text-[#075332]"

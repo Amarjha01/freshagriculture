@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -32,12 +31,9 @@ import SiteShell from "@/components/SiteShell";
 import { FiCheckCircle } from "react-icons/fi";
 
 const images = {
-  hero:
-    "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1800&q=90",
-  plant:
-    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1000&q=85",
-  hands:
-    "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90",
+  hero: "/Images/contactpage-right.webp",
+  plant: "",
+  hands: "/Images/Nurturing Seedlings in Golden Light.webp",
 };
 
 const PHONE_PRIMARY = "+91 6297003664";
@@ -121,19 +117,6 @@ function SectionLabel({ children, light = false }) {
   );
 }
 
-function BotanicalLeaves({ className = "" }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`pointer-events-none absolute z-0 ${className}`}
-    >
-      <LuLeaf className="absolute h-20 w-20 -rotate-45 text-[#9fbd7e]/45 sm:h-28 sm:w-28" />
-      <LuLeaf className="absolute left-8 top-12 h-16 w-16 rotate-12 text-[#65904c]/35 sm:left-14 sm:top-16 sm:h-24 sm:w-24" />
-      <LuLeaf className="absolute left-1 top-24 h-12 w-12 -rotate-90 text-[#c5d9a8]/65 sm:top-32 sm:h-16 sm:w-16" />
-    </div>
-  );
-}
-
 function ContactCard({ icon: Icon, title, children, watermark }) {
   return (
     <div className="relative flex gap-3 overflow-hidden rounded-2xl border border-[#eef0e8] bg-white/90 p-4 shadow-sm transition hover:shadow-md sm:gap-4 sm:p-5">
@@ -145,9 +128,7 @@ function ContactCard({ icon: Icon, title, children, watermark }) {
         <h3 className="text-[11px] font-bold text-[#17432c] sm:text-xs">
           {title}
         </h3>
-        <div className="mt-1 text-xs leading-5 text-[#26364c]">
-          {children}
-        </div>
+        <div className="mt-1 text-xs leading-5 text-[#26364c]">{children}</div>
       </div>
 
       {watermark && (
@@ -233,7 +214,7 @@ export default function ContactPage() {
     ].join("\n");
 
     const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      `Website Enquiry - ${form.subject}`
+      `Website Enquiry - ${form.subject}`,
     )}&body=${encodeURIComponent(message)}`;
 
     // Opens the visitor's configured email application.
@@ -245,22 +226,36 @@ export default function ContactPage() {
     <SiteShell>
       <main className="overflow-hidden bg-[#fbfaf4] text-[#193c27]">
         {/* HERO */}
-        <section className="relative isolate overflow-hidden">
+        <section className="relative isolate ">
           <div className="absolute inset-0 -z-20 bg-[#f7f7ef]" />
 
-          <div className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden sm:w-[68%]">
+          <img
+            src={images.hero}
+            alt="Agricultural fields in natural sunlight"
+            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+          />
+
+          {/* LEFT DECORATIVE IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-10 lg:-left-15 h-full object-cover lg:object-none "
+          >
             <img
-              src={images.hero}
-              alt="Modern agricultural greenhouse"
-              className="h-full w-full object-cover"
+              src={images.heroLeft}
+              alt=""
+              priority
+              className="h-full w-full"
+              sizes=""
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/85 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#fbfaf4]/20 to-transparent" />
-          </div>
+          </motion.div>
 
-          <BotanicalLeaves className="-left-10 top-4 h-64 w-48" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
-          <div className="mx-auto grid min-h-[320px] max-w-7xl items-center gap-7 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[330px] lg:grid-cols-[1fr_0.95fr] lg:px-12">
+          <div className="mx-auto grid min-h-80 max-w-7xl items-center gap-7 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-82.5 lg:grid-cols-[1fr_0.95fr] lg:px-12">
             <motion.div
               initial="hidden"
               animate="visible"
@@ -294,9 +289,9 @@ export default function ContactPage() {
                 variants={fadeUp}
                 className="mt-4 max-w-lg text-xs leading-6 text-[#657064] sm:text-sm sm:leading-7"
               >
-                Have a question, project enquiry or need expert advice? Our
-                team is here to help you explore agricultural solutions for
-                your land, crops and business goals.
+                Have a question, project enquiry or need expert advice? Our team
+                is here to help you explore agricultural solutions for your
+                land, crops and business goals.
               </motion.p>
 
               <motion.div
@@ -311,10 +306,7 @@ export default function ContactPage() {
                       key={benefit.title}
                       className="flex items-center gap-2"
                     >
-                      <Icon
-                        size={25}
-                        className="shrink-0 text-[#07884f]"
-                      />
+                      <Icon size={25} className="shrink-0 text-[#07884f]" />
                       <p className="text-[10px] font-medium leading-4 text-[#243b30]">
                         {benefit.title}
                         <br />
@@ -326,6 +318,22 @@ export default function ContactPage() {
               </motion.div>
             </motion.div>
 
+            {/* right side*/}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              aria-hidden="true"
+              className="pointer-events-none absolute  right-0 -top-20 z-0 w-[50%] hidden lg:block"
+            >
+              <img
+                src={images.hero}
+                alt=""
+                priority
+                className="h-auto w-full object-contain"
+              />
+            </motion.div>
+
             {/* Hero proof points */}
             <motion.div
               initial={{ opacity: 0, x: 18 }}
@@ -333,27 +341,7 @@ export default function ContactPage() {
               transition={{ duration: 0.65 }}
               className="relative hidden min-h-[270px] lg:block"
             >
-              <div className="absolute right-[10%] top-1 max-w-[155px] rotate-[-5deg] text-center">
-                <p className="font-display text-3xl leading-[0.95] text-[#173b2b]">
-                  Healthy Farms,
-                  <br />
-                  Brighter Future
-                </p>
-                <LuSprout
-                  size={23}
-                  className="mx-auto mt-2 text-[#347d42]"
-                />
-              </div>
-
-              <div className="absolute bottom-0 left-0 h-[205px] w-[55%] overflow-hidden rounded-[45%_10%_10%_10%] border-4 border-white/70 shadow-lg">
-                <img
-                  src={images.plant}
-                  alt="Healthy green plants"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="absolute right-0 top-20 w-[48%] space-y-2 rounded-2xl border border-white/80 bg-white/95 p-4 shadow-xl backdrop-blur-md">
+              <div className="absolute flex w-fit right-0 -bottom-30 space-y-2 rounded-2xl border border-white/80 bg-white/30  p-4 shadow-xl backdrop-blur-xs">
                 {[
                   { icon: LuSprout, value: "500+", label: "Farmers Connected" },
                   {
@@ -374,10 +362,7 @@ export default function ContactPage() {
                       key={item.value}
                       className="flex items-center gap-3 py-1"
                     >
-                      <Icon
-                        size={23}
-                        className="shrink-0 text-[#07884f]"
-                      />
+                      <Icon size={23} className="shrink-0 text-[#07884f]" />
                       <div>
                         <p className="text-sm font-bold text-[#162d42]">
                           {item.value}
@@ -396,8 +381,6 @@ export default function ContactPage() {
 
         {/* CONTACT FORM + CONTACT DETAILS */}
         <section className="relative isolate px-4 pb-4 pt-5 sm:px-8 lg:px-12">
-          <BotanicalLeaves className="-right-14 top-1/2 h-48 w-40 opacity-50" />
-
           <div className="relative mx-auto grid max-w-7xl items-start gap-5 lg:grid-cols-[1.55fr_1fr]">
             {/* Enquiry form */}
             <motion.div
@@ -465,13 +448,19 @@ export default function ContactPage() {
                     >
                       <option value="">Select an option</option>
                       <option value="Product Enquiry">Product Enquiry</option>
-                      <option value="Polyhouse Project">Polyhouse Project</option>
+                      <option value="Polyhouse Project">
+                        Polyhouse Project
+                      </option>
                       <option value="Hydroponics">Hydroponics</option>
                       <option value="Mushroom Farming">Mushroom Farming</option>
                       <option value="Aquaculture">Aquaculture</option>
                       <option value="Irrigation">Smart Irrigation</option>
-                      <option value="Technical Support">Technical Support</option>
-                      <option value="Partnership">Partnership & Business</option>
+                      <option value="Technical Support">
+                        Technical Support
+                      </option>
+                      <option value="Partnership">
+                        Partnership & Business
+                      </option>
                       <option value="Other">Other</option>
                     </select>
                     <LuChevronDown
@@ -666,9 +655,7 @@ export default function ContactPage() {
                     >
                       <button
                         type="button"
-                        onClick={() =>
-                          setOpenFAQ(isOpen ? null : index)
-                        }
+                        onClick={() => setOpenFAQ(isOpen ? null : index)}
                         aria-expanded={isOpen}
                         className="flex w-full items-center gap-3 py-2.5 text-left"
                       >
@@ -706,10 +693,7 @@ export default function ContactPage() {
             className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
 
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#062c1c]/85 via-[#082f20]/70 to-[#082f20]/45" />
-
-          <BotanicalLeaves className="-left-10 bottom-0 h-44 w-36 opacity-75" />
-          <BotanicalLeaves className="-right-10 top-1 h-44 w-36 opacity-60" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#062c1c]/85 via-[#082f20]/70 to-[#082f20]/45" />
 
           <div className="mx-auto grid max-w-7xl items-center gap-6 px-5 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_0.75fr] lg:px-12">
             <div className="relative z-10">
@@ -741,10 +725,7 @@ export default function ContactPage() {
 
             <div className="relative z-10 rounded-2xl border border-white/70 bg-[#fffef5]/95 p-5 shadow-xl backdrop-blur-md sm:p-6">
               {supportItems.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 py-1.5"
-                >
+                <div key={item} className="flex items-center gap-3 py-1.5">
                   <FiCheckCircle
                     size={16}
                     className="shrink-0 fill-[#075332] text-[#075332]"

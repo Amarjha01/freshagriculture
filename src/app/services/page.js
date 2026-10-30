@@ -522,7 +522,7 @@ export default function ServicesPage() {
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.8 }}
     aria-hidden="true"
-    className="pointer-events-none absolute -left-20 -top-50 z-0 hidden h-auto w-112.5 lg:block n"
+    className="pointer-events-none absolute -left-20 -top-50 z-0 h-auto w-112.5 "
   > 
   
   {/* BACKGROUND OVERLAYS */}
@@ -536,7 +536,8 @@ export default function ServicesPage() {
     />
   </motion.div>
 
- 
+           <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
   {/* MAIN CONTENT */}
   <div className="mx-auto grid min-h-140 max-w-7xl items-center gap-8 px-5 py-12 sm:px-8 sm:py-14 lg:min-h-150 lg:grid-cols-2 lg:px-12">
@@ -601,20 +602,21 @@ export default function ServicesPage() {
       </motion.div>
     </motion.div>
 
-        {/* RIGHT HERO IMAGE */}
-    <motion.div
-      initial={{ opacity: 0, x: 24 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-      className=" relative hidden  min-h-full lg:block"
-    >
-      <img
-        src={images.hero}
-        alt=""
-        aria-hidden="true"
-        className="absolute min-h-auto min-w-190 -right-20 -top-30 object-center"
-      />
-    </motion.div>
+            {/* right side*/}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              aria-hidden="true"
+              className="pointer-events-none absolute  right-0 -top-20 z-0 w-[50%] hidden lg:block"
+            >
+              <img
+                src={images.hero}
+                alt=""
+                priority
+                className="h-auto w-full object-contain"
+              />
+            </motion.div>
   </div>
 
                   <div className="absolute -bottom-5 md:-bottom-15 w-fit right-0 flex gap-5 rounded-2xl border border-white/70 bg-[#fffef6]/35 p-4 shadow-xl backdrop-blur-md">

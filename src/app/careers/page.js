@@ -39,22 +39,14 @@ import SiteShell from "@/components/SiteShell";
 import { GoCheckCircle } from "react-icons/go";
 
 const images = {
-  hero:
-    "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1800&q=90",
-  hands:
-    "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90",
-  agronomy:
-    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=85",
-  research:
-    "https://images.unsplash.com/photo-1581093458791-9d42e3c5e9c4?auto=format&fit=crop&w=900&q=85",
-  production:
-    "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85",
-  sales:
-    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85",
-  operations:
-    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=85",
-  administration:
-    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85",
+  hero:"/Images/careerpage-right.webp",
+  hands:"/Images/Nurturing Seedlings in Golden Light.webp",
+  agronomy:"",
+  research:"",
+  production:"",
+  sales:"",
+  operations:"",
+  administration:"",
 };
 
 const departments = [
@@ -340,18 +332,6 @@ function SectionLabel({ children, light = false }) {
   );
 }
 
-function BotanicalLeaves({ className = "" }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={`pointer-events-none absolute z-0 ${className}`}
-    >
-      <LuLeaf className="absolute h-20 w-20 -rotate-45 text-[#9fbd7e]/45 sm:h-28 sm:w-28" />
-      <LuLeaf className="absolute left-8 top-12 h-16 w-16 rotate-12 text-[#65904c]/35 sm:left-14 sm:top-16 sm:h-24 sm:w-24" />
-      <LuLeaf className="absolute left-1 top-24 h-12 w-12 -rotate-90 text-[#c5d9a8]/65 sm:top-32 sm:h-16 sm:w-16" />
-    </div>
-  );
-}
 
 function SelectField({ label, value, onChange, options }) {
   return (
@@ -608,17 +588,32 @@ export default function CareersPage() {
         <section className="relative isolate overflow-hidden">
           <div className="absolute inset-0 -z-20 bg-[#f7f7ef]" />
 
-          <div className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden sm:w-[70%]">
-            <img
-              src={images.hero}
-              alt="Greenhouse crops and agricultural research"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/80 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#fbfaf4]/25 to-transparent" />
-          </div>
-
-          <BotanicalLeaves className="-left-10 top-4 h-64 w-48" />
+                    <img
+                      src={images.hero}
+                      alt="Agricultural fields in natural sunlight"
+                      className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+                    />
+          
+                    {/* LEFT DECORATIVE IMAGE */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8 }}
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -left-10 lg:-left-15 h-full object-cover lg:object-none "
+                    >
+                      <img
+                        src={images.heroLeft}
+                        alt=""
+                        priority
+                        className="h-full w-full"
+                        sizes=""
+                      />
+                    </motion.div>
+          
+                    <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+                    <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
+          
 
           <div className="mx-auto grid min-h-[330px] max-w-7xl items-center gap-6 px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[340px] lg:grid-cols-[1fr_0.9fr] lg:px-12">
             <motion.div
@@ -652,7 +647,7 @@ export default function CareersPage() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-4 max-w-lg text-xs leading-6 text-[#657064] sm:text-sm sm:leading-7"
+                className="mt-4 max-w-lg text-xs leading-6 text-[#657064] sm:text-sm sm:leading-7 backdrop-blur-xs rounded-lg"
               >
                 Join our team and contribute to building a sustainable
                 agriculture ecosystem. Work on meaningful projects, learn
@@ -680,56 +675,21 @@ export default function CareersPage() {
                 </a>
               </motion.div>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.65 }}
-              className="relative hidden min-h-[270px] lg:block"
-            >
-              <div className="absolute right-[8%] top-1 h-[255px] w-[88%] overflow-hidden rounded-bl-[40%] rounded-tr-2xl">
-                <img
-                  src={images.research}
-                  alt="Agricultural team working on research"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="absolute left-0 top-12 z-10 max-w-[155px] rotate-[-5deg] text-center">
-                <p className="font-display text-3xl leading-[0.95] text-[#173b2b]">
-                  Healthy Farms,
-                  <br />
-                  Brighter Future
-                </p>
-                <LuSprout
-                  size={23}
-                  className="mx-auto mt-2 text-[#347d42]"
-                />
-              </div>
-
-              <div className="absolute bottom-1 right-0 z-10 space-y-1.5 rounded-2xl border border-white/80 bg-white/95 p-4 shadow-xl backdrop-blur-sm">
-                {[
-                  { icon: LuSprout, text: "Meaningful Work" },
-                  { icon: LuChartNoAxesCombined, text: "Learn & Grow" },
-                  { icon: LuUsers, text: "Work with Experts" },
-                  { icon: LuHeart, text: "Impact Farmers' Lives" },
-                ].map((item) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <div
-                      key={item.text}
-                      className="flex items-center gap-3 py-1"
-                    >
-                      <Icon size={19} className="text-[#286b42]" />
-                      <span className="max-w-[105px] text-[10px] font-medium leading-4 text-[#35473a]">
-                        {item.text}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
+           {/* right side*/}
+                      <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        aria-hidden="true"
+                        className="pointer-events-none absolute  right-0 -top-20 z-0 w-[50%] hidden lg:block"
+                      >
+                        <img
+                          src={images.hero}
+                          alt=""
+                          priority
+                          className="h-auto w-full object-contain"
+                        />
+                      </motion.div>
           </div>
         </section>
 
@@ -805,7 +765,6 @@ export default function CareersPage() {
           id="open-positions"
           className="relative isolate px-4 pb-8 pt-1 sm:px-8 lg:px-12"
         >
-          <BotanicalLeaves className="-right-12 top-1/2 h-48 w-40 opacity-55" />
 
           <div className="relative mx-auto grid max-w-7xl items-start gap-4 lg:grid-cols-[200px_1fr] xl:grid-cols-[220px_1fr]">
             {/* Filters */}
