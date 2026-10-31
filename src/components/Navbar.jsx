@@ -135,7 +135,7 @@ export default function Navbar({
       }}
     >
       {/* Main Navbar */}
-      <div className="mx-5 lg:mx-10 flex min-h-19 max-w-360 rounded-full backdrop-blur-xl items-center justify-between gap-4 px-4 sm:px-5 md:px-8 lg:px-12">
+      <div className="mx-5 lg:mx-10 flex min-h-fit max-w-360 rounded-full backdrop-blur-xl items-center justify-between gap-4 px-4 sm:px-5 md:px-8 lg:px-12">
         {/* Logo */}
         <Link
           href="/"
@@ -146,7 +146,7 @@ export default function Navbar({
           <img
             src={logoSrc}
             alt="Fresh Agriculture by Green Bio-Tech"
-            className="h-12 w-24 object-contain sm:w-28 md:h-14 md:w-36 mix-blend-hue"
+            className="h-16 w-45 object-contain sm:w-28 md:h-14 md:w-36 mix-blend-hue"
           />
         </Link>
 

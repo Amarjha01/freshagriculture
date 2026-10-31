@@ -45,6 +45,7 @@ const images = {
   nursery: "/services/Nursery/nursery.png",
   goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
+  cta:"/Images/Young plant growing in soil.avif"
 };
 
 const categories = [
@@ -491,7 +492,7 @@ export default function ProjectsPage() {
         />
       </motion.div>
 
-              <div className="absolute bottom-5 w-fit right-0 flex flex-col gap-5 rounded-2xl border border-white/70 bg-[#fffef6]/95 p-4 shadow-xl backdrop-blur-md">
+              <div className="absolute  w-fit right-1 bottom-3 flex gap-5 rounded-2xl border border-white/70 bg-[#fffef6]/45 p-4 shadow-xl backdrop-blur-md">
                 {[
                   { icon: LuSprout, text: "Modern Technology" },
                   { icon: LuWheat, text: "Productivity Planning" },
@@ -973,11 +974,6 @@ export default function ProjectsPage() {
                   </button>
                 </div>
               </div>
-
-              <p className="mt-3 text-[10px] leading-5 text-[#8a9387]">
-                Replace this sample text with an approved, genuine customer
-                testimonial before publishing.
-              </p>
             </div>
           </div>
         </section>
@@ -1009,7 +1005,7 @@ export default function ProjectsPage() {
 
             <div className="relative min-h-[240px] lg:min-h-full">
               <img
-                src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=85"
+                src={images.cta}
                 alt="Young plant growing in soil"
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-cover"

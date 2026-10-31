@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -43,77 +42,78 @@ import {
 import SiteShell from "@/components/SiteShell";
 import { FaCanadianMapleLeaf } from "react-icons/fa";
 
-const IMAGES = {
+const images = {
   hero: "/Images/home-hero-right.png",
+  heroLeft: "/Images/home-hero-left.png",
   farmer: "",
   seedling: "/Images/Sunlit Seedling in Rich Soil.png",
-  polyhouse:  "/services/polyhouse Farming/Polyhouse Farm.png",
-  hydroponics:      "/services/Hydroponics/Hydroponics Farm.png",
-  mushroom:   "/services/Mushroom Farming/Mushrooms Farm.png",
+  polyhouse: "/services/polyhouse Farming/Polyhouse Farm.png",
+  hydroponics: "/services/Hydroponics/Hydroponics Farm.png",
+  mushroom: "/services/Mushroom Farming/Mushrooms Farm.png",
   aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
   flowers: "/services/Floriculture/Floriculture.png",
   nursery: "/services/Nursery/nursery.png",
   livestock: "/services/open cultivation/Goat Farming/Goat Farm.png",
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
-  tomatoes: "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=1000&q=85",
-  capsicum: "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=1000&q=85",
-  field: "/Images/Golden Sunrise Over Lush Crop Fields.webp"
+  tomatoes: "/services/polyhouse Farming/Polyhouse Farm.png",
+  capsicum: "/services/polyhouse Farming/Capsicum.png",
+  field: "/Images/Golden Sunrise Over Lush Crop Fields.webp",
 };
 
 const services = [
   {
     title: "Polyhouse Farming",
     description: "Protected cultivation for improved crop management.",
-    image: IMAGES.polyhouse,
+    image: images.polyhouse,
     icon: LuHouse,
     category: "Protected Farming",
   },
   {
     title: "Hydroponics",
     description: "Soilless farming for better growth and quality.",
-    image: IMAGES.hydroponics,
+    image: images.hydroponics,
     icon: LuDroplets,
     category: "Modern Farming",
   },
   {
     title: "Mushroom Farming",
     description: "Space-conscious mushroom production systems.",
-    image: IMAGES.mushroom,
+    image: images.mushroom,
     icon: LuTrees,
     category: "Specialized Farming",
   },
   {
     title: "Aquaculture",
     description: "Modern fish and shrimp farming systems.",
-    image: IMAGES.aquaculture,
+    image: images.aquaculture,
     icon: LuFish,
     category: "Allied Farming",
   },
   {
     title: "Floriculture",
     description: "Commercial flower cultivation and planning.",
-    image: IMAGES.flowers,
+    image: images.flowers,
     icon: LuFlower2,
     category: "Horticulture",
   },
   {
     title: "Nursery",
     description: "Quality plants for a greener tomorrow.",
-    image: IMAGES.nursery,
+    image: images.nursery,
     icon: LuSprout,
     category: "Horticulture",
   },
   {
     title: "Goat Farming",
     description: "Livestock farming infrastructure and planning.",
-    image: IMAGES.livestock,
+    image: images.livestock,
     icon: LuRabbit,
     category: "Allied Farming",
   },
   {
     title: "Smart Irrigation",
     description: "Efficient water management with smart technology.",
-    image: IMAGES.irrigation,
+    image: images.irrigation,
     icon: LuDroplets,
     category: "Modern Farming",
   },
@@ -124,37 +124,37 @@ const projects = [
     title: "Polyhouse Tomato Cultivation",
     location: "Telangana",
     category: "Protected Farming",
-    image: IMAGES.tomatoes,
+    image: images.tomatoes,
   },
   {
     title: "Hydroponic Leafy Greens",
     location: "Hyderabad",
     category: "Modern Farming",
-    image: IMAGES.hydroponics,
+    image: images.hydroponics,
   },
   {
     title: "Mushroom Cultivation Unit",
     location: "Siddipet",
     category: "Specialized Farming",
-    image: IMAGES.mushroom,
+    image: images.mushroom,
   },
   {
     title: "Fish Farming Project",
     location: "Andhra Pradesh",
     category: "Allied Farming",
-    image: IMAGES.aquaculture,
+    image: images.aquaculture,
   },
   {
     title: "Commercial Floriculture",
     location: "Hyderabad",
     category: "Horticulture",
-    image: IMAGES.flowers,
+    image: images.flowers,
   },
   {
     title: "Plant Nursery Project",
     location: "Siddipet",
     category: "Horticulture",
-    image: IMAGES.nursery,
+    image: images.nursery,
   },
 ];
 
@@ -193,7 +193,7 @@ const testimonials = [
     name: "Ramesh Kumar",
     role: "Tomato Farmer",
     location: "Telangana",
-    image: IMAGES.farmer,
+    image: images.farmer,
   },
   {
     quote:
@@ -201,7 +201,7 @@ const testimonials = [
     name: "Suresh Reddy",
     role: "Vegetable Farmer",
     location: "Hyderabad",
-    image: IMAGES.seedling,
+    image: images.seedling,
   },
   {
     quote:
@@ -209,15 +209,15 @@ const testimonials = [
     name: "Anita Sharma",
     role: "Agricultural Entrepreneur",
     location: "Siddipet",
-    image: IMAGES.nursery,
+    image: images.nursery,
   },
-   {
+  {
     quote:
       "पॉलीहाउस खेती शुरू करने से पहले हमें सही योजना और तकनीकी मार्गदर्शन की आवश्यकता थी। खेती की प्रक्रिया को बेहतर ढंग से समझने और व्यवस्थित करने में इस मार्गदर्शन से मदद मिली।",
     name: "Ramesh Kumar",
     role: "टमाटर उत्पादक किसान",
     location: "तेलंगाना",
-    image: IMAGES.farmer,
+    image: images.farmer,
   },
   {
     quote:
@@ -225,7 +225,7 @@ const testimonials = [
     name: "Suresh Reddy",
     role: "सब्जी उत्पादक किसान",
     location: "हैदराबाद",
-    image: IMAGES.seedling,
+    image: images.seedling,
   },
   {
     quote:
@@ -233,7 +233,7 @@ const testimonials = [
     name: "Anita Sharma",
     role: "कृषि उद्यमी",
     location: "सिद्दीपेट",
-    image: IMAGES.nursery,
+    image: images.nursery,
   },
 ];
 
@@ -477,9 +477,9 @@ export default function HomePage() {
       ? services
       : services.filter((service) => service.category === serviceFilter);
 
-const [screenSize, setScreenSize] = useState("mobile");
+  const [screenSize, setScreenSize] = useState("mobile");
 
-const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion();
 
   const containerVariants = {
     hidden: {},
@@ -490,275 +490,215 @@ const shouldReduceMotion = useReducedMotion();
       },
     },
   };
-useEffect(() => {
-  const updateScreenSize = () => {
-    if (window.innerWidth >= 1024) {
-      setScreenSize("lg");
-    } else if (window.innerWidth >= 640) {
-      setScreenSize("md");
-    } else {
-      setScreenSize("mobile");
-    }
-  };
+  useEffect(() => {
+    const updateScreenSize = () => {
+      if (window.innerWidth >= 1024) {
+        setScreenSize("lg");
+      } else if (window.innerWidth >= 640) {
+        setScreenSize("md");
+      } else {
+        setScreenSize("mobile");
+      }
+    };
 
-  updateScreenSize();
-  window.addEventListener("resize", updateScreenSize);
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
 
-  return () => window.removeEventListener("resize", updateScreenSize);
-}, []);
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
 
-const visibleProjectCount =
-  screenSize === "lg" ? 4 : screenSize === "md" ? 3 : 2;
+  const visibleProjectCount =
+    screenSize === "lg" ? 4 : screenSize === "md" ? 3 : 2;
 
-const visibleProductCount =
-  screenSize === "lg" ? 5 : screenSize === "md" ? 3 : 2;
+  const visibleProductCount =
+    screenSize === "lg" ? 5 : screenSize === "md" ? 3 : 2;
 
-const visibleProjects = Array.from(
-  { length: Math.min(visibleProjectCount, projects.length) },
-  (_, index) => projects[(projectIndex + index) % projects.length]
-);
+  const visibleProjects = Array.from(
+    { length: Math.min(visibleProjectCount, projects.length) },
+    (_, index) => projects[(projectIndex + index) % projects.length],
+  );
 
-const visibleProducts = Array.from(
-  { length: Math.min(visibleProductCount, products.length) },
-  (_, index) => products[(productIndex + index) % products.length]
-);
+  const visibleProducts = Array.from(
+    { length: Math.min(visibleProductCount, products.length) },
+    (_, index) => products[(productIndex + index) % products.length],
+  );
 
   const testimonial = testimonials[testimonialIndex];
 
   function moveProjects(direction) {
-    setProjectIndex((current) =>
-      (current + direction + projects.length) % projects.length
+    setProjectIndex(
+      (current) => (current + direction + projects.length) % projects.length,
     );
   }
 
   function moveProducts(direction) {
-    setProductIndex((current) =>
-      (current + direction + products.length) % products.length
+    setProductIndex(
+      (current) => (current + direction + products.length) % products.length,
     );
   }
 
   return (
     <SiteShell>
       <main className="overflow-hidden bg-[#fbfaf4] text-[#193c27]">
+        {/* HERO */}
+        <section className="relative isolate overflow-y-hidden bg-[#fafaf2]">
+          {/* Wide panoramic background image */}
 
+          <img
+            src={images.hero}
+            alt="Agricultural fields in natural sunlight"
+            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
-{/* HERO */}
-<section className="relative isolate overflow-y-hidden bg-[#fafaf2]">
-  {/* Wide panoramic background image */}
+          {/* HERO CONTENT */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="relative z-10 mx-auto grid min-h-130 max-w-7xl items-center px-5 py-12 sm:px-8 lg:min-h-150 lg:grid-cols-2 lg:px-12 lg:py-14"
+          >
+            {/* LEFT CONTENT */}
+            <div className="relative z-10 max-w-147.5">
+              {/* LEFT DECORATIVE IMAGE */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-40 -top-40 -z-10 h-fit "
+              >
+                <img
+                  src={images.heroLeft}
+                  alt=""
+                  priority
+                  className="h-full w-full object-"
+                  sizes=""
+                />
+              </motion.div>
+              <motion.div variants={fadeUp}>
+                <Eyebrow>Smart Farming · Sustainable Tomorrow</Eyebrow>
+              </motion.div>
 
+              <motion.h1
+                variants={fadeUp}
+                className="mt-4 max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
+              >
+                Modern
+                <br />
+                Agriculture
+                <br />
+                for a <span className="text-[#126139]">Better</span>
+                <br />
+                <span className="text-[#126139]">Tomorrow</span>
+              </motion.h1>
 
+              <motion.p
+                variants={fadeUp}
+                className="mt-5 max-w-[460px] text-sm leading-6 text-[#657064] sm:text-base sm:leading-7"
+              >
+                Fresh Agriculture by Green Bio-Tech LLP helps farmers and
+                entrepreneurs build successful, sustainable, and
+                technology-driven farming systems.
+              </motion.p>
 
-  {/* HERO CONTENT */}
-  <motion.div
-    initial="hidden"
-    animate="visible"
-    variants={stagger}
-    className="relative z-10 mx-auto grid min-h-130 max-w-7xl items-center px-5 py-12 sm:px-8 lg:min-h-150 lg:grid-cols-2 lg:px-12 lg:py-14"
-  >
-    {/* LEFT CONTENT */}
-    <div className="relative z-10 max-w-147.5">
-      {/* LEFT DECORATIVE IMAGE */}
-  <motion.div
-    initial={{ opacity: 0, x: -30 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8 }}
-    aria-hidden="true"
-    className="pointer-events-none absolute -left-40 -top-40 -z-10 h-fit "
-  >
-    <img
-      src="/Images/home-hero-left.png"
-      alt=""
-      priority
-      className="h-full w-full object-"
-      sizes=""
-    />
-  </motion.div>
-      <motion.div variants={fadeUp}>
-        <Eyebrow>
-          Smart Farming · Sustainable Tomorrow
-        </Eyebrow>
-      </motion.div>
+              {/* CTA BUTTONS */}
+              <motion.div
+                variants={fadeUp}
+                className="mt-6 flex flex-wrap items-center gap-3 "
+              >
+                <a
+                  href="/contact"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#075332] px-6 py-3 text-xs font-semibold text-white shadow-md transition duration-300 hover:-translate-y-0.5 hover:bg-[#0b6941] hover:shadow-lg sm:px-7"
+                >
+                  Get a Free Consultation
+                  <LuArrowRight size={16} strokeWidth={2} />
+                </a>
 
-      <motion.h1
-        variants={fadeUp}
-        className="mt-4 max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
-      >
-        Modern
-        <br />
-        Agriculture
-        <br />
-        for a <span className="text-[#126139]">Better</span>
-        <br />
-        <span className="text-[#126139]">Tomorrow</span>
-      </motion.h1>
+                <a
+                  href="/projects"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-[#a9c8ae] bg-white/85 px-6 py-3 text-xs font-semibold text-[#315943] transition duration-300 hover:-translate-y-0.5 hover:border-[#075332] hover:bg-[#edf4e8] sm:px-7"
+                >
+                  Explore Our Projects
+                </a>
+              </motion.div>
 
-      <motion.p
-        variants={fadeUp}
-        className="mt-5 max-w-[460px] text-sm leading-6 text-[#657064] sm:text-base sm:leading-7"
-      >
-        Fresh Agriculture by Green Bio-Tech LLP helps farmers and
-        entrepreneurs build successful, sustainable, and technology-driven
-        farming systems.
-      </motion.p>
+              {/* STATISTICS */}
+              <motion.div
+                variants={fadeUp}
+                className="mt-8 grid max-w-150 grid-cols-2 gap-x-3 gap-y-5 sm:mt-10 sm:grid-cols-4"
+              >
+                {[
+                  {
+                    icon: LuBadgeCheck,
+                    value: "3+",
+                    label: "Years of Experience",
+                  },
+                  {
+                    icon: LuUsers,
+                    value: "1000+",
+                    label: "Happy Farmers",
+                  },
+                  {
+                    icon: LuHandshake,
+                    value: "End-to-End",
+                    label: "Project Support",
+                  },
+                  {
+                    icon: LuLeaf,
+                    value: "Sustainable",
+                    label: "Farming Solutions",
+                  },
+                ].map((item, index) => {
+                  const Icon = item.icon;
 
-      {/* CTA BUTTONS */}
-      <motion.div
-        variants={fadeUp}
-        className="mt-6 flex flex-wrap items-center gap-3"
-      >
-        <a
-          href="/contact"
-          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#075332] px-6 py-3 text-xs font-semibold text-white shadow-md transition duration-300 hover:-translate-y-0.5 hover:bg-[#0b6941] hover:shadow-lg sm:px-7"
-        >
-          Get a Free Consultation
-          <LuArrowRight size={16} strokeWidth={2} />
-        </a>
+                  return (
+                    <div
+                      key={item.label}
+                      className={`flex min-w-0 items-start gap-2.5 sm:pr-3 ${
+                        index !== 3 ? "sm:border-r sm:border-[#dfe6d8]" : ""
+                      }`}
+                    >
+                      <Icon
+                        size={23}
+                        strokeWidth={1.8}
+                        className="mt-0.5 shrink-0 text-[#15583b]"
+                      />
 
-        <a
-          href="/projects"
-          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-[#a9c8ae] bg-white/85 px-6 py-3 text-xs font-semibold text-[#315943] transition duration-300 hover:-translate-y-0.5 hover:border-[#075332] hover:bg-[#edf4e8] sm:px-7"
-        >
-          Explore Our Projects
-        </a>
-      </motion.div>
-
-      {/* STATISTICS */}
-      <motion.div
-        variants={fadeUp}
-        className="mt-8 grid max-w-150 grid-cols-2 gap-x-3 gap-y-5 sm:mt-10 sm:grid-cols-4"
-      >
-        {[
-          {
-            icon: LuBadgeCheck,
-            value: "3+",
-            label: "Years of Experience",
-          },
-          {
-            icon: LuUsers,
-            value: "1000+",
-            label: "Happy Farmers",
-          },
-          {
-            icon: LuHandshake,
-            value: "End-to-End",
-            label: "Project Support",
-          },
-          {
-            icon: LuLeaf,
-            value: "Sustainable",
-            label: "Farming Solutions",
-          },
-        ].map((item, index) => {
-          const Icon = item.icon;
-
-          return (
-            <div
-              key={item.label}
-              className={`flex min-w-0 items-start gap-2.5 sm:pr-3 ${
-                index !== 3
-                  ? "sm:border-r sm:border-[#dfe6d8]"
-                  : ""
-              }`}
-            >
-              <Icon
-                size={23}
-                strokeWidth={1.8}
-                className="mt-0.5 shrink-0 text-[#15583b]"
-              />
-
-              <div className="min-w-0">
-                <p className="wrap-break-word text-[11px] font-bold leading-4 text-[#172b43] sm:text-xs">
-                  {item.value}
-                </p>
-                <p className="mt-1 text-[10px] leading-4 text-[#707b76]">
-                  {item.label}
-                </p>
-              </div>
+                      <div className="min-w-0">
+                        <p className="wrap-break-word text-[11px] font-bold leading-4 text-[#172b43] sm:text-xs">
+                          {item.value}
+                        </p>
+                        <p className="mt-1 text-[10px] leading-4 text-[#707b76]">
+                          {item.label}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </motion.div>
             </div>
-          );
-        })}
-      </motion.div>
-    </div>
 
-    {/* RIGHT CONTENT SPACE */}
-    <div
-    aria-hidden="true"
-    className=" min-h-75 hidden sm:block"
-    >
-      
-  <motion.div
-    initial={{ opacity: 0, x: 30 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8 }}
-    aria-hidden="true"
-    className="pointer-events-none absolute  right-0 top-0 z-0 w-[62%]  md:w-[65%] lg:w-[70%] hidden sm:block"
-  >
-    <img
-      src={IMAGES.hero}
-      alt=""
-      priority
-      className="h-auto w-full object-contain object-bottom "
-    />
-  </motion.div>
-<motion.div 
-initial={{ opacity: 0, x: 30 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8 }}
-    aria-hidden="true"
-className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center gap-3 rounded-2xl bg-[#fafaf2] p-4">
-
-{/* LEFT: Leaf icon + decorative dots */}
-<div className="flex shrink-0 flex-col items-center gap-2 text-2xl text-green-700">
-  <FaCanadianMapleLeaf />
-
-  <motion.div className="flex flex-col items-center gap-1.5">
-  {Array.from({ length: 5 }).map((_, index) => (
-    <motion.span
-      key={index}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{
-        opacity: [0.3, 1, 0.3],
-        scale: [0.7, 1.2, 0.7],
-      }}
-      transition={{
-        delay: index * 0.15,
-        duration: 1.8,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-      className="h-1 w-1 rounded-full bg-green-700"
-    />
-  ))}
-</motion.div>
-</div>
-
-  {/* RIGHT: Vertical list */}
-  <div className="flex flex-col gap-2 uppercase">
-    {[
-      "Quality Crops",
-      "Modern Farming",
-      "Sustainable Growth",
-      "Green Future",
-    ].map((item, index) => (
-      <motion.span
-        key={item}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: index * 0.2 }}
-        className="text-xs font-black text-green-700"
-      >
-        {item}
-      </motion.span>
-    ))}
-  </div>
-
-</motion.div>
-    </div>
-    
-  </motion.div>
-</section>
-
-
+            {/* RIGHT CONTENT SPACE */}
+            <div aria-hidden="true" className=" min-h-75 hidden lg:block">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                aria-hidden="true"
+                className="pointer-events-none absolute  right-0 top-0 z-0 w-[60%] hidden lg:block"
+              >
+                <img
+                  src={images.hero}
+                  alt=""
+                  priority
+                  className="h-auto w-full object-contain object-bottom "
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
 
         {/* SERVICES */}
         <section id="services" className="px-4 py-7 sm:px-8 lg:px-12">
@@ -769,7 +709,8 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
                 <>
                   Complete Agricultural
                   <br />
-                  Solutions <span className="text-[#126139]">Under One Roof</span>
+                  Solutions{" "}
+                  <span className="text-[#126139]">Under One Roof</span>
                 </>
               }
               description="From modern farming infrastructure to crop advisory and agricultural inputs, explore solutions for farmers, entrepreneurs, and institutions."
@@ -819,12 +760,11 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
         <section className="relative isolate overflow-hidden bg-[#062f1f]">
           <div className="absolute inset-0 -z-20">
             <img
-              src={IMAGES.seedling}
+              src={images.seedling}
               alt=""
               className="h-full w-full object-cover opacity-65"
             />
           </div>
-          
 
           <div className=" grid gap-7 px-5 py-9 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-12 lg:py-12">
             <div className="max-w-lg">
@@ -938,163 +878,157 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
         </section>
 
         {/* PROCESS */}
-<section className="relative overflow-hidden px-4 py-16 sm:px-8 sm:py-20 lg:px-12">
-      {/* Soft background decoration */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-24 top-12 h-64 w-64 rounded-full bg-[#e9f5e5]/60 blur-3xl"
-      />
+        <section className="relative overflow-hidden px-4 py-16 sm:px-8 sm:py-20 lg:px-12">
+          {/* Soft background decoration */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-24 top-12 h-64 w-64 rounded-full bg-[#e9f5e5]/60 blur-3xl"
+          />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-        {/* Left: Process content */}
-        <div>
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <SectionHeading
-              eyebrow="Our Process"
-              title="From Idea to Harvest"
-              description="A structured approach to planning and supporting agricultural projects."
-            />
-          </motion.div>
-
-          {/* Animated process steps */}
-          <motion.div
-            className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4 sm:gap-5"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-          >
-            {processSteps.map((step) => {
-              const Icon = step.icon;
-
-              return (
-                <motion.div
-                  key={step.number}
-                  variants={fadeUp}
-                  whileHover={
-                    shouldReduceMotion
-                      ? undefined
-                      : { y: -6, transition: { duration: 0.2 } }
-                  }
-                  className="group relative"
-                >
-                  {/* Icon */}
-                  <motion.span
-                    whileHover={
-                      shouldReduceMotion ? undefined : { scale: 1.08 }
-                    }
-                    className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d8e9d5] bg-[#e9f5e5] text-[#23683f] shadow-sm transition-colors duration-300 group-hover:bg-[#23683f] group-hover:text-white"
-                  >
-                    <Icon size={21} strokeWidth={1.8} />
-                  </motion.span>
-
-                  <p className="mt-4 text-xs font-bold tracking-[0.18em] text-[#477c53]">
-                    STEP {step.number}
-                  </p>
-
-                  <h3 className="mt-2 text-sm font-bold leading-snug text-[#172b43] sm:text-base">
-                    {step.title}
-                  </h3>
-
-                  <p className="mt-2 text-xs leading-5 text-[#727c85] sm:text-sm sm:leading-6">
-                    {step.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-
-        {/* Right: Image composition */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            x: shouldReduceMotion ? 0 : 35,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-          }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative mx-auto w-full max-w-lg"
-        >
-          {/* Image background panel */}
-          <div className="absolute inset-x-5 bottom-0 top-10 rounded-[2rem] bg-[#eaf0dc]" />
-
-          <div className="relative overflow-hidden rounded-[2rem]">
-            <motion.img
-              src="/Images/Hands Nurturing a Young Seedling.png"
-              alt="Hands nurturing a young green seedling"
-              loading="lazy"
-              whileHover={
-                shouldReduceMotion ? undefined : { scale: 1.035 }
-              }
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="relative z-10 h-[320px] w-full object-contain object-bottom sm:h-[420px]"
-            />
-          </div>
-
-          {/* Decorative label */}
-          <div className="absolute left-0 top-8 z-20 rounded-full border border-white/80 bg-white/90 px-4 py-2 shadow-md backdrop-blur-md">
-            <span className="flex items-center gap-2 text-xs font-semibold text-[#23683f]">
-              <span className="h-2 w-2 rounded-full bg-[#70a65b]" />
-              Growing a sustainable future
-            </span>
-          </div>
-
-          {/* Floating information card */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: shouldReduceMotion ? 0 : 18,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.35, duration: 0.6 }}
-            animate={
-              shouldReduceMotion
-                ? undefined
-                : { y: [0, -7, 0] }
-            }
-            className="absolute -bottom-5 right-2 z-20 max-w-[245px] rounded-2xl border border-white/80 bg-white/95 p-4 shadow-[0_16px_45px_rgba(23,43,67,0.13)] backdrop-blur-md sm:right-0 sm:p-5"
-          >
-            <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#e9f5e5] text-[#17623b]">
-              <LuSprout size={23} />
-            </span>
-
-            <p className="font-display text-lg font-semibold leading-snug text-[#172b43] sm:text-xl">
-              Agriculture for a Greener Planet
-            </p>
-
-            <p className="mt-2 text-xs leading-5 text-[#727c85]">
-              Nurturing ideas into sustainable growth.
-            </p>
-
-            <div className="mt-4 h-1 w-14 overflow-hidden rounded-full bg-[#e2edda]">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+            {/* Left: Process content */}
+            <div>
               <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "100%" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.6 }}
-                className="h-full rounded-full bg-[#477c53]"
-              />
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <SectionHeading
+                  eyebrow="Our Process"
+                  title="From Idea to Harvest"
+                  description="A structured approach to planning and supporting agricultural projects."
+                />
+              </motion.div>
+
+              {/* Animated process steps */}
+              <motion.div
+                className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4 sm:gap-5"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+              >
+                {processSteps.map((step) => {
+                  const Icon = step.icon;
+
+                  return (
+                    <motion.div
+                      key={step.number}
+                      variants={fadeUp}
+                      whileHover={
+                        shouldReduceMotion
+                          ? undefined
+                          : { y: -6, transition: { duration: 0.2 } }
+                      }
+                      className="group relative"
+                    >
+                      {/* Icon */}
+                      <motion.span
+                        whileHover={
+                          shouldReduceMotion ? undefined : { scale: 1.08 }
+                        }
+                        className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d8e9d5] bg-[#e9f5e5] text-[#23683f] shadow-sm transition-colors duration-300 group-hover:bg-[#23683f] group-hover:text-white"
+                      >
+                        <Icon size={21} strokeWidth={1.8} />
+                      </motion.span>
+
+                      <p className="mt-4 text-xs font-bold tracking-[0.18em] text-[#477c53]">
+                        STEP {step.number}
+                      </p>
+
+                      <h3 className="mt-2 text-sm font-bold leading-snug text-[#172b43] sm:text-base">
+                        {step.title}
+                      </h3>
+
+                      <p className="mt-2 text-xs leading-5 text-[#727c85] sm:text-sm sm:leading-6">
+                        {step.description}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
+
+            {/* Right: Image composition */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: shouldReduceMotion ? 0 : 35,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative mx-auto w-full max-w-lg"
+            >
+              {/* Image background panel */}
+              <div className="absolute inset-x-5 bottom-0 top-10 rounded-[2rem] bg-[#eaf0dc]" />
+
+              <div className="relative overflow-hidden rounded-[2rem]">
+                <motion.img
+                  src="/Images/Hands Nurturing a Young Seedling.png"
+                  alt="Hands nurturing a young green seedling"
+                  loading="lazy"
+                  whileHover={shouldReduceMotion ? undefined : { scale: 1.035 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
+                  className="relative z-10 h-[320px] w-full object-contain object-bottom sm:h-[420px]"
+                />
+              </div>
+
+              {/* Decorative label */}
+              <div className="absolute left-0 top-8 z-20 rounded-full border border-white/80 bg-white/90 px-4 py-2 shadow-md backdrop-blur-md">
+                <span className="flex items-center gap-2 text-xs font-semibold text-[#23683f]">
+                  <span className="h-2 w-2 rounded-full bg-[#70a65b]" />
+                  Growing a sustainable future
+                </span>
+              </div>
+
+              {/* Floating information card */}
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: shouldReduceMotion ? 0 : 18,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: 0.35, duration: 0.6 }}
+                animate={shouldReduceMotion ? undefined : { y: [0, -7, 0] }}
+                className="absolute -bottom-5 right-2 z-20 max-w-61.25 rounded-2xl border border-white/80 bg-white/25 p-4 shadow-[0_16px_45px_rgba(23,43,67,0.13)] backdrop-blur-md sm:right-0 sm:p-5"
+              >
+                <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#e9f5e5] text-[#17623b]">
+                  <LuSprout size={23} />
+                </span>
+
+                <p className="font-display text-lg font-semibold leading-snug text-[#172b43] sm:text-xl">
+                  Agriculture for a Greener Planet
+                </p>
+
+                <p className="mt-2 text-xs leading-5 text-[#000000]">
+                  Nurturing ideas into sustainable growth.
+                </p>
+
+                <div className="mt-4 h-1 w-14 overflow-hidden rounded-full bg-[#e2edda]">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.6 }}
+                    className="h-full rounded-full bg-[#477c53]"
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
 
         {/* PRODUCTS */}
-        <section id="products" className="px-4 py-7 sm:px-8 lg:px-12">
+        {/* <section id="products" className="px-4 py-7 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-7xl">
             <SectionHeading
               eyebrow="Our Products"
@@ -1130,7 +1064,7 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
               </button>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* TESTIMONIALS */}
         <section className="px-4 py-8 sm:px-8 lg:px-12">
@@ -1143,8 +1077,8 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
                 Across India
               </h2>
               <p className="mt-3 text-[11px] leading-5 text-[#697286]">
-                Learn about farming experiences, practical considerations,
-                and the value of technical guidance.
+                Learn about farming experiences, practical considerations, and
+                the value of technical guidance.
               </p>
 
               <div className="mt-4 flex gap-2">
@@ -1155,7 +1089,7 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
                     setTestimonialIndex(
                       (current) =>
                         (current - 1 + testimonials.length) %
-                        testimonials.length
+                        testimonials.length,
                     )
                   }
                   className={iconButton}
@@ -1167,7 +1101,7 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
                   aria-label="Next testimonial"
                   onClick={() =>
                     setTestimonialIndex(
-                      (current) => (current + 1) % testimonials.length
+                      (current) => (current + 1) % testimonials.length,
                     )
                   }
                   className={iconButton}
@@ -1218,7 +1152,7 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
         {/* FINAL CTA */}
         <section className="relative isolate overflow-hidden">
           <img
-            src={IMAGES.field}
+            src={images.field}
             alt="Agricultural field at sunset"
             loading="lazy"
             className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -1234,8 +1168,8 @@ className="absolute hidden lg:flex lg:right-20 lg:bottom-60 z-0  items-center ga
                 Farming Future
               </h2>
               <p className="mt-2 max-w-lg text-xs leading-5 text-[#58675d]">
-                Talk to our team about your land, crop, farm infrastructure,
-                or agricultural business plans.
+                Talk to our team about your land, crop, farm infrastructure, or
+                agricultural business plans.
               </p>
               <a
                 href="/contact"

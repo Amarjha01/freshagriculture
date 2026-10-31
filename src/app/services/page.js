@@ -59,9 +59,9 @@ const images = {
    project:
      "services/Project & AMC/Project & AMC.png",
   hands:
-    "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90",
+    "/Images/Young plant growing in soil.avif",
   consultation:
-    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=85",
+    "/Images/Smart Farming at Golden Hour.png",
 };
 
 const gallery = {
@@ -510,33 +510,30 @@ export default function ServicesPage() {
 <section className="relative isolate ">
 
   {/* MOBILE BACKGROUND */}
-  <img
-    src={images.hero}
-    alt="Agricultural fields in morning sunlight"
-    className="absolute inset-0 -top-20 -z-20 h-full w-full object-cover lg:hidden"
-  />
+          <img
+            src={images.hero}
+            alt="Agricultural fields in natural sunlight"
+            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+          />
 
-  {/* LEFT DECORATIVE IMAGE */}
-  <motion.div
-    initial={{ opacity: 0, x: -30 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8 }}
-    aria-hidden="true"
-    className="pointer-events-none absolute -left-20 -top-50 z-0 h-auto w-112.5 "
-  > 
-  
-  {/* BACKGROUND OVERLAYS */}
-  <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/10" />
-  <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/40 to-transparent" />
-  
-    <img
-      src={images.heroLeft}
-      alt=""
-      className="h-auto w-full object-contain"
-    />
-  </motion.div>
+          {/* LEFT DECORATIVE IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-10 lg:-left-15 h-full object-cover lg:object-none "
+          >
+            <img
+              src={images.heroLeft}
+              alt=""
+              priority
+              className="h-full w-full"
+              sizes=""
+            />
+          </motion.div>
 
-           <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
           <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
   {/* MAIN CONTENT */}
@@ -619,7 +616,7 @@ export default function ServicesPage() {
             </motion.div>
   </div>
 
-                  <div className="absolute -bottom-5 md:-bottom-15 w-fit right-0 flex gap-5 rounded-2xl border border-white/70 bg-[#fffef6]/35 p-4 shadow-xl backdrop-blur-md">
+                  <div className="absolute -bottom-5 md:bottom-15 w-fit right-0 grid grid-cols-4 gap-5 rounded-2xl border border-white/70 bg-[#fffef6]/35 p-4 shadow-xl backdrop-blur-md">
                 {[
                   { icon: LuSprout, text: "Modern Technology" },
                   { icon: LuWheat, text: "Productivity Planning" },
@@ -747,7 +744,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="mx-auto grid max-w-7xl gap-6 rounded-[1.5rem] border border-[#e7eade] bg-white/85 p-4 sm:p-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8"
+            className="mx-auto grid max-w-7xl gap-6 rounded-3xl border border-[#e7eade] bg-white/85 p-4 sm:p-6 lg:grid-cols-[1.05fr_1fr] lg:gap-8"
           >
             {/* Image gallery */}
             <div className="grid grid-cols-[44px_1fr] gap-3">
@@ -807,7 +804,7 @@ export default function ServicesPage() {
                     return (
                       <div
                         key={highlight.title}
-                        className="flex items-center gap-2 rounded-xl border border-white/60 bg-[#fffef5]/95 px-3 py-2 shadow-md backdrop-blur-sm"
+                        className="flex items-center gap-2 rounded-xl border border-white/60 bg-[#fffef5]/55 px-3 py-2 shadow-md backdrop-blur-xs"
                       >
                         <Icon size={20} className="shrink-0 text-[#286b42]" />
                         <div>

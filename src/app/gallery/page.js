@@ -40,12 +40,11 @@ const images = {
   nursery: "/services/Nursery/nursery.png",
   goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
-  capsicum: "",
-  tomatoes: "",
-  cucumber: "",
-  strawberry: "",
-  shadeNet: "",
-  hands: "",
+  tomatoes: "/services/polyhouse Farming/Polyhouse Farm.png",
+  capsicum: "/services/polyhouse Farming/Capsicum.png",
+  cucumber: "/services/polyhouse Farming/cucumber.jpeg",
+  strawberry: "/services/polyhouse Farming/Strawberries.jpeg",
+  hands: "/Images/Nurturing Seedlings in Golden Light.webp",
 };
 
 const categories = [
@@ -168,7 +167,7 @@ const galleryItems = [
     category: "Nursery",
     description: "Protected nursery growing for young plants.",
     location: "Andhra Pradesh",
-    image: images.shadeNet,
+    image: images.nursery,
     photoCount: 6,
   },
 ];
@@ -583,7 +582,7 @@ export default function GalleryPage() {
             className="absolute inset-0 -z-20 h-full w-full object-cover"
           />
 
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#062c1c]/90 via-[#082f20]/75 to-[#082f20]/50" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#062c1c]/90 via-[#082f20]/75 to-[#082f20]/50" />
 
           <div className="mx-auto grid max-w-7xl items-center gap-7 px-5 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_0.75fr] lg:px-12">
             <div className="relative z-10">
@@ -607,7 +606,7 @@ export default function GalleryPage() {
               </a>
             </div>
 
-            <div className="relative z-10 rounded-2xl border border-white/70 bg-[#fffef5]/95 p-5 shadow-xl backdrop-blur-md sm:p-6">
+            <div className="relative z-10 rounded-2xl border border-white/70 lg:bg-[#fffef5]/5 bg-[#fffef5]/30 p-5 shadow-xl backdrop-blur-sm sm:p-6">
               {[
                 { icon: LuMapPin, text: "Site Visit & Assessment" },
                 { icon: LuClipboardCheck, text: "Customized Project Design" },

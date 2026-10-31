@@ -50,7 +50,8 @@ const images = {
   cropAdvisory: "services/Advisory/Advisory.png",
   project: "services/Project & AMC/Project & AMC.png",
   farmer: "",
-  tomatoes:"",
+  tomatoes: "/services/polyhouse Farming/Polyhouse Farm.png",
+  capsicum: "/services/polyhouse Farming/Capsicum.png",
 };
 
 const storyFilters = [

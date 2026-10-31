@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useMemo, useState } from "react";
@@ -29,27 +28,18 @@ import SiteShell from "@/components/SiteShell";
 
 const images = {
   hero: "/Images/productpage-right side.webp",
-  heroLeft:"/Images/home-hero-left.png",
-  polyhouse:
-    "/services/polyhouse Farming/Polyhouse Farm.png",
-  hydroponics:
-     "/services/Hydroponics/Hydroponics Farm.png",
-  mushroom:
-  "/services/Mushroom Farming/Mushrooms Farm.png",
-  aquaculture:
-    "/services/Aquaculture/Aquaculture Farm.png",
-  floriculture:
-    "/services/Floriculture/Floriculture.png",
-  nursery:
-  "/services/Nursery/nursery.png",
-  goat:
- "/services/open cultivation/Goat Farming/Goat Farm.png",
-   irrigation:
-    "services/Smart Irrigation/Smart Irrigation.png",
-  cropAdvisory:
- "services/Advisory/Advisory.png",
-   project:
-     "services/Project & AMC/Project & AMC.png",
+  heroLeft: "/Images/home-hero-left.png",
+  polyhouse: "/services/polyhouse Farming/Polyhouse Farm.png",
+  hydroponics: "/services/Hydroponics/Hydroponics Farm.png",
+  mushroom: "/services/Mushroom Farming/Mushrooms Farm.png",
+  aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
+  floriculture: "/services/Floriculture/Floriculture.png",
+  nursery: "/services/Nursery/nursery.png",
+  goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
+  irrigation: "services/Smart Irrigation/Smart Irrigation.png",
+  cropAdvisory: "services/Advisory/Advisory.png",
+  project: "services/Project & AMC/Project & AMC.png",
+  crop: "/Images/crop.avif",
 };
 
 const categories = [
@@ -71,7 +61,7 @@ const products = [
     details:
       "A nitrogen-fixing biofertilizer intended to support plant nutrition and soil fertility.",
     image:
-      "https://images.unsplash.com/photo-1603905179139-d8c7a6a3e3b4?auto=format&fit=crop&w=700&q=85",
+      "",
     color: "#175e3d",
     badge: "BIOFERTILIZER",
     benefits: [
@@ -359,9 +349,7 @@ function ProductCard({ product, onSelect }) {
           onClick={() => onSelect(product)}
           className="min-w-0 text-left"
         >
-          <h3 className="text-sm font-bold text-[#1c3025]">
-            {product.name}
-          </h3>
+          <h3 className="text-sm font-bold text-[#1c3025]">{product.name}</h3>
           <p className="mt-1.5 text-[10px] leading-4 text-[#737d72] sm:text-xs">
             {product.description}
           </p>
@@ -423,7 +411,7 @@ export default function ProductsPage() {
     if (activeCategory === "All Products") return products;
 
     const categoryMatches = products.filter(
-      (product) => product.category === activeCategory
+      (product) => product.category === activeCategory,
     );
 
     return categoryMatches.length > 0 ? categoryMatches : products;
@@ -431,7 +419,7 @@ export default function ProductsPage() {
 
   const relatedProducts = useMemo(() => {
     const alternatives = products.filter(
-      (product) => product.id !== selectedProduct.id
+      (product) => product.id !== selectedProduct.id,
     );
 
     return Array.from({ length: Math.min(5, alternatives.length) }, (_, i) => {
@@ -455,7 +443,6 @@ export default function ProductsPage() {
       <main className="overflow-hidden bg-[#fbfaf4] text-[#193c27]">
         {/* HERO */}
         <section className="relative isolate min-h-[500px] overflow-hidden sm:min-h-[520px]">
-          
           <img
             src={images.hero}
             alt=""
@@ -465,20 +452,20 @@ export default function ProductsPage() {
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/15" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#fbfaf4]/80 via-transparent to-white/10" />
 
-              {/* LEFT DECORATIVE IMAGE */}
-  <motion.div
-    initial={{ opacity: 0, x: -30 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8 }}
-    aria-hidden="true"
-    className="pointer-events-none absolute -left-20 -top-50 z-0 hidden h-auto w-112.5 lg:block n"
-  >
-    <img
-      src={images.heroLeft}
-      alt=""
-      className="h-auto w-full object-contain"
-    />
-  </motion.div>
+          {/* LEFT DECORATIVE IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-20 -top-50 z-0 hidden h-auto w-112.5 lg:block n"
+          >
+            <img
+              src={images.heroLeft}
+              alt=""
+              className="h-auto w-full object-contain"
+            />
+          </motion.div>
 
           <div className="mx-auto grid min-h-125 max-w-7xl items-center gap-8 px-5 pb-12 pt-10 sm:min-h-130 sm:px-8 lg:grid-cols-2 lg:px-12">
             {/* left content */}
@@ -512,9 +499,8 @@ export default function ProductsPage() {
                 variants={fadeUp}
                 className="mt-5 max-w-lg text-sm leading-7 text-[#5f6b62] sm:text-base"
               >
-                Explore agricultural inputs and crop-support products
-                designed to complement soil management, plant nutrition,
-                and crop care.
+                Explore agricultural inputs and crop-support products designed
+                to complement soil management, plant nutrition, and crop care.
               </motion.p>
 
               <motion.div
@@ -539,7 +525,7 @@ export default function ProductsPage() {
               </motion.div>
             </motion.div>
 
-                {/* right content */}
+            {/* right content */}
 
             <motion.div
               initial={{ opacity: 0, scale: 0.97, x: 20 }}
@@ -573,22 +559,21 @@ export default function ProductsPage() {
                   Health
                 </span>
               </div>
-                     {/* RIGHT HERO IMAGE */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className=" relative hidden  min-h-full lg:block"
-                  >
-                    <img
-                      src={images.hero}
-                      alt=""
-                      aria-hidden="true"
-                      className="absolute min-h-auto min-w-190 -right-20 -top-30 object-center"
-                    />
-                  </motion.div>
+              {/* RIGHT HERO IMAGE */}
+              <motion.div
+                initial={{ opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className=" relative hidden  min-h-full lg:block"
+              >
+                <img
+                  src={images.hero}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute min-h-auto min-w-190 -right-20 -top-30 object-center"
+                />
+              </motion.div>
             </motion.div>
-            
           </div>
         </section>
 
@@ -651,7 +636,10 @@ export default function ProductsPage() {
                 href="#product-list"
                 className="mt-5 inline-flex items-center gap-3 rounded-full border border-[#78a98a] px-5 py-3 text-xs font-semibold text-[#245c3b] transition hover:bg-[#eaf2e6]"
               >
-                View {activeCategory === "All Products" ? "All Products" : activeCategory}
+                View{" "}
+                {activeCategory === "All Products"
+                  ? "All Products"
+                  : activeCategory}
                 <LuArrowRight size={15} />
               </a>
             </motion.div>
@@ -720,7 +708,7 @@ export default function ProductsPage() {
             {/* Product image */}
             <div className="relative min-h-[290px] overflow-hidden rounded-2xl bg-[#f0f4e8]">
               <img
-              src={`${selectedProduct.image}`}
+                src={`${selectedProduct.image}`}
                 alt={`${selectedProduct.name} product setting`}
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
@@ -872,7 +860,7 @@ export default function ProductsPage() {
                   onClick={() =>
                     setRelatedStart(
                       (relatedStart - 1 + products.length - 1) %
-                        (products.length - 1)
+                        (products.length - 1),
                     )
                   }
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e2e8dc] text-[#245c3b] transition hover:bg-[#075332] hover:text-white"
@@ -884,9 +872,7 @@ export default function ProductsPage() {
                   type="button"
                   aria-label="Next related products"
                   onClick={() =>
-                    setRelatedStart(
-                      (relatedStart + 1) % (products.length - 1)
-                    )
+                    setRelatedStart((relatedStart + 1) % (products.length - 1))
                   }
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-[#e2e8dc] text-[#245c3b] transition hover:bg-[#075332] hover:text-white"
                 >
@@ -925,7 +911,7 @@ export default function ProductsPage() {
         {/* CONSULTATION CTA */}
         <section className="relative isolate overflow-hidden px-4 py-10 sm:px-8 sm:py-14 lg:px-12">
           <img
-            src="https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90"
+            src={images.crop}
             alt="Sunlit agricultural landscape"
             loading="lazy"
             className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -938,7 +924,7 @@ export default function ProductsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto grid max-w-5xl gap-7 rounded-[1.5rem] border border-white/70 bg-[#fffef5]/95 p-6 shadow-2xl backdrop-blur-md sm:p-9 lg:grid-cols-[1.2fr_0.8fr]"
+            className="mx-auto grid max-w-5xl gap-7 rounded-3xl border border-white/70 bg-[#fffef5]/45 p-6 shadow-2xl backdrop-blur-md sm:p-9 lg:grid-cols-[1.2fr_0.8fr]"
           >
             <div>
               <SectionLabel>Need Help Choosing the Right Product?</SectionLabel>
@@ -948,8 +934,8 @@ export default function ProductsPage() {
               </h2>
 
               <p className="mt-4 max-w-lg text-sm leading-6 text-[#687468]">
-                Share your crop and agricultural requirements with our team
-                to discuss suitable product options and their correct use.
+                Share your crop and agricultural requirements with our team to
+                discuss suitable product options and their correct use.
               </p>
 
               <a

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -30,19 +29,24 @@ import {
 
 import SiteShell from "@/components/SiteShell";
 import IndiaCoverage from "@/components/sections/IndiaCoverage";
+import { FaCheckCircle } from "react-icons/fa";
+import { useState } from "react";
 const photos = {
   hero: "/Images/aboutpage-right side.webp",
   heroLeft: "/Images/home-hero-left.png",
-  founder: "/team/founder.jpeg",
-  director: "/team/director.jpeg",
-  production_operations_head: "/team/production_operations_head.jpeg",
-  sr_data_analysts_smo: "/team/sr_data_analysts_smo.jpeg",
+  founder: "/team/founder.webp",
+  director: "/team/director.webp",
+  production_operations_head: "/team/production_operations_head.webp",
+  sr_data_analysts_smo: "/team/sr_data_analysts_smo.webp",
+  smo: "/team/smo.webp",
+  gm: "/team/gm.webp",
   fields: "/Images/Golden Sunrise Over Lush Crop Fields.webp",
   greenValley: "/Images/Transparent Green Valley Farm Banner.webp",
-  facility1: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=85",
-  facility2: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=85",
-  facility3: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=600&q=85",
-  cta: "https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=90",
+  farmer:"/services/open cultivation/dragonfruites/Agricultural cultivation and plant care.jpeg",
+  facility1: "/Images/Plant cultivation.jpeg",
+  facility2: "/Images/Smart Hydroponic Greenhouse Harvest.png",
+  facility3: "/Images/Smart Farming at Sunrise.png",
+  cta: "/Images/crop.avif",
 };
 
 const values = [
@@ -111,10 +115,26 @@ const facilities = [
 ];
 
 const stats = [
-  { icon: LuTrendingUp, title: "Practical", subtitle: "Farm-focused solutions" },
-  { icon: LuUsers, title: "Collaborative", subtitle: "Agricultural partnerships" },
-  { icon: LuSprout, title: "Multi-sector", subtitle: "Agriculture & cultivation" },
-  { icon: LuHeadphonesIcon, title: "End-to-End", subtitle: "Solution-oriented support" },
+  {
+    icon: LuTrendingUp,
+    title: "Practical",
+    subtitle: "Farm-focused solutions",
+  },
+  {
+    icon: LuUsers,
+    title: "Collaborative",
+    subtitle: "Agricultural partnerships",
+  },
+  {
+    icon: LuSprout,
+    title: "Multi-sector",
+    subtitle: "Agriculture & cultivation",
+  },
+  {
+    icon: LuHeadphonesIcon,
+    title: "End-to-End",
+    subtitle: "Solution-oriented support",
+  },
 ];
 
 const services = [
@@ -127,8 +147,6 @@ const services = [
 function LuHeadphonesIcon(props) {
   return <LuPhone {...props} />;
 }
-
-
 
 function SectionLabel({ children, light = false }) {
   return (
@@ -168,189 +186,262 @@ const fadeUp = {
   },
 };
 
+const teamMembers = [
+  {
+    image: photos.founder,
+    role: "Founder & Managing Partner",
+    name: "Monu Kumar",
+    description:
+      "Founder & Managing Partner of Fresh Agriculture, Monu Kumar is an agriculture entrepreneur dedicated to modern farming solutions. He specializes in hydroponics, protected cultivation, precision farming, irrigation management, and sustainable agriculture. His mission is to help farmers improve productivity through innovative technologies, scientific crop management, and practical agricultural consultancy.",
+    expertise: [
+      "Hydroponics & Soilless Farming",
+      "Protected Cultivation",
+      "Crop Nutrition Management",
+      "Irrigation & Water Management",
+      "Agribusiness Development",
+    ],
+  },
+  {
+    image: photos.director,
+    role: "Director",
+    name: "Tirtha Mandal",
+    description:
+      "Tirtha Mandal serves as Director at Fresh Agriculture, overseeing strategic planning, business development, partnerships, and organizational growth. He works closely with the leadership team to expand agricultural services while ensuring operational excellence and long-term sustainability.",
+    expertise: [
+      "Strategic Planning",
+      "Business Development",
+      "Partnership Management",
+      "Corporate Operations",
+      "Project Coordination",
+    ],
+  },
+  {
+    image: photos.production_operations_head,
+    role: "Production & Operations Head",
+    name: "Md. Guphran Ali",
+    description:
+      "Md. Guphran Ali leads production and operations, ensuring efficient execution of agricultural projects, quality assurance, farm operations, logistics, and resource management. He is committed to delivering high-quality services and maintaining operational efficiency.",
+    expertise: [
+      "Production Planning",
+      "Farm Operations",
+      "Quality Control",
+      "Supply Chain Management",
+      "Resource Optimization",
+    ],
+  },
+  {
+    image: photos.sr_data_analysts_smo,
+    role: "Sr. Data Analysis / SMO",
+    name: "Suraj Singh Mahar",
+    description:
+      "Suraj Singh Mahar manages data analytics and digital communications. He analyzes agricultural data, prepares performance reports, supports business decisions, and strengthens the company's digital presence through social media optimization and online marketing.",
+    expertise: [
+      "Agricultural Data Analytics",
+      "IT Management",
+      "Digital Marketing",
+      "SEO & Website Management",
+      "Market Research",
+    ],
+  },
+  {
+    image: photos.gm,
+    role: "General Manager",
+    name: "Aman Maurya",
+    description:
+      "Add the verified partner biography, area of expertise, and responsibilities here.",
+    expertise: [],
+  },
+  {
+    image: photos.smo,
+    role: "SMO (Civil Department)",
+    name: "Sanjeet Kumar",
+    description:
+      "Add the verified partner biography, area of expertise, and responsibilities here.",
+    expertise: [],
+  },
+];
+
 export default function AboutPage() {
+  const [expandedBios, setExpandedBios] = useState({});
   return (
     <SiteShell>
       <main className="overflow-hidden bg-[#fbfaf4] text-[#182d24]">
+        {/* HERO */}
+        <section className="relative isolate overflow-hidden bg-[#fafaf2]">
+          {/* HERO CONTENT */}
+          <div className="relative z-10 mx-auto grid min-h-140 max-w-7xl items-center px-5 py-12 sm:px-8 sm:py-14 lg:min-h-150 lg:grid-cols-2 lg:px-12 lg:py-14">
+            <img
+              src={photos.hero}
+              alt="Agricultural fields in natural sunlight"
+              className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
+            <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
 
-{/* HERO */}
-<section className="relative isolate overflow-hidden bg-[#fafaf2]">
+            {/* LEFT CONTENT */}
+            {/* LEFT DECORATIVE IMAGE */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-40 -top-40 -z-10 h-fit "
+            >
+              <img
+                src={photos.heroLeft}
+                alt=""
+                priority
+                className="h-full w-full object-"
+                sizes=""
+              />
+            </motion.div>
 
- 
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={stagger}
+              className="relative z-10 max-w-xl"
+            >
+              {/* BREADCRUMB */}
+              <motion.div
+                variants={fadeUp}
+                className="mb-6 flex items-center gap-2 text-xs text-[#477c53]"
+              >
+                <a href="/" className="transition hover:underline">
+                  Home
+                </a>
+                <LuChevronRight size={13} />
+                <span>About Us</span>
+              </motion.div>
 
-  {/* HERO CONTENT */}
-  <div className="relative z-10 mx-auto grid min-h-140 max-w-7xl items-center px-5 py-12 sm:px-8 sm:py-14 lg:min-h-150 lg:grid-cols-2 lg:px-12 lg:py-14">
+              {/* EYEBROW */}
+              <motion.div variants={fadeUp}>
+                <SectionLabel>Our Story</SectionLabel>
+              </motion.div>
 
-    {/* LEFT CONTENT */}
-  {/* LEFT DECORATIVE IMAGE */}
-  <motion.div
-    initial={{ opacity: 0, x: -30 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8 }}
-    aria-hidden="true"
-    className="pointer-events-none absolute -left-40 -top-40 -z-10 h-fit "
-  >
-    <img
-      src={photos.heroLeft}
-      alt=""
-      priority
-      className="h-full w-full object-"
-      sizes=""
-    />
-  </motion.div>
+              {/* HEADING */}
+              <motion.h1
+                variants={fadeUp}
+                className="mt-4 max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
+              >
+                About Us
+              </motion.h1>
 
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={stagger}
-      className="relative z-10 max-w-xl"
-    >
-      {/* BREADCRUMB */}
-      <motion.div
-        variants={fadeUp}
-        className="mb-6 flex items-center gap-2 text-xs text-[#477c53]"
-      >
-        <a href="/" className="transition hover:underline">
-          Home
-        </a>
-        <LuChevronRight size={13} />
-        <span>About Us</span>
-      </motion.div>
+              {/* SUBHEADING */}
+              <motion.h2
+                variants={fadeUp}
+                className="mt-4 max-w-lg text-xl font-medium leading-snug text-[#243c37] sm:text-2xl"
+              >
+                Innovation in Agriculture for a Greener, Healthier and More
+                Prosperous Tomorrow.
+              </motion.h2>
 
-      {/* EYEBROW */}
-      <motion.div variants={fadeUp}>
-        <SectionLabel>Our Story</SectionLabel>
-      </motion.div>
+              {/* DESCRIPTION */}
+              <motion.p
+                variants={fadeUp}
+                className="mt-5 max-w-[460px] text-sm leading-6 text-[#657064] sm:text-base sm:leading-7"
+              >
+                Fresh Agriculture by Green Bio-Tech brings together agricultural
+                solutions, practical knowledge, and modern farming approaches to
+                support growers and agricultural communities.
+              </motion.p>
 
-      {/* HEADING */}
-      <motion.h1
-        variants={fadeUp}
-        className="mt-4 max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
-      >
-        About Us
-      </motion.h1>
+              {/* CTA BUTTON */}
+              <motion.div variants={fadeUp} className="mt-7">
+                <a
+                  href="/contact"
+                  className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#075332] px-6 py-3 text-xs font-semibold text-white shadow-md shadow-[#075332]/15 transition duration-300 hover:-translate-y-0.5 hover:bg-[#0b6941] hover:shadow-lg sm:px-7"
+                >
+                  Get a Free Consultation
+                  <LuArrowRight size={16} strokeWidth={2} />
+                </a>
+              </motion.div>
+            </motion.div>
 
-      {/* SUBHEADING */}
-      <motion.h2
-        variants={fadeUp}
-        className="mt-4 max-w-lg text-xl font-medium leading-snug text-[#243c37] sm:text-2xl"
-      >
-        Innovation in Agriculture for a Greener, Healthier and More
-        Prosperous Tomorrow.
-      </motion.h2>
+            {/* RIGHT CONTENT */}
 
-      {/* DESCRIPTION */}
-      <motion.p
-        variants={fadeUp}
-        className="mt-5 max-w-[460px] text-sm leading-6 text-[#657064] sm:text-base sm:leading-7"
-      >
-        Fresh Agriculture by Green Bio-Tech brings together
-        agricultural solutions, practical knowledge, and modern
-        farming approaches to support growers and agricultural
-        communities.
-      </motion.p>
+            {/* RIGHT CONTENT SPACE */}
 
-      {/* CTA BUTTON */}
-      <motion.div variants={fadeUp} className="mt-7">
-        <a
-          href="/contact"
-          className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#075332] px-6 py-3 text-xs font-semibold text-white shadow-md shadow-[#075332]/15 transition duration-300 hover:-translate-y-0.5 hover:bg-[#0b6941] hover:shadow-lg sm:px-7"
-        >
-          Get a Free Consultation
-          <LuArrowRight size={16} strokeWidth={2} />
-        </a>
-      </motion.div>
-    </motion.div>
-
-    {/* RIGHT CONTENT */}
- 
- {/* RIGHT CONTENT SPACE */}
-
-<div aria-hidden="true" className=" min-h-75 hidden sm:block" >
-      
-  <motion.div
-    initial={{ opacity: 0, x: 30 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8 }}
-    aria-hidden="true"
-    className="pointer-events-none absolute  right-0 top-0 z-0 w-[62%]  md:w-[65%] lg:w-[70%] hidden sm:block"
-  >
-    <img
-      src={photos.hero}
-      alt=""
-      priority
-      className="h-auto w-full object-contain object-bottom "
-    />
-  </motion.div>
-    </div>
-
-  </div>
-
-  {/* FLOATING METRICS */}
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.65, delay: 0.35 }}
-    className="relative z-20 mx-5 mb-6 grid grid-cols-2 gap-x-3 gap-y-5 rounded-2xl border border-[#e5eadf] bg-[#fbfcf3]/95 p-4 shadow-xl shadow-[#243c37]/10 backdrop-blur-md sm:mx-auto sm:mb-8 sm:max-w-4xl sm:grid-cols-4 sm:gap-3 sm:px-6 sm:py-5 lg:-mt-3.75"
-  >
-    {[
-      {
-        icon: LuShieldCheck,
-        title: "Responsible",
-        subtitle: "Agricultural approach",
-      },
-      {
-        icon: LuUsers,
-        title: "Collaborative",
-        subtitle: "Grower-focused",
-      },
-      {
-        icon: LuSprout,
-        title: "Connected",
-        subtitle: "Farming solutions",
-      },
-      {
-        icon: LuLeaf,
-        title: "Sustainable",
-        subtitle: "Growth mindset",
-      },
-    ].map((item, index) => {
-      const Icon = item.icon;
-
-      return (
-        <div
-          key={item.title}
-          className={`flex min-w-0 items-start gap-2.5 sm:pr-3 ${
-            index !== 3
-              ? "sm:border-r sm:border-[#dfe6d8]"
-              : ""
-          }`}
-        >
-          <Icon
-            size={23}
-            strokeWidth={1.8}
-            className="mt-0.5 shrink-0 text-[#15583b]"
-          />
-
-          <div className="min-w-0">
-            <p className="wrap-break-word text-[11px] font-bold leading-4 text-[#243c37] sm:text-xs">
-              {item.title}
-            </p>
-
-            <p className="mt-1 text-[10px] leading-4 text-[#69756a]">
-              {item.subtitle}
-            </p>
+            <div aria-hidden="true" className=" min-h-75 hidden sm:block">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                aria-hidden="true"
+                className="pointer-events-none absolute  right-0 top-0 z-0 w-[62%]  md:w-[65%] lg:w-[70%] hidden sm:block"
+              >
+                <img
+                  src={photos.hero}
+                  alt=""
+                  priority
+                  className="h-auto w-full object-contain object-bottom "
+                />
+              </motion.div>
+            </div>
           </div>
-        </div>
-      );
-    })}
-  </motion.div>
-</section>
 
-<IndiaCoverage />
+          {/* FLOATING METRICS */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.35 }}
+            className="relative z-20 mx-5 mb-6 grid grid-cols-2 gap-x-3 gap-y-5 rounded-2xl border border-[#e5eadf] bg-[#fbfcf3]/95 p-4 shadow-xl shadow-[#243c37]/10 backdrop-blur-md sm:mx-auto sm:mb-8 sm:max-w-4xl sm:grid-cols-4 sm:gap-3 sm:px-6 sm:py-5 lg:-mt-3.75"
+          >
+            {[
+              {
+                icon: LuShieldCheck,
+                title: "Responsible",
+                subtitle: "Agricultural approach",
+              },
+              {
+                icon: LuUsers,
+                title: "Collaborative",
+                subtitle: "Grower-focused",
+              },
+              {
+                icon: LuSprout,
+                title: "Connected",
+                subtitle: "Farming solutions",
+              },
+              {
+                icon: LuLeaf,
+                title: "Sustainable",
+                subtitle: "Growth mindset",
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.title}
+                  className={`flex min-w-0 items-start gap-2.5 sm:pr-3 ${
+                    index !== 3 ? "sm:border-r sm:border-[#dfe6d8]" : ""
+                  }`}
+                >
+                  <Icon
+                    size={23}
+                    strokeWidth={1.8}
+                    className="mt-0.5 shrink-0 text-[#15583b]"
+                  />
+
+                  <div className="min-w-0">
+                    <p className="wrap-break-word text-[11px] font-bold leading-4 text-[#243c37] sm:text-xs">
+                      {item.title}
+                    </p>
+
+                    <p className="mt-1 text-[10px] leading-4 text-[#69756a]">
+                      {item.subtitle}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
+        </section>
+
+        <IndiaCoverage />
         {/* WHO WE ARE + LEADERSHIP */}
         <section className="relative isolate px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-20">
-
           <div className="relative mx-auto max-w-7xl">
             <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
               <motion.div
@@ -369,16 +460,16 @@ export default function AboutPage() {
                 </h2>
 
                 <p className="mt-5 text-sm leading-7 text-[#687168]">
-                  We work across agricultural solutions, crop-support
-                  products, modern cultivation approaches, and emerging
-                  farming technologies to address changing agricultural needs.
+                  We work across agricultural solutions, crop-support products,
+                  modern cultivation approaches, and emerging farming
+                  technologies to address changing agricultural needs.
                 </p>
 
                 <p className="mt-4 text-sm leading-7 text-[#687168]">
-                  Our approach connects practical agricultural knowledge
-                  with appropriate solutions, with an emphasis on
-                  responsible resource use and the long-term needs of
-                  growers and communities.
+                  Our approach connects practical agricultural knowledge with
+                  appropriate solutions, with an emphasis on responsible
+                  resource use and the long-term needs of growers and
+                  communities.
                 </p>
 
                 <a
@@ -397,7 +488,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.7 }}
                 className="relative"
               >
-                <div className="relative h-[300px] overflow-hidden rounded-[1.5rem] sm:h-[380px]">
+                <div className="relative h-75 overflow-hidden rounded-3xl sm:h-95">
                   <img
                     src={photos.farmer}
                     alt="Agricultural cultivation and plant care"
@@ -405,14 +496,14 @@ export default function AboutPage() {
                     loading="lazy"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/5 via-transparent to-[#043d27]/40" />
+                  <div className="absolute inset-0 bg-linear-to-r from-black/5 via-transparent to-[#043d27]/40" />
 
-                  <div className="absolute bottom-4 right-4 max-w-[230px] rounded-2xl bg-[#06472e]/95 p-5 text-white shadow-xl sm:bottom-6 sm:right-6 sm:max-w-[250px] sm:p-6">
+                  <div className="absolute bottom-4 right-4 max-w-57.5 rounded-2xl bg-[#06472e]/75 backdrop-blur-sm p-5 text-white shadow-xl sm:bottom-6 sm:right-6 sm:max-w-62.5 sm:p-6">
                     <LuLeaf size={22} className="mb-3 text-[#c6dda5]" />
 
                     <p className="font-display text-lg leading-snug sm:text-xl">
-                      Growing through knowledge, collaboration, and
-                      responsible innovation.
+                      Growing through knowledge, collaboration, and responsible
+                      innovation.
                     </p>
 
                     <div className="mt-4 h-px w-10 bg-[#b5d38f]" />
@@ -428,7 +519,7 @@ export default function AboutPage() {
             </div>
 
             {/* Leadership */}
-            <div className="mt-16 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-14">
+            <div className="mt-16 grid gap-10 lg:items-start lg:gap-14">
               <motion.div
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -449,67 +540,96 @@ export default function AboutPage() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                {[
-                  {
-                    image: photos.founder,
-                    role: "Founder & Managing Partner",
-                    name: "Monu Kimar",
-                    description:
-                      "Add the verified founder biography, agricultural experience, and professional background here.",
-                  },
-                  {
-                    image: photos.director,
-                    role: "Director",
-                    name: "Tirtha Mandal",
-                    description:
-                      "Add the verified partner biography, area of expertise, and responsibilities here.",
-                  },
-                  {
-                    image: photos.production_operations_head,
-                    role: "PRODUCTION AND OPERATIONS HEAD",
-                    name: "Md. Guphran Ali",
-                    description:
-                      "Add the verified partner biography, area of expertise, and responsibilities here.",
-                  },
-                  {
-                    image: photos.sr_data_analysts_smo,
-                    role: "Sr.DATA ANALYSIS/SMO",
-                    name: "Suraj Singh Mahar",
-                    description:
-                      "Add the verified partner biography, area of expertise, and responsibilities here.",
-                  },
-                ].map((person, index) => (
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:gap-7">
+                {teamMembers.map((person, index) => (
                   <motion.article
-                    key={person.role}
-                    initial={{ opacity: 0, y: 20 }}
+                    key={person.name}
+                    initial={{ opacity: 0, y: 25 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.55, delay: index * 0.1 }}
-                    className="min-w-0 rounded-2xl bg-white/80 p-2 shadow-sm sm:p-3"
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.5, delay: index * 0.08 }}
+                    className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-[#e5eee5] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                   >
-                    <div className="h-36 overflow-hidden rounded-xl sm:h-48">
+                    {/* Profile Image */}
+                    <div className="relative h-56 w-full overflow-hidden sm:h-60 lg:h-64">
                       <img
                         src={person.image}
-                        alt={person.role}
+                        alt={person.name}
                         loading="lazy"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-scale-down object-center transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
 
-                    <div className="p-2 sm:p-3">
-                      <p className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold leading-5 text-[#2d6742] sm:text-xs">
-                        {person.role}
-                        <LuLeaf size={13} />
-                      </p>
+                    {/* Profile Details */}
+                    <div className="flex flex-1 flex-col p-5 sm:p-5 lg:p-6">
+                      {/* Role */}
+                      <div className="flex min-h-10 items-start justify-between gap-2">
+                        <p className="text-xs font-bold uppercase leading-5 tracking-wider text-[#2d6742] sm:text-sm">
+                          {person.role}
+                        </p>
 
-                      <h3 className="mt-2 text-sm font-bold text-[#243c37] sm:text-base">
+                        <LuLeaf
+                          size={18}
+                          className="mt-0.5 shrink-0 text-[#68a66c]"
+                        />
+                      </div>
+
+                      {/* Name */}
+                      <h3 className="mt-2 text-lg font-bold text-[#243c37] sm:text-xl">
                         {person.name}
                       </h3>
 
-                      <p className="mt-2 text-[10px] leading-5 text-[#748074] sm:text-xs sm:leading-6">
-                        {person.description}
-                      </p>
+                      {/* Description / Read More */}
+                      <div className="mt-3">
+                        <p className="text-sm leading-7 text-[#748074]">
+                          {expandedBios[person.name]
+                            ? person.description
+                            : `${person.description.slice(0, 120)}${
+                                person.description.length > 120 ? "..." : ""
+                              }`}
+                        </p>
+
+                        {person.description.length > 120 && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setExpandedBios((prev) => ({
+                                ...prev,
+                                [person.name]: !prev[person.name],
+                              }))
+                            }
+                            className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-[#2d6742] transition-colors duration-300 hover:text-[#68a66c]"
+                          >
+                            {expandedBios[person.name]
+                              ? "Read Less ↑"
+                              : "Read Full Bio →"}
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Expertise */}
+                      {person.expertise.length > 0 && (
+                        <div className="mt-5 border-t border-[#e9efe9] pt-4">
+                          <h4 className="mb-3 text-sm font-bold text-[#243c37]">
+                            Expertise
+                          </h4>
+
+                          <ul className="space-y-2">
+                            {person.expertise.map((skill) => (
+                              <li
+                                key={skill}
+                                className="flex items-start gap-2 text-sm leading-6 text-[#647568]"
+                              >
+                                <FaCheckCircle
+                                  size={16}
+                                  className="mt-1 shrink-0 text-[#4d955d]"
+                                />
+                                <span>{skill}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   </motion.article>
                 ))}
@@ -606,7 +726,6 @@ export default function AboutPage() {
 
         {/* VALUES */}
         <section className="relative isolate px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-
           <div className="relative mx-auto max-w-7xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -622,9 +741,8 @@ export default function AboutPage() {
               </h2>
 
               <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-[#778074]">
-                Our values guide how we approach solutions, work with
-                partners, and build relationships with agricultural
-                communities.
+                Our values guide how we approach solutions, work with partners,
+                and build relationships with agricultural communities.
               </p>
             </motion.div>
 
@@ -675,7 +793,7 @@ export default function AboutPage() {
               className="h-full w-full object-cover "
             />
           </div>
-
+          <div className="absolute inset-0 -z-10 bg-[#fbfaf4]/50 lg:bg-[#fbfaf4]/60 " />
           <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:gap-20">
             <motion.div
               initial={{ opacity: 0, x: -15 }}
@@ -690,10 +808,10 @@ export default function AboutPage() {
               </h2>
 
               <p className="mt-4 max-w-xl text-sm leading-7 text-[#687168]">
-                Our journey is shaped by the evolving needs of agriculture.
-                We continue to explore practical solutions, learn from
-                agricultural communities, and look for opportunities to
-                support more responsible farming practices.
+                Our journey is shaped by the evolving needs of agriculture. We
+                continue to explore practical solutions, learn from agricultural
+                communities, and look for opportunities to support more
+                responsible farming practices.
               </p>
 
               <a
@@ -722,10 +840,11 @@ export default function AboutPage() {
                     hidden: { opacity: 0, x: 15 },
                     visible: { opacity: 1, x: 0 },
                   }}
-                  className="relative flex gap-4 pb-7 last:pb-0"ḥ
+                  className="relative flex gap-4 pb-7 last:pb-0"
+                  ḥ
                 >
                   {index !== milestones.length - 1 && (
-                    <span className="absolute bottom-0 left-[7px] top-4 w-px bg-[#a8c8a1]" />
+                    <span className="absolute bottom-0 left-1.75 top-4 w-px bg-[#a8c8a1]" />
                   )}
 
                   <span className="relative mt-1.5 h-4 w-4 shrink-0 rounded-full border-4 border-[#d6e7cf] bg-[#2e7548]" />
@@ -760,10 +879,10 @@ export default function AboutPage() {
               </h2>
 
               <p className="mt-4 text-sm leading-6 text-[#687168]">
-                Explore the kinds of cultivation environments and
-                agricultural practices that inform our work. Replace these
-                sample images with verified photographs of your actual
-                facilities, projects, and operations.
+                Explore the kinds of cultivation environments and agricultural
+                practices that inform our work. Replace these sample images with
+                verified photographs of your actual facilities, projects, and
+                operations.
               </p>
             </motion.div>
 
@@ -811,7 +930,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.65 }}
-              className="grid w-full max-w-4xl gap-7 rounded-[1.5rem] border border-white/70 bg-[#fffef5]/95 p-6 shadow-2xl backdrop-blur-md sm:p-9 lg:grid-cols-[1fr_0.7fr] lg:items-center lg:gap-10"
+              className="grid w-full max-w-4xl gap-7 rounded-3xl border border-white/70 bg-[#fffef5]/55 p-6 shadow-2xl backdrop-blur-md sm:p-9 lg:grid-cols-[1fr_0.7fr] lg:items-center lg:gap-10"
             >
               <div>
                 <SectionLabel>Let's Grow Together</SectionLabel>

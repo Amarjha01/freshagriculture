@@ -1084,7 +1084,7 @@ export default function BlogPage() {
               </a>
             </div>
 
-            <div className="relative z-10 rounded-2xl border border-white/70 bg-[#fffef5]/95 p-5 shadow-xl backdrop-blur-md sm:p-6">
+            <div className="relative z-10 rounded-2xl border border-white/70 bg-[#fffef5]/45 p-5 shadow-xl backdrop-blur-md sm:p-6">
               {[
                 "Expert Articles",
                 "Practical Tips",
