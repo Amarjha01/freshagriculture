@@ -36,7 +36,7 @@ import {
 } from "react-icons/lu";
 
 import SiteShell from "@/components/SiteShell";
-import { FiCheckCircle } from "react-icons/fi";
+import { GoCheckCircleFill } from "react-icons/go";
 
 const images = {
   hero: "/Images/FAQpage-right.webp",
@@ -849,7 +849,7 @@ export default function FAQPage() {
               </a>
             </div>
 
-            <div className="relative z-10 rounded-2xl border border-white/70 bg-[#fffef5]/95 p-5 shadow-lg backdrop-blur-md sm:p-6">
+            <div className="relative z-10 rounded-2xl border border-white/70 bg-[#fffef5]/55 p-5 shadow-lg backdrop-blur-md sm:p-6">
               {[
                 "Expert Guidance",
                 "Customized Solutions",
@@ -858,7 +858,7 @@ export default function FAQPage() {
                 "Project Planning",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3 py-2">
-                  <FiCheckCircle
+                  <GoCheckCircleFill
                     size={16}
                     className="shrink-0 fill-[#075332] text-[#075332]"
                   />

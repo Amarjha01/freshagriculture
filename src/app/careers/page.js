@@ -41,12 +41,12 @@ import { GoCheckCircle } from "react-icons/go";
 const images = {
   hero:"/Images/careerpage-right.webp",
   hands:"/Images/Nurturing Seedlings in Golden Light.webp",
-  agronomy:"",
-  research:"",
-  production:"",
-  sales:"",
-  operations:"",
-  administration:"",
+  agronomy:"/Images/Agronomy Field Operations Showcase.webp",
+  research:"/Images/Research.webp",
+  production:"/Images/Production & Quality Control Lab.webp",
+  sales:"/Images/Sales & Business Development.webp",
+  operations:"/Images/Operations Hub.webp",
+  administration:"/Images/Administration & Support in Green Agriculture.webp",
 };
 
 const departments = [

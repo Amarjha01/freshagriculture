@@ -49,7 +49,7 @@ const images = {
   floriculture:
     "/services/Floriculture/Floriculture.png",
   nursery:
-  "/services/Nursery/nursery.png",
+  "/services/Nursery/Nursery.png",
   goat:
  "/services/open cultivation/Goat Farming/Goat Farm.png",
    irrigation:

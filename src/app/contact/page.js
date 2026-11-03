@@ -28,7 +28,7 @@ import {
 } from "react-icons/lu";
 
 import SiteShell from "@/components/SiteShell";
-import { FiCheckCircle } from "react-icons/fi";
+import { GoCheckCircleFill } from "react-icons/go";
 
 const images = {
   hero: "/Images/contactpage-right.webp",
@@ -38,7 +38,7 @@ const images = {
 
 const PHONE_PRIMARY = "+91 6297003664";
 const PHONE_SECONDARY = "+91 8409570406";
-const EMAIL = "freshagriculturebygreenbiotech@gmail.com";
+const EMAIL = "info@freshagriculture.in";
 
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=Kukunoopally%2C%20Siddipet%2C%20Telangana%2C%20India";
@@ -341,7 +341,7 @@ export default function ContactPage() {
               transition={{ duration: 0.65 }}
               className="relative hidden min-h-[270px] lg:block"
             >
-              <div className="absolute flex w-fit right-0 -bottom-30 space-y-2 rounded-2xl border border-white/80 bg-white/30  p-4 shadow-xl backdrop-blur-xs">
+              <div className="absolute flex w-fit right-0 -bottom-30 space-y-2 rounded-2xl border border-white/80 bg-white/50  p-4 shadow-xl backdrop-blur-xs">
                 {[
                   { icon: LuSprout, value: "500+", label: "Farmers Connected" },
                   {
@@ -723,10 +723,10 @@ export default function ContactPage() {
               </a>
             </div>
 
-            <div className="relative z-10 rounded-2xl border border-white/70 bg-[#fffef5]/95 p-5 shadow-xl backdrop-blur-md sm:p-6">
+            <div className="relative z-10 rounded-2xl border border-white/70 bg-[#fffef5]/55 p-5 shadow-xl backdrop-blur-md sm:p-6">
               {supportItems.map((item) => (
                 <div key={item} className="flex items-center gap-3 py-1.5">
-                  <FiCheckCircle
+                  <GoCheckCircleFill
                     size={16}
                     className="shrink-0 fill-[#075332] text-[#075332]"
                   />

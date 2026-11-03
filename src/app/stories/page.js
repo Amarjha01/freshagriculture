@@ -173,7 +173,7 @@ const stories = [
     title: "Water Savings and Better Crop Growth",
     category: "Drip Irrigation",
     location: "Karimnagar, Telangana",
-    image: images.seedlings,
+    image: images.hydroponics,
     date: "Apr 2024",
     readTime: 4,
     farmer: "Suresh Naik",

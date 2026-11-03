@@ -38,10 +38,12 @@ const images = {
   mushroom: "/services/Mushroom Farming/Mushrooms Farm.png",
   aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
   floriculture: "/services/Floriculture/Floriculture.png",
-  nursery: "/services/Nursery/nursery.png",
+  nursery: "/services/Nursery/Nursery.png",
   goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
-  tomato: "",
+  tomato: "/services/polyhouse Farming/Polyhouse Farm.png",
+  capsicum: "/services/polyhouse Farming/Capsicum.png",
+  cucumber: "/services/polyhouse Farming/cucumber.jpeg",
   soil: "",
   dairy: "",
 };
@@ -175,7 +177,7 @@ const articles = [
     id: 8,
     title: "Capsicum Cultivation Tips for Better Yield",
     category: "Crop Cultivation",
-    image: images.tomato,
+    image: images.capsicum,
     date: "Sep 25, 2024",
     readTime: 6,
     excerpt:
@@ -239,7 +241,7 @@ const articles = [
     id: 12,
     title: "Getting Started with Nursery Management",
     category: "Modern Farming",
-    image: images.greenhouse,
+    image: images.nursery,
     date: "Aug 22, 2024",
     readTime: 6,
     excerpt:

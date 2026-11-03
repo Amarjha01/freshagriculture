@@ -42,7 +42,7 @@ const images = {
   mushroom:   "/services/Mushroom Farming/Mushrooms Farm.png",
   aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
   floriculture: "/services/Floriculture/Floriculture.png",
-  nursery: "/services/Nursery/nursery.png",
+  nursery: "/services/Nursery/Nursery.png",
   goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
   cta:"/Images/Young plant growing in soil.avif"
@@ -928,7 +928,7 @@ export default function ProjectsPage() {
               </a>
             </div>
 
-            <div className="rounded-2xl border border-white/60 bg-[#fffef5]/95 p-5 shadow-xl backdrop-blur-md sm:p-6">
+            <div className="rounded-2xl border border-white/60 bg-[#fffef5]/45 p-5 shadow-xs backdrop-blur-md sm:p-6">
               <LuQuote size={27} className="text-[#477c53]" />
 
               <p className="mt-3 text-sm leading-7 text-[#35473a]">
@@ -955,7 +955,7 @@ export default function ProjectsPage() {
                           testimonials.length
                       )
                     }
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d9e4d5] text-[#286b42] hover:bg-[#edf4e8]"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d9e4d5] hover:text-[#286b42] text-white bg-green-900 hover:bg-[#edf4e8]"
                   >
                     <LuChevronLeft size={16} />
                   </button>
@@ -968,7 +968,7 @@ export default function ProjectsPage() {
                         (testimonialIndex + 1) % testimonials.length
                       )
                     }
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d9e4d5] text-[#286b42] hover:bg-[#edf4e8]"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d9e4d5] hover:text-[#286b42] text-white bg-green-900 hover:bg-[#edf4e8]"
                   >
                     <LuChevronRight size={16} />
                   </button>

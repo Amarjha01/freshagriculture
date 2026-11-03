@@ -41,6 +41,7 @@ import {
 
 import SiteShell from "@/components/SiteShell";
 import { FaCanadianMapleLeaf } from "react-icons/fa";
+import AnimatedDiya from "@/components/AnimatedDiya";
 
 const images = {
   hero: "/Images/home-hero-right.png",
@@ -52,7 +53,7 @@ const images = {
   mushroom: "/services/Mushroom Farming/Mushrooms Farm.png",
   aquaculture: "/services/Aquaculture/Aquaculture Farm.png",
   flowers: "/services/Floriculture/Floriculture.png",
-  nursery: "/services/Nursery/nursery.png",
+  nursery: "/services/Nursery/Nursery.png",
   livestock: "/services/open cultivation/Goat Farming/Goat Farm.png",
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
   tomatoes: "/services/polyhouse Farming/Polyhouse Farm.png",
