@@ -44,8 +44,8 @@ const images = {
   tomato: "/services/polyhouse Farming/Polyhouse Farm.png",
   capsicum: "/services/polyhouse Farming/Capsicum.png",
   cucumber: "/services/polyhouse Farming/cucumber.jpeg",
-  soil: "",
-  dairy: "",
+  soil: "/Images/Soil Health.webp",
+  dairy: "/Images/dairy.webp",
 };
 
 const topics = [

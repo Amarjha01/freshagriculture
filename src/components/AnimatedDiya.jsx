@@ -285,7 +285,7 @@ export default function AnimatedDiya({
           reduceMotion
             ? {}
             : {
-                y: [0, -2, 0],
+                y: [0, 0, 0],
               }
         }
         transition={{

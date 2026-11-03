@@ -44,10 +44,12 @@ import { FaCanadianMapleLeaf } from "react-icons/fa";
 import AnimatedDiya from "@/components/AnimatedDiya";
 
 const images = {
-  hero: "/Images/home-hero-right.png",
+  hero: "/Images/Warm Diwali Farmers’ Celebration.webp",
+  // hero: "/Images/home-hero-right.png",
   heroLeft: "/Images/home-hero-left.png",
   farmer: "",
-  seedling: "/Images/Sunlit Seedling in Rich Soil.png",
+  seedling: "/Images/Diwali Seedling Glow in Golden Light.webp",
+  // seedling: "/Images/Sunlit Seedling in Rich Soil.png",
   polyhouse: "/services/polyhouse Farming/Polyhouse Farm.png",
   hydroponics: "/services/Hydroponics/Hydroponics Farm.png",
   mushroom: "/services/Mushroom Farming/Mushrooms Farm.png",
@@ -548,11 +550,20 @@ export default function HomePage() {
           <img
             src={images.hero}
             alt="Agricultural fields in natural sunlight"
-            className="absolute lg:hidden inset-0 -z-20 h-full w-full object-cover"
+            className="absolute  inset-0 -z-20 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20" />
-          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent" />
+ <div className="pointer-events-none absolute -bottom-5  w-[min(70vw,390px)] opacity-40 sm:opacity-85">
+    <AnimatedDiya
+      className="w-full"
+      showSparks={true}
+    />
+  </div>
+          
+          {/* <div className="absolute inset-0 -z-10 bg-linear-to-r from-[#fbfaf4] via-[#fbfaf4]/95 to-[#fbfaf4]/20 sm:hidden" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-t from-[#fbfaf4]/65 to-transparent sm:hidden" /> */}
 
+<div className="absolute inset-0 -z-10 bg-linear-to-r from-amber-50 via-amber-50/95 to-amber-500/20 sm:hidden" />
+<div className="absolute inset-0 -z-10 bg-linear-to-t from-amber-100/65 to-transparent sm:hidden" />
           {/* HERO CONTENT */}
           <motion.div
             initial="hidden"
@@ -579,10 +590,11 @@ export default function HomePage() {
                 />
               </motion.div>
               <motion.div variants={fadeUp}>
-                <Eyebrow>Smart Farming · Sustainable Tomorrow</Eyebrow>
+                {/* <Eyebrow>Smart Farming · Sustainable Tomorrow</Eyebrow> */}
+                <span className="mb-2 text-[15px] font-bold uppercase tracking-[0.24em] text-amber-900">This Diwali</span>
               </motion.div>
 
-              <motion.h1
+              {/* <motion.h1
                 variants={fadeUp}
                 className="mt-4 max-w-[570px] font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
               >
@@ -593,16 +605,35 @@ export default function HomePage() {
                 for a <span className="text-[#126139]">Better</span>
                 <br />
                 <span className="text-[#126139]">Tomorrow</span>
+              </motion.h1> */}
+              <motion.h1
+                variants={fadeUp}
+                className="mt-4 max-w-142.5 font-display text-[clamp(2.65rem,5vw,4.5rem)] leading-[1.02] tracking-tight text-[#172b43]"
+              >
+                Let's Grow
+                <br />
+               <span className="text-[#126139] font-bold "> Brighter</span>
+                <br />
+               <span className="text-[#126139]/90 font-bold ">  Futures</span>
+                <br />
               </motion.h1>
 
               <motion.p
+                variants={fadeUp}
+                className="mt-5 max-w-115 text-sm leading-6 text-[#000000] sm:text-base sm:leading-7"
+              >
+                May this Diwali bring new opportunities,
+                happier harvests and a more sustainable
+                tomorrow for our farming communities.
+              </motion.p>
+              {/* <motion.p
                 variants={fadeUp}
                 className="mt-5 max-w-[460px] text-sm leading-6 text-[#657064] sm:text-base sm:leading-7"
               >
                 Fresh Agriculture by Green Bio-Tech LLP helps farmers and
                 entrepreneurs build successful, sustainable, and
                 technology-driven farming systems.
-              </motion.p>
+              </motion.p> */}
 
               {/* CTA BUTTONS */}
               <motion.div
@@ -694,7 +725,7 @@ export default function HomePage() {
                   src={images.hero}
                   alt=""
                   priority
-                  className="h-auto w-full object-contain object-bottom "
+                  className="h-auto hidden w-full object-contain object-bottom "
                 />
               </motion.div>
             </div>

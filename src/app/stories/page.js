@@ -49,9 +49,9 @@ const images = {
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
   cropAdvisory: "services/Advisory/Advisory.png",
   project: "services/Project & AMC/Project & AMC.png",
-  farmer: "",
   tomatoes: "/services/polyhouse Farming/Polyhouse Farm.png",
   capsicum: "/services/polyhouse Farming/Capsicum.png",
+  hands:"/Images/Nurturing Seedlings in Golden Light.webp",
 };
 
 const storyFilters = [
