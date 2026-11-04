@@ -44,7 +44,7 @@ import { FaCanadianMapleLeaf } from "react-icons/fa";
 import AnimatedDiya from "@/components/AnimatedDiya";
 
 const images = {
-  hero: "/Images/Warm Diwali Farmers’ Celebration.webp",
+  hero: "/Images/Warm Diwali Farmers Celebration.webp",
   // hero: "/Images/home-hero-right.png",
   heroLeft: "/Images/home-hero-left.png",
   farmer: "",
