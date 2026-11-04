@@ -45,7 +45,7 @@ const photos = {
   director: "/team/Tirtha.jpeg",
   production_operations_head: "/team/Guphran.jpeg",
   sr_data_analysts_smo: "/team/suraj.jpeg",
-  smo: "/team/Sanjeet.jpeg",
+  smo: "/team/sanjeet.jpeg",
   gm: "/team/aman.jpeg",
   fields: "/Images/Golden Sunrise Over Lush Crop Fields.webp",
   greenValley: "/Images/Transparent Green Valley Farm Banner.webp",
