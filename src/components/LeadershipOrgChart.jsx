@@ -79,6 +79,7 @@ function SingleConnector() {
 
 
 
+
 function LeaderCard({
   person,
   icon: Icon,
@@ -105,28 +106,28 @@ function LeaderCard({
     <motion.article
       initial={{
         opacity: 0,
-        y: 80,
-        rotateY: -25,
-        rotateZ: index % 2 === 0 ? -5 : 5,
-        scale: 0.8,
+        y: 70,
+        rotateY: index % 2 === 0 ? -15 : 15,
+        scale: 0.9,
       }}
       whileInView={{
         opacity: 1,
         y: 0,
         rotateY: 0,
-        rotateZ: 0,
         scale: 1,
       }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{
+        once: true,
+        amount: 0.2,
+      }}
       transition={{
-        duration: 0.9,
-        delay: index * 0.15,
+        duration: 0.85,
+        delay: index * 0.13,
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{
-        y: -10,
-        scale: 1.025,
-        rotateZ: flipped ? 0 : 1,
+        y: -8,
+        scale: 1.02,
         transition: {
           duration: 0.3,
           ease: "easeOut",
@@ -138,30 +139,38 @@ function LeaderCard({
         transformStyle: "preserve-3d",
       }}
     >
-      {/* 3D CARD CONTAINER */}
+      {/* MAIN 3D CARD */}
       <motion.div
+        initial={false}
         animate={{
           rotateX: flipped ? 180 : 0,
         }}
         transition={{
-          type: "spring",
-          stiffness: 65,
-          damping: 15,
-          mass: 1.2,
+          duration: 0.85,
+          ease: [0.22, 1, 0.36, 1],
         }}
         style={{
           transformStyle: "preserve-3d",
           position: "relative",
+          willChange: "transform",
         }}
         className="aspect-[3/4] w-full"
       >
-        {/* FRONT SIDE */}
+        {/* =====================================
+            FRONT SIDE
+        ====================================== */}
+
         <div
           className="absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-[#dce9dc] bg-white shadow-[0_15px_40px_rgba(16,71,47,0.13)]"
-          style={{ backfaceVisibility: "hidden" }}
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            pointerEvents: flipped ? "none" : "auto",
+          }}
         >
-          {/* Branding */}
+          {/* BRAND HEADER */}
           <div className="relative overflow-hidden bg-[#10472f] px-5 py-5 text-white">
+
             <motion.div
               animate={{
                 rotate: 360,
@@ -175,46 +184,81 @@ function LeaderCard({
               className="absolute -right-8 -top-10 h-32 w-32 rounded-full border border-white/10"
             />
 
-            <div className="relative z-10 flex items-center gap-3">
+            <motion.div
+              animate={{
+                rotate: [0, 5, -5, 0],
+              }}
+              transition={{
+                duration: 4,
+                ease: "easeInOut",
+              }}
+              className="relative z-10 flex items-center gap-3"
+            >
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15">
-                <Icon size={23} className="text-[#d1e9b9]" />
+                <Icon
+                  size={23}
+                  className="text-[#d1e9b9]"
+                />
               </div>
 
               <div className="min-w-0">
                 <p className="truncate text-sm font-extrabold tracking-wide">
                   FA Green Agriculture
                 </p>
+
                 <p className="mt-1 text-[9px] uppercase tracking-[0.2em] text-[#c7dfc6]">
                   Leadership Identity
                 </p>
               </div>
-            </div>
+            </motion.div>
+
+            <div className="absolute -bottom-5 right-7 h-10 w-10 rounded-full bg-[#dcebd8]/20 blur-xl" />
           </div>
 
-          {/* Profile area */}
+          {/* PROFILE SECTION */}
           <div className="relative flex flex-1 flex-col items-center justify-center bg-[#f3f7ef] px-5 pt-5">
 
             <motion.div
-              initial={{ scale: 0.7, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
+              initial={{
+                opacity: 0,
+                scale: 0.7,
+              }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+              }}
               viewport={{ once: true }}
               transition={{
-                delay: index * 0.15 + 0.3,
                 duration: 0.7,
+                delay: index * 0.13 + 0.2,
                 type: "spring",
+              }}
+              whileHover={{
+                scale: 1.06,
               }}
               className="relative h-36 w-36 overflow-hidden rounded-2xl border-4 border-white bg-[#e4ede0] shadow-xl sm:h-40 sm:w-40"
             >
-              <motion.img
+              <img
                 src={person.image}
                 alt={person.name}
                 loading="lazy"
                 className="h-full w-full object-cover object-center"
-                whileHover={{ scale: 1.12 }}
-                transition={{ duration: 0.5 }}
+              />
+
+              <motion.div
+                animate={{
+                  opacity: [0, 0.18, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="pointer-events-none absolute inset-0 bg-white"
               />
             </motion.div>
 
+            {/* MEMBER NAME */}
             <div className="mt-5 text-center">
               <h3 className="text-xl font-extrabold tracking-tight text-[#173c29]">
                 {person.name}
@@ -231,6 +275,7 @@ function LeaderCard({
               )}
             </div>
 
+            {/* LEADERSHIP STATUS */}
             <div className="mt-5 flex items-center gap-2">
               <motion.span
                 animate={{
@@ -250,12 +295,14 @@ function LeaderCard({
             </div>
           </div>
 
-          {/* Front footer */}
+          {/* FRONT FOOTER */}
           <div className="flex items-center justify-between border-t border-[#e3ece0] bg-white px-5 py-4">
+
             <div>
               <p className="text-[9px] font-bold uppercase tracking-widest text-[#93a294]">
                 Member ID
               </p>
+
               <p className="mt-1 text-xs font-bold text-[#28553a]">
                 GV-{String(index + 1).padStart(3, "0")}
               </p>
@@ -263,65 +310,72 @@ function LeaderCard({
 
             <motion.button
               type="button"
-              whileHover={{ scale: 1.08 }}
+              whileHover={{ scale: 1.07 }}
               whileTap={{ scale: 0.93 }}
               onClick={() => setFlipped(true)}
-              className="flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white"
+              aria-label="View member details"
+              className="relative z-10 flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#17633e]"
             >
               More Details
-              <motion.span
-                animate={{ rotate: [0, 180, 360] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                ↻
-              </motion.span>
+
+              <span>↻</span>
             </motion.button>
           </div>
         </div>
 
-        {/* BACK SIDE */}
+        {/* =====================================
+            BACK SIDE
+        ====================================== */}
+
         <div
           className="absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-[#dce9dc] bg-[#f8faf5] shadow-[0_15px_40px_rgba(16,71,47,0.13)]"
           style={{
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
             transform: "rotateX(180deg)",
+            pointerEvents: flipped ? "auto" : "none",
           }}
         >
-          {/* Back header */}
+          {/* BACK HEADER */}
           <div className="relative overflow-hidden bg-[#10472f] px-5 py-5 text-white">
+
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#c9e6a9]">
                   FA Green Agriculture
                 </p>
+
                 <h3 className="mt-2 text-lg font-bold">
                   Member Information
                 </h3>
               </div>
 
-              <Icon size={27} className="text-[#c9e6a9]" />
+              <Icon
+                size={27}
+                className="text-[#c9e6a9]"
+              />
             </div>
           </div>
 
-          {/* Information */}
-          <div className="flex-1 overflow-y-auto px-5 py-4">
+          {/* BACK CONTENT */}
+          <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-4">
+
+            {/* BIOGRAPHY */}
             <div className="mb-4">
               <p className="text-xs font-bold uppercase tracking-wider text-[#36754c]">
                 About Member
               </p>
 
-              <p className="mt-2 text-xs leading-6 text-[#647568]">
+              <p className="mt-2 whitespace-pre-line text-xs leading-6 text-[#647568]">
                 {person.description ||
                   "Member of our leadership team, contributing to organizational growth and development."}
               </p>
             </div>
 
+            {/* PROFESSIONAL DETAILS */}
             {details.length > 0 && (
               <div className="border-t border-[#dce8d9] pt-4">
+
                 <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#36754c]">
                   Professional Details
                 </p>
@@ -345,19 +399,30 @@ function LeaderCard({
               </div>
             )}
 
+            {/* EXPERTISE */}
             {expertise.length > 0 && (
               <div className="mt-4 border-t border-[#dce8d9] pt-4">
+
                 <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#36754c]">
                   Areas of Expertise
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  {expertise.map((skill) => (
+                  {expertise.map((skill, skillIndex) => (
                     <motion.span
                       key={skill}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3 }}
+                      initial={{
+                        opacity: 0,
+                        scale: 0.8,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        scale: 1,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        delay: skillIndex * 0.06,
+                      }}
                       className="rounded-full border border-[#d6e6d3] bg-white px-3 py-1.5 text-[10px] font-medium text-[#356849]"
                     >
                       {skill}
@@ -368,20 +433,27 @@ function LeaderCard({
             )}
           </div>
 
-          {/* Back footer */}
-          <div className="flex items-center justify-between border-t border-[#dce8d9] bg-white px-5 py-4">
+          {/* BACK FOOTER */}
+          <div className="relative z-20 flex items-center justify-between border-t border-[#dce8d9] bg-white px-5 py-4">
+
             <span className="text-[9px] font-bold uppercase tracking-wider text-[#91a092]">
               Official Member Profile
             </span>
 
             <motion.button
               type="button"
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.93 }}
+              whileHover={{
+                scale: 1.07,
+              }}
+              whileTap={{
+                scale: 0.93,
+              }}
               onClick={() => setFlipped(false)}
-              className="flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white"
+              aria-label="Flip back to member ID"
+              className="relative z-50 flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#17633e]"
             >
-              ↻ Back to ID
+              <span>↻</span>
+              Back to ID
             </motion.button>
           </div>
         </div>
@@ -389,6 +461,7 @@ function LeaderCard({
     </motion.article>
   );
 }
+
 
 
 
