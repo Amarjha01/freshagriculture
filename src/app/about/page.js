@@ -31,6 +31,8 @@ import SiteShell from "@/components/SiteShell";
 import IndiaCoverage from "@/components/sections/IndiaCoverage";
 import { FaCheckCircle } from "react-icons/fa";
 import { useState } from "react";
+import LeadershipCard from "@/components/LeadershipCard";
+import LeadershipOrgChart from "@/components/LeadershipOrgChart";
 const photos = {
   hero: "/Images/aboutpage-right side.webp",
   heroLeft: "/Images/home-hero-left.png",
@@ -42,7 +44,8 @@ const photos = {
   gm: "/team/gm.webp",
   fields: "/Images/Golden Sunrise Over Lush Crop Fields.webp",
   greenValley: "/Images/Transparent Green Valley Farm Banner.webp",
-  farmer:"/services/open cultivation/dragonfruites/Agricultural cultivation and plant care.jpeg",
+  farmer:
+    "/services/open cultivation/dragonfruites/Agricultural cultivation and plant care.jpeg",
   facility1: "/Images/Plant cultivation.jpeg",
   facility2: "/Images/Smart Hydroponic Greenhouse Harvest.png",
   facility3: "/Images/Smart Farming at Sunrise.png",
@@ -231,7 +234,7 @@ const teamMembers = [
   },
   {
     image: photos.sr_data_analysts_smo,
-    role: "Sr. Data Analysis / SMO",
+    role: "Sr. Data Analysis | SMO",
     name: "Suraj Singh Mahar",
     description:
       "Suraj Singh Mahar manages data analytics and digital communications. He analyzes agricultural data, prepares performance reports, supports business decisions, and strengthens the company's digital presence through social media optimization and online marketing.",
@@ -253,13 +256,30 @@ const teamMembers = [
   },
   {
     image: photos.smo,
-    role: "SMO (Civil Department)",
+    role: "SMO | Civil Department",
     name: "Sanjeet Kumar",
     description:
       "Add the verified partner biography, area of expertise, and responsibilities here.",
     expertise: [],
   },
 ];
+
+const findLeader = (keyword) =>
+  teamMembers.find((person) =>
+    person.role.toLowerCase().includes(keyword.toLowerCase()),
+  );
+
+const hierarchy = {
+  level1: [findLeader("founder"), findLeader("director")].filter(Boolean),
+
+  level2: findLeader("general manager"),
+
+  level3: [findLeader("operations head"), findLeader("Data Analysis")].filter(
+    Boolean,
+  ),
+
+  level4: findLeader("Civil Department"),
+};
 
 export default function AboutPage() {
   const [expandedBios, setExpandedBios] = useState({});
@@ -517,124 +537,8 @@ export default function AboutPage() {
                 </div>
               </motion.div>
             </div>
-
-            {/* Leadership */}
-            <div className="mt-16 grid gap-10 lg:items-start lg:gap-14">
-              <motion.div
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6 }}
-              >
-                <SectionLabel>Our Leadership</SectionLabel>
-
-                <h2 className="font-display text-3xl leading-tight text-[#162d42] sm:text-4xl">
-                  Guided by Experience.
-                  <span className="block">Driven by Purpose.</span>
-                </h2>
-
-                <p className="mt-4 text-sm leading-7 text-[#687168]">
-                  Agricultural progress requires a combination of practical
-                  understanding, sound decision-making, and a commitment to
-                  serving growers and communities.
-                </p>
-              </motion.div>
-
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:gap-7">
-                {teamMembers.map((person, index) => (
-                  <motion.article
-                    key={person.name}
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.15 }}
-                    transition={{ duration: 0.5, delay: index * 0.08 }}
-                    className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-[#e5eee5] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                  >
-                    {/* Profile Image */}
-                    <div className="relative h-56 w-full overflow-hidden sm:h-60 lg:h-64">
-                      <img
-                        src={person.image}
-                        alt={person.name}
-                        loading="lazy"
-                        className="h-full w-full object-scale-down object-center transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-
-                    {/* Profile Details */}
-                    <div className="flex flex-1 flex-col p-5 sm:p-5 lg:p-6">
-                      {/* Role */}
-                      <div className="flex min-h-10 items-start justify-between gap-2">
-                        <p className="text-xs font-bold uppercase leading-5 tracking-wider text-[#2d6742] sm:text-sm">
-                          {person.role}
-                        </p>
-
-                        <LuLeaf
-                          size={18}
-                          className="mt-0.5 shrink-0 text-[#68a66c]"
-                        />
-                      </div>
-
-                      {/* Name */}
-                      <h3 className="mt-2 text-lg font-bold text-[#243c37] sm:text-xl">
-                        {person.name}
-                      </h3>
-
-                      {/* Description / Read More */}
-                      <div className="mt-3">
-                        <p className="text-sm leading-7 text-[#748074]">
-                          {expandedBios[person.name]
-                            ? person.description
-                            : `${person.description.slice(0, 120)}${
-                                person.description.length > 120 ? "..." : ""
-                              }`}
-                        </p>
-
-                        {person.description.length > 120 && (
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setExpandedBios((prev) => ({
-                                ...prev,
-                                [person.name]: !prev[person.name],
-                              }))
-                            }
-                            className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-[#2d6742] transition-colors duration-300 hover:text-[#68a66c]"
-                          >
-                            {expandedBios[person.name]
-                              ? "Read Less ↑"
-                              : "Read Full Bio →"}
-                          </button>
-                        )}
-                      </div>
-
-                      {/* Expertise */}
-                      {person.expertise.length > 0 && (
-                        <div className="mt-5 border-t border-[#e9efe9] pt-4">
-                          <h4 className="mb-3 text-sm font-bold text-[#243c37]">
-                            Expertise
-                          </h4>
-
-                          <ul className="space-y-2">
-                            {person.expertise.map((skill) => (
-                              <li
-                                key={skill}
-                                className="flex items-start gap-2 text-sm leading-6 text-[#647568]"
-                              >
-                                <FaCheckCircle
-                                  size={16}
-                                  className="mt-1 shrink-0 text-[#4d955d]"
-                                />
-                                <span>{skill}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </motion.article>
-                ))}
-              </div>
-            </div>
+            {/* LEADERSHIP HIERARCHY */}
+            <LeadershipOrgChart teamMembers={teamMembers} />
 
             {/* Mission and vision */}
             <div className="mt-14 grid gap-4 md:grid-cols-2">
