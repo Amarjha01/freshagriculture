@@ -78,6 +78,7 @@ function SingleConnector() {
 --------------------------------- */
 
 
+
 function LeaderCard({
   person,
   icon: Icon,
@@ -102,224 +103,293 @@ function LeaderCard({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 25 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.55, delay: index * 0.12 }}
+      initial={{
+        opacity: 0,
+        y: 80,
+        rotateY: -25,
+        rotateZ: index % 2 === 0 ? -5 : 5,
+        scale: 0.8,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        rotateY: 0,
+        rotateZ: 0,
+        scale: 1,
+      }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.9,
+        delay: index * 0.15,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{
+        y: -10,
+        scale: 1.025,
+        rotateZ: flipped ? 0 : 1,
+        transition: {
+          duration: 0.3,
+          ease: "easeOut",
+        },
+      }}
       className="mx-auto w-full max-w-[350px]"
+      style={{
+        perspective: 1400,
+        transformStyle: "preserve-3d",
+      }}
     >
-      {/* Card perspective */}
-      <div
-        className="relative w-full"
-        style={{ perspective: "1200px" }}
+      {/* 3D CARD CONTAINER */}
+      <motion.div
+        animate={{
+          rotateX: flipped ? 180 : 0,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 65,
+          damping: 15,
+          mass: 1.2,
+        }}
+        style={{
+          transformStyle: "preserve-3d",
+          position: "relative",
+        }}
+        className="aspect-[3/4] w-full"
       >
-        <motion.div
-          animate={{ rotateX: flipped ? 180 : 0 }}
-          transition={{
-            duration: 0.8,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          style={{
-            transformStyle: "preserve-3d",
-            position: "relative",
-          }}
-          className="aspect-[3/4] w-full"
+        {/* FRONT SIDE */}
+        <div
+          className="absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-[#dce9dc] bg-white shadow-[0_15px_40px_rgba(16,71,47,0.13)]"
+          style={{ backfaceVisibility: "hidden" }}
         >
-          {/* =================================
-              FRONT SIDE - MEMBER ID CARD
-          ================================== */}
+          {/* Branding */}
+          <div className="relative overflow-hidden bg-[#10472f] px-5 py-5 text-white">
+            <motion.div
+              animate={{
+                rotate: 360,
+                scale: [1, 1.15, 1],
+              }}
+              transition={{
+                duration: 18,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute -right-8 -top-10 h-32 w-32 rounded-full border border-white/10"
+            />
 
-          <div
-            className="absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-[#dce9dc] bg-white shadow-xl"
-            style={{ backfaceVisibility: "hidden" }}
-          >
-            {/* Top branding */}
-            <div className="relative bg-[#10472f] px-5 py-5 text-white">
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15">
-                  <Icon size={23} className="text-[#d1e9b9]" />
-                </div>
-
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-extrabold tracking-wide">
-                    FA Green Agriculture
-                  </p>
-                  {/* <p className="mt-1 text-[9px] uppercase tracking-[0.2em] text-[#c7dfc6]">
-                    Official Leadership ID
-                  </p> */}
-                </div>
+            <div className="relative z-10 flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15">
+                <Icon size={23} className="text-[#d1e9b9]" />
               </div>
 
-              <div className="absolute -bottom-5 right-7 h-10 w-10 rounded-full bg-[#dcebd8]/20 blur-xl" />
-            </div>
-
-            {/* Profile photo */}
-            <div className="relative flex flex-1 flex-col items-center justify-center bg-[#f3f7ef] px-5 pt-5">
-              <div className="relative h-36 w-36 overflow-hidden rounded-2xl border-4 border-white bg-[#e4ede0] shadow-lg sm:h-40 sm:w-40">
-                <img
-                  src={person.image}
-                  alt={person.name}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-
-              <div className="mt-5 text-center">
-                <h3 className="text-xl font-extrabold tracking-tight text-[#173c29]">
-                  {person.name}
-                </h3>
-
-                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-[#43805a]">
-                  {person.role}
+              <div className="min-w-0">
+                <p className="truncate text-sm font-extrabold tracking-wide">
+                  FA Green Agriculture
                 </p>
-
-                {person.department && (
-                  <p className="mt-2 text-xs text-[#78887b]">
-                    {person.department}
-                  </p>
-                )}
-              </div>
-
-              <div className="mt-5 flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#4b9b62]" />
-                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#718575]">
-                  Leadership Team
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom section */}
-            <div className="flex items-center justify-between border-t border-[#e3ece0] bg-white px-5 py-4">
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-widest text-[#93a294]">
-                  Member ID
-                </p>
-                <p className="mt-1 text-xs font-bold text-[#28553a]">
-                  GV-{String(index + 1).padStart(3, "0")}
+                <p className="mt-1 text-[9px] uppercase tracking-[0.2em] text-[#c7dfc6]">
+                  Leadership Identity
                 </p>
               </div>
-
-              <button
-                type="button"
-                onClick={() => setFlipped(true)}
-                className="flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#17633e]"
-                aria-label="View member details"
-              >
-                More Details
-                <span>↻</span>
-              </button>
             </div>
           </div>
 
-          {/* =================================
-              BACK SIDE - MEMBER INFORMATION
-          ================================== */}
+          {/* Profile area */}
+          <div className="relative flex flex-1 flex-col items-center justify-center bg-[#f3f7ef] px-5 pt-5">
 
-          <div
-            className="absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-[#dce9dc] bg-[#f8faf5] shadow-xl"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateX(180deg)",
-            }}
-          >
-            {/* Back header */}
-            <div className="bg-[#10472f] px-5 py-5 text-white">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#c9e6a9]">
-                    Leadership Profile
-                  </p>
+            <motion.div
+              initial={{ scale: 0.7, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                delay: index * 0.15 + 0.3,
+                duration: 0.7,
+                type: "spring",
+              }}
+              className="relative h-36 w-36 overflow-hidden rounded-2xl border-4 border-white bg-[#e4ede0] shadow-xl sm:h-40 sm:w-40"
+            >
+              <motion.img
+                src={person.image}
+                alt={person.name}
+                loading="lazy"
+                className="h-full w-full object-cover object-center"
+                whileHover={{ scale: 1.12 }}
+                transition={{ duration: 0.5 }}
+              />
+            </motion.div>
 
-                  <h3 className="mt-2 text-lg font-bold">
-                    Member Information
-                  </h3>
-                </div>
+            <div className="mt-5 text-center">
+              <h3 className="text-xl font-extrabold tracking-tight text-[#173c29]">
+                {person.name}
+              </h3>
 
-                <Icon size={27} className="text-[#c9e6a9]" />
-              </div>
-            </div>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-[#43805a]">
+                {person.role}
+              </p>
 
-            {/* Back content */}
-            <div className="flex-1 overflow-y-auto px-5 py-4">
-              <div className="mb-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-[#36754c]">
-                  About Member
+              {person.department && (
+                <p className="mt-2 text-xs text-[#78887b]">
+                  {person.department}
                 </p>
-
-                <p className="mt-2 text-xs leading-6 text-[#647568]">
-                  {person.description ||
-                    "Member of our leadership team, contributing to organizational growth and development."}
-                </p>
-              </div>
-
-              {/* Personal details */}
-              {details.length > 0 && (
-                <div className="border-t border-[#dce8d9] pt-4">
-                  <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#36754c]">
-                    Professional Details
-                  </p>
-
-                  <div className="space-y-3">
-                    {details.map((item) => (
-                      <div
-                        key={item.label}
-                        className="flex justify-between gap-3"
-                      >
-                        <span className="shrink-0 text-[10px] font-semibold text-[#91a092]">
-                          {item.label}
-                        </span>
-
-                        <span className="break-all text-right text-[10px] font-semibold text-[#294b36]">
-                          {item.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Expertise */}
-              {expertise.length > 0 && (
-                <div className="mt-4 border-t border-[#dce8d9] pt-4">
-                  <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#36754c]">
-                    Areas of Expertise
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {expertise.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full border border-[#d6e6d3] bg-white px-3 py-1.5 text-[10px] font-medium text-[#356849]"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               )}
             </div>
 
-            {/* Back footer */}
-            <div className="flex items-center justify-between border-t border-[#dce8d9] bg-white px-5 py-4">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#91a092]">
-                Official Member Profile
+            <div className="mt-5 flex items-center gap-2">
+              <motion.span
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [1, 0.5, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+                className="h-1.5 w-1.5 rounded-full bg-[#4b9b62]"
+              />
+
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#718575]">
+                Leadership Team
               </span>
-
-              <button
-                type="button"
-                onClick={() => setFlipped(false)}
-                className="flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#17633e]"
-              >
-                <span>↻</span>
-                Back to ID
-              </button>
             </div>
           </div>
-        </motion.div>
-      </div>
+
+          {/* Front footer */}
+          <div className="flex items-center justify-between border-t border-[#e3ece0] bg-white px-5 py-4">
+            <div>
+              <p className="text-[9px] font-bold uppercase tracking-widest text-[#93a294]">
+                Member ID
+              </p>
+              <p className="mt-1 text-xs font-bold text-[#28553a]">
+                GV-{String(index + 1).padStart(3, "0")}
+              </p>
+            </div>
+
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.93 }}
+              onClick={() => setFlipped(true)}
+              className="flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white"
+            >
+              More Details
+              <motion.span
+                animate={{ rotate: [0, 180, 360] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                ↻
+              </motion.span>
+            </motion.button>
+          </div>
+        </div>
+
+        {/* BACK SIDE */}
+        <div
+          className="absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-[#dce9dc] bg-[#f8faf5] shadow-[0_15px_40px_rgba(16,71,47,0.13)]"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateX(180deg)",
+          }}
+        >
+          {/* Back header */}
+          <div className="relative overflow-hidden bg-[#10472f] px-5 py-5 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#c9e6a9]">
+                  FA Green Agriculture
+                </p>
+                <h3 className="mt-2 text-lg font-bold">
+                  Member Information
+                </h3>
+              </div>
+
+              <Icon size={27} className="text-[#c9e6a9]" />
+            </div>
+          </div>
+
+          {/* Information */}
+          <div className="flex-1 overflow-y-auto px-5 py-4">
+            <div className="mb-4">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#36754c]">
+                About Member
+              </p>
+
+              <p className="mt-2 text-xs leading-6 text-[#647568]">
+                {person.description ||
+                  "Member of our leadership team, contributing to organizational growth and development."}
+              </p>
+            </div>
+
+            {details.length > 0 && (
+              <div className="border-t border-[#dce8d9] pt-4">
+                <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#36754c]">
+                  Professional Details
+                </p>
+
+                <div className="space-y-3">
+                  {details.map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex justify-between gap-3"
+                    >
+                      <span className="shrink-0 text-[10px] font-semibold text-[#91a092]">
+                        {item.label}
+                      </span>
+
+                      <span className="break-all text-right text-[10px] font-semibold text-[#294b36]">
+                        {item.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {expertise.length > 0 && (
+              <div className="mt-4 border-t border-[#dce8d9] pt-4">
+                <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#36754c]">
+                  Areas of Expertise
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {expertise.map((skill) => (
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="rounded-full border border-[#d6e6d3] bg-white px-3 py-1.5 text-[10px] font-medium text-[#356849]"
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Back footer */}
+          <div className="flex items-center justify-between border-t border-[#dce8d9] bg-white px-5 py-4">
+            <span className="text-[9px] font-bold uppercase tracking-wider text-[#91a092]">
+              Official Member Profile
+            </span>
+
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.93 }}
+              onClick={() => setFlipped(false)}
+              className="flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white"
+            >
+              ↻ Back to ID
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
     </motion.article>
   );
 }
+
 
 
 /* --------------------------------
