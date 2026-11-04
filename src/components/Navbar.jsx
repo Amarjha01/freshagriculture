@@ -84,7 +84,6 @@ export default function Navbar({
   accentColor = defaultTheme.accentColor,
   mobileMenuBackground = defaultTheme.mobileMenuBackground,
   logoSrc = "/logo.png",
-  phone = "+91 8639976550",
   ctaLabel = "Get a Call Back",
   ctaHref = "/contact",
   links = navLinks,
@@ -118,7 +117,7 @@ export default function Navbar({
 
   const closeMenu = () => setMenuOpen(false);
 
-  const phoneHref = `tel:${phone.replace(/[^\d+]/g, "")}`;
+
 
   return (
     <motion.header
@@ -174,14 +173,14 @@ export default function Navbar({
 
         {/* Desktop Phone & CTA */}
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
-          <a
+          {/* <a
             href={phoneHref}
             className="flex items-center gap-2 whitespace-nowrap text-sm transition-opacity hover:opacity-70"
             style={{ color: accentColor }}
           >
             <FiPhone size={17} />
             <span>{phone}</span>
-          </a>
+          </a> */}
 
           <div className="hidden xl:block">
             <Button
@@ -288,7 +287,7 @@ export default function Navbar({
               ))}
 
               {/* Mobile Phone */}
-              <motion.a
+              {/* <motion.a
                 variants={linkVariants}
                 href={phoneHref}
                 className="mt-5 flex items-center gap-2 text-sm font-medium"
@@ -296,7 +295,7 @@ export default function Navbar({
               >
                 <FiPhone size={16} />
                 <span>{phone}</span>
-              </motion.a>
+              </motion.a> */}
 
               {/* Mobile CTA */}
               <motion.div

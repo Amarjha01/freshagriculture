@@ -66,7 +66,7 @@ const articles = [
     title: "Tomato Cultivation Guide for Higher Yields",
     category: "Crop Cultivation",
     image: images.tomato,
-    date: "Oct 15, 2024",
+    date: "Nov 03, 2026",
     readTime: 6,
     excerpt:
       "A practical guide to tomato farming, including variety selection, nursery preparation, care, and harvesting.",
@@ -82,7 +82,7 @@ const articles = [
     title: "How to Improve Soil Health Naturally",
     category: "Soil Health",
     image: images.soil,
-    date: "Oct 10, 2024",
+    date: "Oct 31, 2026",
     readTime: 7,
     excerpt:
       "Healthy soil supports productive farming. Learn practical ways to improve soil structure and fertility.",
@@ -98,7 +98,7 @@ const articles = [
     title: "Hydroponic Farming: A Modern Solution",
     category: "Hydroponics",
     image: images.hydroponics,
-    date: "Oct 05, 2024",
+    date: "Oct 25, 2026",
     readTime: 6,
     excerpt:
       "Discover how hydroponic systems work, their considerations, and crops commonly grown in them.",
@@ -114,7 +114,7 @@ const articles = [
     title: "Commercial Floriculture Opportunities in India",
     category: "Crop Cultivation",
     image: images.floriculture,
-    date: "Sep 28, 2024",
+    date: "Sep 28, 2026",
     readTime: 5,
     excerpt:
       "Explore flower selection, production planning, and considerations for selling commercial flowers.",
@@ -130,7 +130,7 @@ const articles = [
     title: "Fish Farming for Sustainable Income",
     category: "Aquaculture",
     image: images.aquaculture,
-    date: "Sep 20, 2024",
+    date: "Sep 20, 2026",
     readTime: 8,
     excerpt:
       "Understand the basic planning considerations behind pond and tank-based fish farming.",
@@ -146,7 +146,7 @@ const articles = [
     title: "Benefits of Drip Irrigation in Agriculture",
     category: "Modern Farming",
     image: images.irrigation,
-    date: "Sep 15, 2024",
+    date: "Aug 15, 2026",
     readTime: 8,
     excerpt:
       "Learn how drip irrigation delivers water near plant roots and what to consider before installation.",
@@ -162,7 +162,7 @@ const articles = [
     title: "How to Plan a Productive Polyhouse",
     category: "Greenhouse & Polyhouse",
     image: images.polyhouse,
-    date: "Sep 12, 2024",
+    date: "Aug 22, 2026",
     readTime: 7,
     excerpt:
       "Understand site selection, structure planning, ventilation, and crop suitability before investing.",
@@ -178,7 +178,7 @@ const articles = [
     title: "Capsicum Cultivation Tips for Better Yield",
     category: "Crop Cultivation",
     image: images.capsicum,
-    date: "Sep 25, 2024",
+    date: "Sep 02, 2026",
     readTime: 6,
     excerpt:
       "Review crop planning, plant care, irrigation, and environmental considerations for capsicum.",
@@ -194,7 +194,7 @@ const articles = [
     title: "A Beginner's Guide to Organic Farming",
     category: "Sustainability",
     image: images.soil,
-    date: "Sep 08, 2024",
+    date: "Sep 18, 2026",
     readTime: 6,
     excerpt:
       "Learn about soil management, crop diversity, and planning an organic production approach.",
@@ -210,7 +210,7 @@ const articles = [
     title: "Starting a Small Dairy Farming Unit",
     category: "Livestock",
     image: images.dairy,
-    date: "Sep 18, 2024",
+    date: "Sep 28, 2026",
     readTime: 7,
     excerpt:
       "Explore planning considerations for animal care, feed, hygiene, and daily farm operations.",
@@ -226,7 +226,7 @@ const articles = [
     title: "Understanding Soil Testing Before Planting",
     category: "Soil Health",
     image: images.irrigation,
-    date: "Aug 30, 2024",
+    date: "Oct 10, 2026",
     readTime: 5,
     excerpt:
       "Find out why soil analysis is a useful starting point for crop and nutrient planning.",
@@ -242,7 +242,7 @@ const articles = [
     title: "Getting Started with Nursery Management",
     category: "Modern Farming",
     image: images.nursery,
-    date: "Aug 22, 2024",
+    date: "Oct 15, 2026",
     readTime: 6,
     excerpt:
       "Learn the essentials of nursery planning, seedling care, hygiene, and inventory management.",

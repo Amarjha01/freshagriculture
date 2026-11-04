@@ -36,9 +36,9 @@ const images = {
   hands: "/Images/Nurturing Seedlings in Golden Light.webp",
 };
 
-const PHONE_PRIMARY = "+91 6297003664";
-const PHONE_SECONDARY = "+91 8409570406";
+const PHONE_PRIMARY = "+91 8639976550";
 const EMAIL = "info@freshagriculture.in";
+const HREMAIL = "hr@freshagriculture.in";
 
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=Kukunoopally%2C%20Siddipet%2C%20Telangana%2C%20India";
@@ -616,16 +616,10 @@ async function handleSubmit(event) {
               <motion.div variants={fadeUp}>
                 <ContactCard icon={LuPhone} title="Phone" watermark>
                   <a
-                    href="tel:+916297003664"
+                    href="tel:+918639976550"
                     className="block hover:text-[#07884f]"
                   >
                     {PHONE_PRIMARY}
-                  </a>
-                  <a
-                    href="tel:+918409570406"
-                    className="block hover:text-[#07884f]"
-                  >
-                    {PHONE_SECONDARY}
                   </a>
                 </ContactCard>
               </motion.div>
@@ -637,6 +631,13 @@ async function handleSubmit(event) {
                     className="break-all hover:text-[#07884f]"
                   >
                     {EMAIL}
+                  </a>
+                  <a
+                    href={`mailto:${HREMAIL}`}
+                    className="break-all hover:text-[#07884f]"
+                  >
+                    <br />
+                    {HREMAIL}
                   </a>
                   <p className="mt-1 text-[10px] text-[#778074]">
                     Contact us for product and project enquiries.

@@ -31,6 +31,9 @@ import {
   LuMenu,
   LuX,
   LuHeart,
+  LuTruck,
+  LuCalendarCheck,
+  LuClipboardCheck,
 } from "react-icons/lu";
 
 import SiteShell from "@/components/SiteShell";
@@ -38,6 +41,7 @@ import SiteShell from "@/components/SiteShell";
 const images = {
   hero: "/Images/services-right1.webp",
   heroLeft:"/Images/home-hero-left.png",
+  buyback:"/services/buyback/Buyback Service.webp",
   polyhouse:
     "/services/polyhouse Farming/Polyhouse Farm.png",
   hydroponics:
@@ -118,11 +122,91 @@ const gallery = {
   project_AMC:[
      "services/Project & AMC/Project & AMC.png",
   ],
+  buyback:[
+     "services/buyback/Buyback Service.webp",
+  ],
 }
 const services = [
   {
-    id: "polyhouse",
+    id: "project-amc",
     number: "01",
+    title: "Project & AMC",
+    shortTitle: "Project & AMC",
+    category: "Project Support",
+    description:
+      "Discuss project coordination, maintenance requirements, and ongoing operational support.",
+    longDescription:
+      "Project and maintenance requirements vary by infrastructure, equipment, and operating conditions. Scope, response times, deliverables, and any annual maintenance agreement should be confirmed individually before work begins.",
+    image: images.project,
+    icon: LuBuilding2,
+    benefits: [
+      "Project-scope discussions",
+      "Equipment and infrastructure review",
+      "Maintenance planning options",
+      "Support requirements and coordination",
+    ],
+    highlights: [
+      { icon: LuClipboardList, title: "Project", subtitle: "Coordination" },
+      { icon: LuSettings, title: "Maintenance", subtitle: "Planning" },
+    ],
+    gallery: gallery.project_AMC
+  },
+   {
+    id: "buyback",
+    number: "02",
+    title: "Buyback Services",
+    shortTitle: "Buyback Services",
+    category: "Market & Sales Support",
+    description:
+      "Grow with confidence through our agricultural buyback services, featuring pre-agreed produce purchase prices, company-managed logistics, quality grading assistance, and timely payments.",
+    longDescription:
+      "Our Buyback Services are designed to provide farmers with a more structured and convenient way to sell their agricultural produce. Under this arrangement, the company agrees to purchase eligible farm produce at mutually agreed prices before the harvest or collection, subject to the terms and conditions of the buyback agreement. Farmers benefit from greater price clarity, while our team coordinates the logistics and collection process. We also provide quality grading assistance to help ensure that produce is assessed according to agreed specifications. Once the produce is collected and the required verification is completed, payment is settled within 7 working days. This service is available across all our agricultural project types, subject to crop suitability, quality standards, quantity, and agreed commercial terms.",
+    image: images.buyback,
+    icon: LuHandshake,
+    benefits: [
+      "Pre-agreed purchase prices to provide greater price certainty",
+      "Company-managed logistics and produce transportation",
+      "Payment settlement within 7 working days of collection",
+      "Quality grading and produce assessment assistance",
+      "Convenient produce collection coordination",
+      "Reduced marketing and buyer-search responsibilities for farmers",
+      "Clear purchase terms and agreed quality specifications",
+      "Available across all agricultural project types",
+      "Better planning for harvesting and produce sales",
+      "Dedicated coordination throughout the buyback process",
+    ],
+    highlights: [
+      { icon: LuHandshake, title: "Pre-agreed", subtitle: "Purchase prices" },
+      { icon: LuTruck, title: "Complete", subtitle: "Logistics support" },
+      { icon: LuCalendarCheck, title: "7 Working Days", subtitle: "Payment settlement" },
+      { icon: LuClipboardCheck, title: "Quality", subtitle: "Grading assistance" },
+    ],
+    process: [
+      "Buyback discussion and crop/project assessment",
+      "Agreement on eligible produce, quantity, quality specifications, and purchase price",
+      "Crop monitoring and harvest coordination",
+      "Quality grading and produce assessment",
+      "Collection and transportation arranged by the company",
+      "Verification of collected produce",
+      "Payment settlement within 7 working days of collection",
+    ],
+    projectDetails: {
+      pricing:
+        "Purchase prices are agreed upon in advance between the farmer and the company and documented in the buyback agreement.",
+      logistics:
+        "The company coordinates produce collection and transportation through its logistics arrangements.",
+      payment:
+        "Payment is settled within 7 working days of collection, subject to the agreed verification and payment terms.",
+      quality:
+        "Quality grading assistance is provided based on mutually agreed produce specifications and acceptance criteria.",
+      availability:
+        "Available for all agricultural project types, subject to crop suitability, location, production quantity, and commercial feasibility."
+    },
+    gallery: gallery.buyback
+  },
+  {
+    id: "polyhouse",
+    number: "03",
     title: "Polyhouse Farming",
     shortTitle: "Polyhouse Farming",
     category: "Protected Cultivation",
@@ -146,7 +230,7 @@ const services = [
   },
   {
     id: "hydroponics",
-    number: "02",
+    number: "04",
     title: "Hydroponics",
     shortTitle: "Hydroponics",
     category: "Soilless Cultivation",
@@ -170,7 +254,7 @@ const services = [
   },
   {
     id: "mushroom",
-    number: "03",
+    number: "05",
     title: "Mushroom Farming",
     shortTitle: "Mushroom Farming",
     category: "Indoor Cultivation",
@@ -195,7 +279,7 @@ const services = [
   },
   {
     id: "aquaculture",
-    number: "04",
+    number: "06",
     title: "Aquaculture",
     shortTitle: "Aquaculture",
     category: "Aquatic Farming",
@@ -219,7 +303,7 @@ const services = [
   },
   {
     id: "floriculture",
-    number: "05",
+    number: "07",
     title: "Floriculture",
     shortTitle: "Floriculture",
     category: "Flower Cultivation",
@@ -243,7 +327,7 @@ const services = [
   },
   {
     id: "nursery",
-    number: "06",
+    number: "08",
     title: "Nursery",
     shortTitle: "Nursery",
     category: "Plant Propagation",
@@ -267,7 +351,7 @@ const services = [
   },
   {
     id: "goat",
-    number: "07",
+    number: "09",
     title: "Goat Farming",
     shortTitle: "Goat Farming",
     category: "Livestock Farming",
@@ -291,7 +375,7 @@ const services = [
   },
   {
     id: "irrigation",
-    number: "08",
+    number: "10",
     title: "Smart Irrigation",
     shortTitle: "Smart Irrigation",
     category: "Water Management",
@@ -315,7 +399,7 @@ const services = [
   },
   {
     id: "advisory",
-    number: "09",
+    number: "11",
     title: "Crop Advisory",
     shortTitle: "Crop Advisory",
     category: "Agricultural Guidance",
@@ -336,30 +420,6 @@ const services = [
       { icon: LuLeaf, title: "Practical", subtitle: "Guidance" },
     ],
     gallery: gallery.advisory
-  },
-  {
-    id: "project-amc",
-    number: "10",
-    title: "Project & AMC",
-    shortTitle: "Project & AMC",
-    category: "Project Support",
-    description:
-      "Discuss project coordination, maintenance requirements, and ongoing operational support.",
-    longDescription:
-      "Project and maintenance requirements vary by infrastructure, equipment, and operating conditions. Scope, response times, deliverables, and any annual maintenance agreement should be confirmed individually before work begins.",
-    image: images.project,
-    icon: LuBuilding2,
-    benefits: [
-      "Project-scope discussions",
-      "Equipment and infrastructure review",
-      "Maintenance planning options",
-      "Support requirements and coordination",
-    ],
-    highlights: [
-      { icon: LuClipboardList, title: "Project", subtitle: "Coordination" },
-      { icon: LuSettings, title: "Maintenance", subtitle: "Planning" },
-    ],
-    gallery: gallery.project_AMC
   },
 ];
 
@@ -481,7 +541,7 @@ function ServiceCard({ service, active, onClick }) {
 }
 
 export default function ServicesPage() {
-  const [activeServiceId, setActiveServiceId] = useState("polyhouse");
+  const [activeServiceId, setActiveServiceId] = useState("project-amc");
   const [activeThumbnail, setActiveThumbnail] = useState(0);
   const [showAllServices, setShowAllServices] = useState(false);
 
@@ -709,7 +769,7 @@ export default function ServicesPage() {
               variants={stagger}
               className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5"
             >
-              {(showAllServices ? services : services.slice(0, 10)).map(
+              {(showAllServices ? services : services.slice(0, 11)).map(
                 (service) => (
                   <ServiceCard
                     key={service.id}

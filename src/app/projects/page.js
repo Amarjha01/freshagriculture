@@ -48,7 +48,12 @@ const images = {
   nursery: "/services/Nursery/Nursery.png",
   goat: "/services/open cultivation/Goat Farming/Goat Farm.png",
   irrigation: "services/Smart Irrigation/Smart Irrigation.png",
-  cta:"/Images/Young plant growing in soil.avif"
+  cta:"/Images/Young plant growing in soil.avif",
+  jointVenture:"/Images/JointVenture.webp",
+  OpenFieldCultivation:"/Images/OpenFieldCultivation.webp",
+  pondliner:"/Images/pondliner.webp",
+  AutomatedPoultry:"/Images/AutomatedPoultry.webp",
+  SaffronCultivation:"/Images/SaffronCultivation.webp",
 };
 
 
@@ -57,6 +62,7 @@ const categories = [
   { name: "Joint Venture", icon: LuHandshake },
   { name: "Polyhouse", icon: LuHouse },
   { name: "Open Cultivation", icon: LuTractor },
+  { name: "Pondliner", icon: LuTractor },
   { name: "Automated Poultry", icon: LuBird},
   { name: "Saffron Cultivation", icon: LuFlower },
   { name: "Hydroponics", icon: LuSprout },
@@ -153,7 +159,7 @@ const projects = [
     location: "Telangana",
     description:
       "A commercial open-field farming project designed to make productive use of agricultural land through planned crop selection, efficient cultivation practices, and organized farm management. Suitable for farmers and landowners interested in traditional agricultural production as well as investors exploring scalable open-field farming opportunities.",
-    image: images.openCultivation,
+    image: images.OpenFieldCultivation,
     crop: "Seasonal crops and vegetables",
     type: "Open-field agriculture",
     size: "Project-specific",
@@ -202,7 +208,7 @@ const projects = [
     location: "Telangana",
     description:
       "A modern commercial poultry farming project incorporating automated equipment and organized farm management systems. Designed to improve operational efficiency through automated feeding, drinking water systems, environmental monitoring, ventilation, and farm management technology. Suitable for entrepreneurs and investors interested in developing organized poultry farming infrastructure.",
-    image: images.poultry,
+    image: images.AutomatedPoultry,
     crop: "Broilers and layer poultry",
     type: "Automated poultry farming",
     size: "Project-specific",
@@ -253,7 +259,7 @@ const projects = [
     location: "Telangana",
     description:
       "A specialized saffron cultivation project focused on exploring suitable growing environments, cultivation infrastructure, and controlled production techniques. The project can evaluate traditional cultivation possibilities and controlled-environment approaches, including indoor saffron production. Site suitability, temperature management, corm quality, production feasibility, and market considerations are evaluated before implementation.",
-    image: images.saffron,
+    image: images.SaffronCultivation,
     crop: "Saffron",
     type: "Specialized spice cultivation",
     size: "Project-specific",
@@ -448,6 +454,33 @@ const projects = [
       "Automation suitability review",
     ],
   },
+  {
+  id: 13,
+  title: "Commercial Pond Liner Project",
+  category: "Pond Liner",
+  location: "Telangana",
+  description:
+    "A pond-lining solution designed to improve water retention and support aquaculture, agricultural water storage, and farm infrastructure.",
+  image: images.pondliner,
+  crop: "Fish farming and water storage",
+  type: "Pond lining infrastructure",
+  size: "Project-specific",
+  status: "Project showcase",
+  benefits: [
+    "HDPE pond liner installation options",
+    "Improved water retention",
+    "Reduced seepage and water loss",
+    "Suitable for aquaculture and farm ponds",
+    "Site preparation and liner planning",
+    "Durable water-storage infrastructure"
+  ],
+  highlights: [
+    "Water Retention",
+    "HDPE Lining",
+    "Aquaculture Support",
+    "Farm Water Storage"
+  ],
+}
 ];
 
 const steps = [
@@ -618,13 +651,13 @@ export default function ProjectsPage() {
       quote:
         "Every farming project starts with understanding the land, the grower's goals, and the practical needs of the operation.",
       name: "Farmer Testimonial",
-      location: "Add verified location",
+      // location: "Add verified location",
     },
     {
       quote:
         "The right project plan considers cultivation, resources, operations, and the support needed after setup.",
       name: "Project Feedback",
-      location: "Add verified location",
+      // location: "Add verified location",
     },
   ];
 

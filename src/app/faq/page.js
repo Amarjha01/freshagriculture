@@ -40,7 +40,7 @@ import { GoCheckCircleFill } from "react-icons/go";
 
 const images = {
   hero: "/Images/FAQpage-right.webp",
-  seedling: "",
+  seedling: "/Images/Young plant growing in soil.avif",
   hands: "/Images/Nurturing Seedlings in Golden Light.webp",
 };
 
@@ -758,7 +758,7 @@ export default function FAQPage() {
                 </a>
 
                 <a
-                  href="mailto:freshagriculturebygreenbiotech@gmail.com"
+                  href="mailto:info@freshagriculture.in"
                   className="mt-1 flex items-center gap-3 rounded-xl p-2 transition hover:bg-[#eff5e9]"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#159c57] text-white">
@@ -769,7 +769,7 @@ export default function FAQPage() {
                       Email Us
                     </span>
                     <span className="mt-0.5 block break-all text-[9px] text-[#778074]">
-                      freshagriculturebygreenbiotech@gmail.com
+                      info@freshagriculture.in
                     </span>
                   </span>
                 </a>

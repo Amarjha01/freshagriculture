@@ -68,7 +68,7 @@ const galleryItems = [
       "Year-round tomato production with controlled growing conditions.",
     location: "Telangana",
     image: images.tomatoes,
-    photoCount: 12,
+    // photoCount: 12,
     featured: true,
   },
   {
@@ -78,7 +78,7 @@ const galleryItems = [
     description: "Soilless cultivation for leafy greens and herbs.",
     location: "Hyderabad",
     image: images.hydroponics,
-    photoCount: 10,
+    // photoCount: 10,
   },
   {
     id: 3,
@@ -87,7 +87,7 @@ const galleryItems = [
     description: "A dedicated growing environment for mushroom production.",
     location: "Siddipet",
     image: images.mushroom,
-    photoCount: 8,
+    // photoCount: 8,
   },
   {
     id: 4,
@@ -96,7 +96,7 @@ const galleryItems = [
     description: "Aquaculture layouts and fish-farming systems.",
     location: "Andhra Pradesh",
     image: images.fish,
-    photoCount: 11,
+    // photoCount: 11,
   },
   {
     id: 5,
@@ -105,7 +105,7 @@ const galleryItems = [
     description: "Flower cultivation for ornamental and commercial use.",
     location: "Hyderabad",
     image: images.flowers,
-    photoCount: 9,
+    // photoCount: 9,
   },
   {
     id: 6,
@@ -114,7 +114,7 @@ const galleryItems = [
     description: "Plant propagation and nursery growing environments.",
     location: "Siddipet",
     image: images.nursery,
-    photoCount: 14,
+    // photoCount: 14,
   },
   {
     id: 7,
@@ -123,7 +123,7 @@ const galleryItems = [
     description: "Livestock housing and farm-management infrastructure.",
     location: "Telangana",
     image: images.goat,
-    photoCount: 6,
+    // photoCount: 6,
   },
   {
     id: 8,
@@ -132,7 +132,7 @@ const galleryItems = [
     description: "Irrigation planning for efficient field water management.",
     location: "Maharashtra",
     image: images.irrigation,
-    photoCount: 8,
+    // photoCount: 8,
   },
   {
     id: 9,
@@ -141,7 +141,7 @@ const galleryItems = [
     description: "Protected cultivation for capsicum and other suitable crops.",
     location: "Karnataka",
     image: images.capsicum,
-    photoCount: 10,
+    // photoCount: 10,
   },
   {
     id: 10,
@@ -150,7 +150,7 @@ const galleryItems = [
     description: "Cucumber production in a planned growing environment.",
     location: "Telangana",
     image: images.cucumber,
-    photoCount: 7,
+    // photoCount: 7,
   },
   {
     id: 11,
@@ -159,7 +159,7 @@ const galleryItems = [
     description: "Strawberry growing with attention to crop requirements.",
     location: "Karnataka",
     image: images.strawberry,
-    photoCount: 9,
+    // photoCount: 9,
   },
   {
     id: 12,
@@ -168,7 +168,7 @@ const galleryItems = [
     description: "Protected nursery growing for young plants.",
     location: "Andhra Pradesh",
     image: images.nursery,
-    photoCount: 6,
+    // photoCount: 6,
   },
 ];
 
@@ -565,7 +565,7 @@ export default function GalleryPage() {
 
                   <span className="inline-flex w-fit items-center gap-2 rounded-full bg-[#edf4e8] px-4 py-2 text-xs font-semibold text-[#245c3b]">
                     <LuCamera size={15} />
-                    {selectedItem.photoCount} photos
+                    {/* {selectedItem.photoCount} photos */}
                   </span>
                 </div>
               </motion.div>
