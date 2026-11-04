@@ -31,7 +31,6 @@ import SiteShell from "@/components/SiteShell";
 import IndiaCoverage from "@/components/sections/IndiaCoverage";
 import { FaCheckCircle } from "react-icons/fa";
 import { useState } from "react";
-import LeadershipCard from "@/components/LeadershipCard";
 import LeadershipOrgChart from "@/components/LeadershipOrgChart";
 const photos = {
   hero: "/Images/aboutpage-right side.webp",
