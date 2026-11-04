@@ -77,242 +77,250 @@ function SingleConnector() {
    LEADERSHIP PROFILE CARD
 --------------------------------- */
 
-function LeaderCard({ person, icon: Icon, index = 0, featured = false }) {
-  const [open, setOpen] = useState(false);
-  const expertise = person.expertise || [];
-  useEffect(() => {
-    if (!open) return;
 
-    // Save current scroll position
-    const scrollY = window.scrollY;
+function LeaderCard({
+  person,
+  icon: Icon,
+  index = 0,
+  featured = false,
+}) {
+  const [flipped, setFlipped] = useState(false);
 
-    const body = document.body;
-    const html = document.documentElement;
-
-    // Save existing styles
-    const previousBodyStyles = {
-      position: body.style.position,
-      top: body.style.top,
-      left: body.style.left,
-      right: body.style.right,
-      width: body.style.width,
-      overflow: body.style.overflow,
-    };
-
-    const previousHtmlOverflow = html.style.overflow;
-
-    // Lock background scrolling
-    html.style.overflow = "hidden";
-
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.left = "0";
-    body.style.right = "0";
-    body.style.width = "100%";
-    body.style.overflow = "hidden";
-
-    return () => {
-      // Restore original styles
-      Object.assign(body.style, previousBodyStyles);
-      html.style.overflow = previousHtmlOverflow;
-
-      // Restore exact previous scroll position
-      window.scrollTo(0, scrollY);
-    };
-  }, [open]);
   if (!person) return null;
 
+  const expertise = person.expertise || [];
+
+  const details = [
+    { label: "Department", value: person.department },
+    { label: "Experience", value: person.experience },
+    { label: "Email", value: person.email },
+    { label: "Phone", value: person.phone },
+    { label: "Location", value: person.location },
+    { label: "Education", value: person.education },
+    { label: "Joining Date", value: person.joiningDate },
+  ].filter((item) => item.value);
+
   return (
-    <>
-      <motion.article
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.55, delay: index * 0.12 }}
-        className={`group relative w-full overflow-hidden rounded-2xl border border-[#e5eee5] bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-[#8dbb93] hover:shadow-xl ${
-          featured ? "min-h-85" : "min-h-77.5"
-        }`}
+    <motion.article
+      initial={{ opacity: 0, y: 25 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.55, delay: index * 0.12 }}
+      className="mx-auto w-full max-w-[350px]"
+    >
+      {/* Card perspective */}
+      <div
+        className="relative w-full"
+        style={{ perspective: "1200px" }}
       >
-        {/* Profile image */}
-        <div className="relative h-61.25 w-full overflow-hidden bg-[#f2f5ec]">
-          <img
-            src={person.image}
-            alt={person.name}
-            loading="lazy"
-            className="h-full w-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
-          />
-
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-[#142d20]/40 to-transparent" />
-
-          <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/60 bg-white/85 px-3 py-1.5 backdrop-blur-md">
-            <Icon size={14} className="text-[#23683f]" />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#28573a]">
-              Leadership
-            </span>
-          </div>
-        </div>
-
-        {/* Card footer */}
-        <div className="flex items-center justify-between gap-3 p-4 sm:p-5">
-          <div className="min-w-0">
-            <h3 className="truncate text-base font-bold text-[#1d382b] sm:text-lg">
-              {person.name}
-            </h3>
-            <p className="mt-1 truncate text-xs font-medium text-[#718075]">
-              {person.role}
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setOpen(true);
-            }}
-            className="relative z-20 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edf5ed] text-[#286a42] transition hover:bg-[#17623c] hover:text-white"
-            aria-label={`View complete profile of ${person.name}`}
-          >
-            <LuArrowUpRight size={19} />
-          </button>
-        </div>
-
-        {/* Hover Preview */}
-        <div
-          className=" absolute inset-0 z-10 flex flex-col justify-end bg-gradient-to-t from-[#092e20] via-[#10472f]/90 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          aria-hidden="true"
+        <motion.div
+          animate={{ rotateX: flipped ? 180 : 0 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          style={{
+            transformStyle: "preserve-3d",
+            position: "relative",
+          }}
+          className="aspect-[3/4] w-full"
         >
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#b9d9b6]">
-            {person.role}
-          </p>
+          {/* =================================
+              FRONT SIDE - MEMBER ID CARD
+          ================================== */}
 
-          <h3 className="mt-2 text-xl font-bold text-white">{person.name}</h3>
-
-          <p className="mt-2 line-clamp-2 text-xs leading-5 text-white/80">
-            {person.description}
-          </p>
-
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="mt-4 w-fit text-xs font-bold text-[#d5e9d3] underline underline-offset-4 hover:text-white"
+          <div
+            className="absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-[#dce9dc] bg-white shadow-xl"
+            style={{ backfaceVisibility: "hidden" }}
           >
-            View Complete Profile →
-          </button>
-        </div>
-      </motion.article>
-
-      {/* FULL PROFILE MODAL */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#071e14]/75 p-4 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-          >
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby={`leader-${index}`}
-              initial={{ opacity: 0, y: 25, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.97 }}
-              transition={{ duration: 0.3 }}
-              onClick={(event) => event.stopPropagation()}
-              className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl bg-[#f8faf5] shadow-2xl"
-            >
-              {/* Modal header */}
-              <div className="relative bg-[#10472f] px-6 py-8 text-white sm:px-9">
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-                  aria-label="Close profile"
-                >
-                  <LuX size={20} />
-                </button>
-
-                <div className="flex items-center gap-3">
-                  <Icon size={20} className="text-[#c9e6a9]" />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#c9e6a9]">
-                    Leadership Profile
-                  </span>
+            {/* Top branding */}
+            <div className="relative bg-[#10472f] px-5 py-5 text-white">
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15">
+                  <Icon size={23} className="text-[#d1e9b9]" />
                 </div>
 
-                <h2
-                  id={`leader-${index}`}
-                  className="mt-4 pr-10 font-display text-2xl font-bold sm:text-3xl"
-                >
-                  {person.name}
-                </h2>
-
-                <p className="mt-2 text-sm text-white/75">{person.role}</p>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-extrabold tracking-wide">
+                    FA Green Agriculture
+                  </p>
+                  {/* <p className="mt-1 text-[9px] uppercase tracking-[0.2em] text-[#c7dfc6]">
+                    Official Leadership ID
+                  </p> */}
+                </div>
               </div>
 
-              {/* Modal content */}
-              <div className="p-6 sm:p-9">
-                <div className="grid gap-7 sm:grid-cols-[180px_1fr]">
-                  {/* Profile photo */}
-                  <div className="h-50 w-50 overflow-hidden rounded-full bg-[#e9f0e6]">
-                    <img
-                      src={person.image}
-                      alt={person.name}
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
+              <div className="absolute -bottom-5 right-7 h-10 w-10 rounded-full bg-[#dcebd8]/20 blur-xl" />
+            </div>
 
-                  {/* Complete biography */}
-                  <div>
-                    <h3 className="text-lg font-bold text-[#1d382b]">About</h3>
+            {/* Profile photo */}
+            <div className="relative flex flex-1 flex-col items-center justify-center bg-[#f3f7ef] px-5 pt-5">
+              <div className="relative h-36 w-36 overflow-hidden rounded-2xl border-4 border-white bg-[#e4ede0] shadow-lg sm:h-40 sm:w-40">
+                <img
+                  src={person.image}
+                  alt={person.name}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
 
-                    <p className="mt-3 whitespace-pre-line text-sm leading-8 text-[#68776b]">
-                      {person.description}
-                    </p>
-                  </div>
-                </div>
+              <div className="mt-5 text-center">
+                <h3 className="text-xl font-extrabold tracking-tight text-[#173c29]">
+                  {person.name}
+                </h3>
 
-                {/* Full expertise */}
-                {expertise.length > 0 && (
-                  <div className="mt-8 border-t border-[#e2eae0] pt-6">
-                    <div className="flex items-center gap-2">
-                      <LuSparkles size={19} className="text-[#368454]" />
-                      <h3 className="text-lg font-bold text-[#1d382b]">
-                        Areas of Expertise
-                      </h3>
-                    </div>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-[#43805a]">
+                  {person.role}
+                </p>
 
-                    <div className="mt-5 flex flex-wrap gap-3">
-                      {expertise.map((skill) => (
-                        <span
-                          key={skill}
-                          className="rounded-full border border-[#d6e6d3] bg-white px-4 py-2.5 text-sm font-medium text-[#356849]"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                {person.department && (
+                  <p className="mt-2 text-xs text-[#78887b]">
+                    {person.department}
+                  </p>
                 )}
               </div>
 
-              {/* Modal footer */}
-              <div className="border-t border-[#e2eae0] px-6 py-4 text-right sm:px-9">
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="rounded-full bg-[#075332] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#0b6941]"
-                >
-                  Close Profile
-                </button>
+              <div className="mt-5 flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#4b9b62]" />
+                <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#718575]">
+                  Leadership Team
+                </span>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            </div>
+
+            {/* Bottom section */}
+            <div className="flex items-center justify-between border-t border-[#e3ece0] bg-white px-5 py-4">
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-widest text-[#93a294]">
+                  Member ID
+                </p>
+                <p className="mt-1 text-xs font-bold text-[#28553a]">
+                  GV-{String(index + 1).padStart(3, "0")}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setFlipped(true)}
+                className="flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#17633e]"
+                aria-label="View member details"
+              >
+                More Details
+                <span>↻</span>
+              </button>
+            </div>
+          </div>
+
+          {/* =================================
+              BACK SIDE - MEMBER INFORMATION
+          ================================== */}
+
+          <div
+            className="absolute inset-0 flex flex-col overflow-hidden rounded-3xl border border-[#dce9dc] bg-[#f8faf5] shadow-xl"
+            style={{
+              backfaceVisibility: "hidden",
+              transform: "rotateX(180deg)",
+            }}
+          >
+            {/* Back header */}
+            <div className="bg-[#10472f] px-5 py-5 text-white">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#c9e6a9]">
+                    Leadership Profile
+                  </p>
+
+                  <h3 className="mt-2 text-lg font-bold">
+                    Member Information
+                  </h3>
+                </div>
+
+                <Icon size={27} className="text-[#c9e6a9]" />
+              </div>
+            </div>
+
+            {/* Back content */}
+            <div className="flex-1 overflow-y-auto px-5 py-4">
+              <div className="mb-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#36754c]">
+                  About Member
+                </p>
+
+                <p className="mt-2 text-xs leading-6 text-[#647568]">
+                  {person.description ||
+                    "Member of our leadership team, contributing to organizational growth and development."}
+                </p>
+              </div>
+
+              {/* Personal details */}
+              {details.length > 0 && (
+                <div className="border-t border-[#dce8d9] pt-4">
+                  <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#36754c]">
+                    Professional Details
+                  </p>
+
+                  <div className="space-y-3">
+                    {details.map((item) => (
+                      <div
+                        key={item.label}
+                        className="flex justify-between gap-3"
+                      >
+                        <span className="shrink-0 text-[10px] font-semibold text-[#91a092]">
+                          {item.label}
+                        </span>
+
+                        <span className="break-all text-right text-[10px] font-semibold text-[#294b36]">
+                          {item.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Expertise */}
+              {expertise.length > 0 && (
+                <div className="mt-4 border-t border-[#dce8d9] pt-4">
+                  <p className="mb-3 text-xs font-bold uppercase tracking-wider text-[#36754c]">
+                    Areas of Expertise
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {expertise.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-full border border-[#d6e6d3] bg-white px-3 py-1.5 text-[10px] font-medium text-[#356849]"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Back footer */}
+            <div className="flex items-center justify-between border-t border-[#dce8d9] bg-white px-5 py-4">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#91a092]">
+                Official Member Profile
+              </span>
+
+              <button
+                type="button"
+                onClick={() => setFlipped(false)}
+                className="flex items-center gap-2 rounded-full bg-[#10472f] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#17633e]"
+              >
+                <span>↻</span>
+                Back to ID
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.article>
   );
 }
+
 
 /* --------------------------------
    MAIN ORGANIZATION CHART
