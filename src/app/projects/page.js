@@ -29,6 +29,9 @@ import {
   LuCircleCheck,
   LuQuote,
   LuX,
+  LuHandshake,
+  LuBird,
+  LuFlower,
 } from "react-icons/lu";
 
 import SiteShell from "@/components/SiteShell";
@@ -48,19 +51,251 @@ const images = {
   cta:"/Images/Young plant growing in soil.avif"
 };
 
+
 const categories = [
   { name: "All Projects", icon: LuLayoutGrid },
+  { name: "Joint Venture", icon: LuHandshake },
   { name: "Polyhouse", icon: LuHouse },
+  { name: "Open Cultivation", icon: LuTractor },
+  { name: "Automated Poultry", icon: LuBird},
+  { name: "Saffron Cultivation", icon: LuFlower },
   { name: "Hydroponics", icon: LuSprout },
   { name: "Mushroom", icon: LuFlower2 },
-  { name: "Aquaculture", icon: LuWaves },
+  { name: "Aquaculture", icon: LuFish },
   { name: "Floriculture", icon: LuFlower2 },
-  { name: "Nursery", icon: LuSprout },
+  { name: "Nursery", icon: LuLeaf },
   { name: "Goat Farming", icon: LuWheat },
-  { name: "Smart Irrigation", icon: LuFish },
+  { name: "Smart Irrigation", icon: LuWaves },
 ];
 
+
 const projects = [
+    {
+    id: 9,
+    title: "Agricultural Joint Venture Investment",
+    category: "Joint Venture",
+    location: "Telangana",
+    description:
+      "A collaborative agricultural investment model that brings together landowners, investors, and agricultural project management expertise to establish and operate large-scale farming ventures. Designed for individuals who own agricultural land or wish to invest in agriculture without managing everyday farm operations. The joint venture approach combines land resources, financial investment, technical expertise, infrastructure development, and professional farm management to create a structured agricultural business opportunity.",
+    image: images.jointVenture,
+    crop: "Multiple agricultural ventures",
+    type: "Agricultural Co-Investment",
+    size: "Large-scale projects",
+    status: "Investment opportunity",
+    benefits: [
+      "Co-investment opportunities for landowners and investors",
+      "Suitable for large-scale agricultural developments",
+      "Landowners can contribute agricultural land as a project resource",
+      "Investors can participate through financial contributions",
+      "Professional agricultural project planning and coordination",
+      "Structured project development and implementation",
+      "Farm infrastructure and operational management support",
+      "Crop selection based on land suitability and market opportunities",
+      "Resource sharing between participating partners",
+      "Defined roles and responsibilities for each JV partner",
+      "Transparent project planning and financial documentation",
+      "Potential for diversified agricultural revenue streams",
+      "Long-term agricultural asset development",
+      "Opportunity to participate in agriculture without handling daily farming activities"
+    ],
+    highlights: [
+      "Land + Investment Partnership",
+      "Large-Scale Agriculture",
+      "Professional Farm Management",
+      "Shared Responsibilities",
+      "Long-Term Business Opportunity"
+    ],
+    projectDetails: {
+      model: "Co-investment partnership",
+      suitableFor: [
+        "Agricultural landowners",
+        "Private investors",
+        "Business entrepreneurs",
+        "Individuals interested in agricultural investments"
+      ],
+      landContribution:
+        "Landowners can contribute suitable agricultural land to the joint venture, subject to mutually agreed terms.",
+      investmentContribution:
+        "Investors can contribute capital towards infrastructure, equipment, cultivation, technology, and operational requirements.",
+      management:
+        "Agricultural planning, project coordination, technical guidance, and farm management can be organized through the agreed partnership structure.",
+      revenueModel:
+        "Revenue sharing, expense allocation, profit distribution, and other financial arrangements are determined through a mutually agreed joint venture agreement.",
+      projectScope: [
+        "Commercial farming",
+        "Polyhouse cultivation",
+        "Open-field cultivation",
+        "Horticulture projects",
+        "Fruit orchards",
+        "Integrated farming",
+        "Hydroponics",
+        "Aquaculture",
+        "Other suitable agricultural ventures"
+      ],
+      partnershipStructure:
+        "Each partnership is planned according to land availability, investment capacity, project feasibility, and the responsibilities agreed upon by all participating parties."
+    },
+    process: [
+      "Initial discussion with interested landowners and investors",
+      "Assessment of land availability and project requirements",
+      "Agricultural feasibility and project planning",
+      "Investment estimation and partnership structuring",
+      "Preparation of a joint venture agreement",
+      "Infrastructure development and project implementation",
+      "Agricultural operations and ongoing management",
+      "Financial reporting and distribution according to agreed terms"
+    ]
+  },
+  {
+    id: 10,
+    title: "Commercial Open Field Cultivation",
+    category: "Open Cultivation",
+    location: "Telangana",
+    description:
+      "A commercial open-field farming project designed to make productive use of agricultural land through planned crop selection, efficient cultivation practices, and organized farm management. Suitable for farmers and landowners interested in traditional agricultural production as well as investors exploring scalable open-field farming opportunities.",
+    image: images.openCultivation,
+    crop: "Seasonal crops and vegetables",
+    type: "Open-field agriculture",
+    size: "Project-specific",
+    status: "Project showcase",
+    benefits: [
+      "Efficient utilization of available agricultural land",
+      "Crop selection according to soil and climate conditions",
+      "Seasonal cultivation planning",
+      "Scientific land preparation and crop establishment",
+      "Drip and sprinkler irrigation options",
+      "Integrated nutrient management",
+      "Pest and disease management planning",
+      "Farm mechanization opportunities",
+      "Harvest and post-harvest management",
+      "Commercial crop production planning",
+      "Support throughout the cultivation cycle"
+    ],
+    highlights: [
+      "Commercial Crop Production",
+      "Seasonal Crop Planning",
+      "Land Utilization",
+      "Modern Farming Practices"
+    ],
+    projectDetails: {
+      cultivationMethod: "Open-field cultivation",
+      suitableCrops: [
+        "Vegetables",
+        "Pulses",
+        "Oilseeds",
+        "Cereals",
+        "Fruits",
+        "Commercial crops"
+      ],
+      planning:
+        "Crop selection and cultivation schedules are developed according to local climate, soil conditions, water availability, and market requirements.",
+      irrigation:
+        "Suitable irrigation systems can be incorporated depending on crop requirements and available water resources.",
+      management:
+        "The project can include land preparation, sowing, crop maintenance, plant protection, harvesting, and post-harvest planning."
+    }
+  },
+  {
+    id: 11,
+    title: "Automated Commercial Poultry Farming",
+    category: "Automatically Poultry",
+    location: "Telangana",
+    description:
+      "A modern commercial poultry farming project incorporating automated equipment and organized farm management systems. Designed to improve operational efficiency through automated feeding, drinking water systems, environmental monitoring, ventilation, and farm management technology. Suitable for entrepreneurs and investors interested in developing organized poultry farming infrastructure.",
+    image: images.poultry,
+    crop: "Broilers and layer poultry",
+    type: "Automated poultry farming",
+    size: "Project-specific",
+    status: "Project showcase",
+    benefits: [
+      "Automated poultry feeding systems",
+      "Automatic drinking water systems",
+      "Climate and temperature monitoring",
+      "Ventilation and air circulation management",
+      "Lighting automation options",
+      "Improved poultry-house management",
+      "Monitoring of flock health and performance",
+      "Efficient labor and operational planning",
+      "Biosecurity and hygiene management",
+      "Feed and water consumption monitoring",
+      "Commercial poultry infrastructure planning",
+      "Support for farm setup and implementation"
+    ],
+    highlights: [
+      "Automated Feeding",
+      "Smart Climate Control",
+      "Modern Poultry Infrastructure",
+      "Efficient Farm Operations"
+    ],
+    projectDetails: {
+      farmingModels: [
+        "Broiler poultry farming",
+        "Layer poultry farming"
+      ],
+      automation: [
+        "Automatic feeders",
+        "Nipple drinking systems",
+        "Ventilation equipment",
+        "Environmental monitoring",
+        "Automated lighting",
+        "Farm monitoring systems"
+      ],
+      management:
+        "Poultry housing, feeding schedules, environmental conditions, flock monitoring, biosecurity, and operational workflows are planned according to the selected poultry model.",
+      infrastructure:
+        "Farm infrastructure is designed based on bird capacity, available land, environmental conditions, and operational requirements."
+    }
+  },
+  {
+    id: 12,
+    title: "Commercial Saffron Cultivation Project",
+    category: "Saffron cultivation",
+    location: "Telangana",
+    description:
+      "A specialized saffron cultivation project focused on exploring suitable growing environments, cultivation infrastructure, and controlled production techniques. The project can evaluate traditional cultivation possibilities and controlled-environment approaches, including indoor saffron production. Site suitability, temperature management, corm quality, production feasibility, and market considerations are evaluated before implementation.",
+    image: images.saffron,
+    crop: "Saffron",
+    type: "Specialized spice cultivation",
+    size: "Project-specific",
+    status: "Project showcase",
+    benefits: [
+      "Saffron cultivation feasibility assessment",
+      "Growing-environment planning",
+      "Quality saffron corm selection guidance",
+      "Controlled-environment cultivation options",
+      "Temperature and humidity management",
+      "Growing-medium and irrigation planning",
+      "Flowering and harvesting management",
+      "Saffron stigma collection and processing guidance",
+      "Post-harvest handling and storage planning",
+      "Production and market feasibility assessment",
+      "Specialized cultivation support"
+    ],
+    highlights: [
+      "High-Value Spice Crop",
+      "Specialized Cultivation",
+      "Controlled Environment Options",
+      "Production Feasibility Planning"
+    ],
+    projectDetails: {
+      cultivationMethods: [
+        "Traditional soil-based cultivation in suitable regions",
+        "Controlled-environment cultivation",
+        "Indoor saffron cultivation trials"
+      ],
+      requirements: [
+        "Suitable saffron corms",
+        "Appropriate temperature conditions",
+        "Controlled humidity",
+        "Suitable growing medium",
+        "Proper drainage and environmental management"
+      ],
+      management:
+        "Cultivation planning includes corm selection, growing conditions, flowering management, harvesting, stigma separation, drying, and storage.",
+      feasibility:
+        "Location-specific feasibility is essential. Saffron production in warmer regions requires careful evaluation of environmental control, operating costs, and expected yields before commercial investment."
+    }
+  },
   {
     id: 1,
     title: "Polyhouse Tomato Cultivation",

@@ -186,7 +186,7 @@ export default function ContactPage() {
 
   const [openFAQ, setOpenFAQ] = useState(null);
   const [formError, setFormError] = useState("");
-
+  const [loading, setLoading] = useState(false);
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -196,31 +196,118 @@ export default function ContactPage() {
     }));
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setFormError("");
 
-    const message = [
-      "Fresh Agriculture Website Enquiry",
-      "",
-      `Name: ${form.fullName}`,
-      `Phone: ${form.phone}`,
-      `Email: ${form.email}`,
-      `Location: ${form.location}`,
-      `Subject: ${form.subject}`,
-      "",
-      "Message:",
-      form.message,
-    ].join("\n");
+async function handleSubmit(event) {
+  event.preventDefault();
 
-    const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      `Website Enquiry - ${form.subject}`,
-    )}&body=${encodeURIComponent(message)}`;
+  setFormError("");
+  setLoading(true);
 
-    // Opens the visitor's configured email application.
-    // Connect this form to your backend/API for actual server-side submission.
-    window.location.href = mailto;
+  const googleFormURL =
+    "https://docs.google.com/forms/d/e/1FAIpQLSfj0ns30p2Q3SbIfb9aUO8wZvzTEpUspnHFbTClUDTAeJe6JQ/formResponse";
+
+  const googleBody = new URLSearchParams({
+    "entry.2005620554": form.fullName.trim(),
+    "entry.1045781291": form.email.trim(),
+    "entry.1065046570": form.location.trim(),
+    "entry.1166974658": form.phone.trim(),
+    "entry.839337160": form.subject,
+    "entry.290150893": form.message.trim(),
+  });
+
+  const web3Payload = {
+    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+    subject: `New Website Enquiry - ${form.subject}`,
+    from_name: "Fresh Agriculture Website",
+    name: form.fullName.trim(),
+    email: form.email.trim(),
+    phone: form.phone.trim(),
+    location: form.location.trim(),
+    "Enquiry Type": form.subject,
+    message: form.message.trim(),
+  };
+
+  try {
+    // Submit to both services independently.
+    const [web3Result, googleResult] =
+      await Promise.allSettled([
+        // Web3Forms submission
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(web3Payload),
+        }).then(async (response) => {
+          const result = await response.json();
+
+          if (!response.ok || !result.success) {
+            throw new Error(
+              result.message || "Web3Forms submission failed"
+            );
+          }
+
+          return result;
+        }),
+
+        // Google Forms submission
+        fetch(googleFormURL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type":
+              "application/x-www-form-urlencoded",
+          },
+          body: googleBody.toString(),
+        }),
+      ]);
+
+    const emailSent = web3Result.status === "fulfilled";
+
+    // A no-cors response is opaque.
+    // Fulfilled means the request was dispatched,
+    // not that Google confirmed saving the response.
+    const googleRequestSent =
+      googleResult.status === "fulfilled";
+
+    console.log("Web3Forms:", web3Result);
+    console.log("Google Forms:", googleResult);
+
+    if (emailSent && googleRequestSent) {
+      setForm({
+        fullName: "",
+        phone: "",
+        email: "",
+        location: "",
+        subject: "",
+        message: "",
+      });
+
+      alert(
+        "Your enquiry has been submitted! Email notification sent. Please verify Google Forms storage."
+      );
+    } else if (emailSent) {
+      setFormError(
+        "Email notification sent, but Google Forms submission could not be confirmed. Please try again later."
+      );
+    } else if (googleRequestSent) {
+      setFormError(
+        "Google Forms request was sent, but email notification failed. Please contact us if needed."
+      );
+    } else {
+      setFormError(
+        "Both submissions failed. Please try again."
+      );
+    }
+  } catch (error) {
+    console.error("Submission error:", error);
+    setFormError("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
   }
+}
+
 
   return (
     <SiteShell>
@@ -495,16 +582,16 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="inline-flex min-w-[190px] items-center justify-center gap-3 rounded-full bg-[#075332] px-6 py-3.5 text-xs font-semibold text-white transition hover:bg-[#0b6941] focus:outline-none focus:ring-2 focus:ring-[#4d9b71] focus:ring-offset-2"
+                  disabled={loading}
+                  className="inline-flex min-w-47.5 items-center justify-center gap-3 rounded-full bg-[#075332] px-6 py-3.5 text-xs font-semibold text-white transition hover:bg-[#0b6941] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  Send Message
+                  {loading ? "Submitting..." : "Send Message"}
                   <LuArrowRight size={15} />
                 </button>
 
                 <p className="text-[10px] leading-4 text-[#8a9389]">
-                  Your email application will open with your enquiry prepared.
-                  For direct website submission, connect this form to your
-                  backend.
+                  Your enquiry will be submitted directly through our website.
+                  Our team will get back to you soon.
                 </p>
               </form>
             </motion.div>
