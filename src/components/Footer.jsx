@@ -54,7 +54,7 @@ export default function Footer({
   mutedColor = defaultTheme.mutedColor,
   accentColor = defaultTheme.accentColor,
   dividerColor = defaultTheme.dividerColor,
-  logoSrc = "/logo.png",
+  logoSrc = "/logo.webp",
   phone = "+91 8639976550",
   email = "info@freshagriculture.in",
   website = "https://freshagriculture.in",
@@ -82,7 +82,7 @@ export default function Footer({
               <img
                 src={logoSrc}
                 alt="Fresh Agriculture"
-                className="mb-5 h-14 w-auto max-w-[210px] object-contain"
+                className="mb-5 h-18 w-auto max-w-52.5 object-contain"
               />
             </Link>
 
