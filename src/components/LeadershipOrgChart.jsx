@@ -203,7 +203,7 @@ function LeaderCard({
 
               <div className="min-w-0">
                 <p className="truncate text-sm font-extrabold tracking-wide">
-                  FA Green Agriculture
+                  FA Green Biotech
                 </p>
 
                 <p className="mt-1 text-[9px] uppercase tracking-[0.2em] text-[#c7dfc6]">
@@ -342,7 +342,7 @@ function LeaderCard({
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#c9e6a9]">
-                  FA Green Agriculture
+                  FA Green Biotech
                 </p>
 
                 <h3 className="mt-2 text-lg font-bold">
@@ -594,47 +594,42 @@ export default function LeadershipOrgChart({ teamMembers = [] }) {
           </>
         )}
 
-        {/* LEVEL 3 */}
-        {(operationsHead || itHead) && (
-          <>
-            <div className="mb-5 text-center">
-              <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#729078]">
-                03 / Department Leadership
-              </span>
-            </div>
+{/* LEVEL 3 */}
+{(operationsHead || itHead || construction) && (
+  <>
+    <div className="mb-5 text-center">
+      <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#729078]">
+        03 / Department Leadership
+      </span>
+    </div>
 
-            <div className="mx-auto grid max-w-2xl grid-cols-1 gap-5 sm:grid-cols-2">
-              {operationsHead && (
-                <LeaderCard
-                  person={operationsHead}
-                  icon={LuSettings2}
-                  index={3}
-                />
-              )}
+    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {operationsHead && (
+        <LeaderCard
+          person={operationsHead}
+          icon={LuSettings2}
+          index={3}
+        />
+      )}
 
-              {itHead && (
-                <LeaderCard person={itHead} icon={LuMonitor} index={4} />
-              )}
-            </div>
+      {itHead && (
+        <LeaderCard
+          person={itHead}
+          icon={LuMonitor}
+          index={4}
+        />
+      )}
 
-            {construction && <PairConnector />}
-          </>
-        )}
-
-        {/* LEVEL 4 */}
-        {construction && (
-          <>
-            <div className="mb-5 text-center">
-              <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#a17a3e]">
-                04 / Execution
-              </span>
-            </div>
-
-            <div className="mx-auto max-w-[340px]">
-              <LeaderCard person={construction} icon={LuHardHat} index={5} />
-            </div>
-          </>
-        )}
+      {construction && (
+        <LeaderCard
+          person={construction}
+          icon={LuHardHat}
+          index={5}
+        />
+      )}
+    </div>
+  </>
+)}
       </div>
 
       {/* Bottom caption */}
