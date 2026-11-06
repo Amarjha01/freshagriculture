@@ -177,12 +177,25 @@ export default function Footer({
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-[var(--footer-divider)] pt-6 text-xs text-[var(--footer-muted)] md:flex-row md:items-center md:justify-between">
-          <p>
-            © 2026 {companyName}. All rights reserved.
-          </p>
-          <p>Growing a better future, together.</p>
-        </div>
+<div className="mt-12 flex flex-col gap-3 border-t border-[var(--footer-divider)] pt-6 text-xs text-[var(--footer-muted)] md:flex-row md:items-center md:justify-between">
+  <p>
+    © 2026 {companyName}. All rights reserved.
+  </p>
+
+  <p>Growing a better future, together.</p>
+
+  <p>
+    Designed & Developed by{" "}
+    <a
+      href="https://axeiro.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-semibold text-[var(--footer-text)] transition-colors hover:text-[#16a34a]"
+    >
+      Axeiro
+    </a>
+  </p>
+</div>
       </div>
     </footer>
   );
