@@ -75,15 +75,16 @@ export default function Footer({
         "--footer-divider": dividerColor,
       }}
     >
-      <div className="mx-auto max-w-[1440px] px-5 pb-8 pt-14 md:px-8 md:pt-20 lg:px-12">
+      <div className="mx-auto max-w-360 px-5 pb-8 pt-14 md:px-8 md:pt-20 lg:px-12">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1.2fr] lg:gap-12">
           <div>
-            <Link href="/" aria-label="Fresh Agriculture home">
+            <Link href="/" aria-label="Fresh Agriculture home" className=" flex gap-3 items-center mb-5">
               <img
                 src={logoSrc}
                 alt="Fresh Agriculture"
-                className="mb-5 h-18 w-auto max-w-52.5 object-contain"
+                className="h-18 w-auto max-w-52.5 object-contain"
               />
+              <span className=" text-[9px] sm:text-xl font-medium text-green-900">Fresh Agriculture <br /> By Green Biotech</span>
             </Link>
 
             <p className="max-w-sm text-sm leading-7 text-[var(--footer-muted)]">

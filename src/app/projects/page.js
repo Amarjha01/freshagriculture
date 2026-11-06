@@ -76,7 +76,7 @@ const categories = [
 
 
 const projects = [
-    {
+  {
     id: 9,
     title: "Agricultural Joint Venture Investment",
     category: "Joint Venture",
@@ -150,7 +150,15 @@ const projects = [
       "Infrastructure development and project implementation",
       "Agricultural operations and ongoing management",
       "Financial reporting and distribution according to agreed terms"
-    ]
+    ],
+process: [
+  "Partner Discussion",
+  "Site Assessment",
+  "Feasibility Study",
+  "JV Agreement",
+  "Project Development",
+  "Operations & Performance Review",
+],
   },
   {
     id: 10,
@@ -199,7 +207,15 @@ const projects = [
         "Suitable irrigation systems can be incorporated depending on crop requirements and available water resources.",
       management:
         "The project can include land preparation, sowing, crop maintenance, plant protection, harvesting, and post-harvest planning."
-    }
+    },
+    process: [
+  "Site Assessment",
+  "Soil & Water Analysis",
+  "Crop Planning",
+  "Land Preparation",
+  "Plantation",
+  "Crop Monitoring & Harvest Support",
+],
   },
   {
     id: 11,
@@ -250,7 +266,15 @@ const projects = [
         "Poultry housing, feeding schedules, environmental conditions, flock monitoring, biosecurity, and operational workflows are planned according to the selected poultry model.",
       infrastructure:
         "Farm infrastructure is designed based on bird capacity, available land, environmental conditions, and operational requirements."
-    }
+    },
+    process: [
+  "Farm Assessment",
+  "Capacity Planning",
+  "Shed Design",
+  "Equipment Installation",
+  "Biosecurity Setup",
+  "Operational Support",
+],
   },
   {
     id: 12,
@@ -300,7 +324,15 @@ const projects = [
         "Cultivation planning includes corm selection, growing conditions, flowering management, harvesting, stigma separation, drying, and storage.",
       feasibility:
         "Location-specific feasibility is essential. Saffron production in warmer regions requires careful evaluation of environmental control, operating costs, and expected yields before commercial investment."
-    }
+    },
+    process: [
+  "Feasibility Assessment",
+  "System Selection",
+  "Corm Procurement",
+  "Growing Setup",
+  "Crop Monitoring",
+  "Harvest & Post-Harvest Support",
+],
   },
   {
     id: 1,
@@ -320,6 +352,14 @@ const projects = [
       "Improved growing-condition management",
       "Support throughout implementation",
     ],
+process: [
+  "Site Inspection",
+  "Structure Design",
+  "Infrastructure Setup",
+  "Irrigation Installation",
+  "Crop Plantation",
+  "Technical & Crop Management Support",
+],
   },
   {
     id: 2,
@@ -339,6 +379,14 @@ const projects = [
       "Efficient space planning",
       "Crop-specific cultivation guidance",
     ],
+    process: [
+  "Site Assessment",
+  "System Design",
+  "Infrastructure Installation",
+  "Nutrient Setup",
+  "Crop Plantation",
+  "Monitoring & Technical Support",
+],
   },
   {
     id: 3,
@@ -358,6 +406,14 @@ const projects = [
       "Growing-condition management",
       "Operational guidance",
     ],
+    process: [
+  "Feasibility Study",
+  "Unit Design",
+  "Infrastructure Setup",
+  "Substrate Preparation",
+  "Spawning & Cultivation",
+  "Harvest & Marketing Support",
+],
   },
   {
     id: 4,
@@ -377,6 +433,14 @@ const projects = [
       "Farm operations planning",
       "Species-specific requirements",
     ],
+    process: [
+  "Site & Water Assessment",
+  "Species Selection",
+  "Infrastructure Setup",
+  "Stocking",
+  "Feeding & Water Monitoring",
+  "Harvesting Support",
+],
   },
   {
     id: 5,
@@ -396,6 +460,14 @@ const projects = [
       "Cultivation guidance",
       "Production planning",
     ],
+    process: [
+  "Site Assessment",
+  "Crop Selection",
+  "Farm Preparation",
+  "Plantation",
+  "Crop Management",
+  "Harvest & Market Support",
+],
   },
   {
     id: 6,
@@ -415,6 +487,14 @@ const projects = [
       "Plant care workflows",
       "Growing-media considerations",
     ],
+    process: [
+  "Requirement Assessment",
+  "Nursery Design",
+  "Infrastructure Setup",
+  "Propagation & Planting",
+  "Plant Care",
+  "Grading & Dispatch",
+],
   },
   {
     id: 7,
@@ -434,6 +514,14 @@ const projects = [
       "Feeding workflow planning",
       "Farm-management guidance",
     ],
+    process: [
+  "Project Feasibility",
+  "Breed Selection",
+  "Shed Development",
+  "Animal Procurement",
+  "Feeding & Health Management",
+  "Marketing Support",
+],
   },
   {
     id: 8,
@@ -453,6 +541,14 @@ const projects = [
       "Water-management options",
       "Automation suitability review",
     ],
+    process: [
+  "Field Assessment",
+  "Water Source Analysis",
+  "Irrigation Design",
+  "System Installation",
+  "Testing & Calibration",
+  "Technical Support",
+],
   },
   {
   id: 13,
@@ -480,6 +576,14 @@ const projects = [
     "Aquaculture Support",
     "Farm Water Storage"
   ],
+  process: [
+  "Site Survey",
+  "Capacity & Design Planning",
+  "Excavation",
+  "Base Preparation",
+  "Liner Installation",
+  "Testing & Handover",
+],
 }
 ];
 
@@ -577,7 +681,7 @@ function ProjectCard({ project, onSelect }) {
           </h3>
         </button>
 
-        <p className="mt-2 text-xs leading-5 text-[#778074]">
+        <p className="mt-2 line-clamp-3 text-xs leading-5 text-[#778074]">
           {project.description}
         </p>
 
@@ -1044,51 +1148,76 @@ export default function ProjectsPage() {
               </a>
             </div>
 
-            {/* Project facts */}
-            <aside className="flex flex-col justify-center gap-4 rounded-xl bg-[#f4f7ed] p-4 sm:p-5">
-              {[
-                {
-                  icon: LuHouse,
-                  label: "Project Type",
-                  value: selectedProject.type,
-                },
-                {
-                  icon: LuSprout,
-                  label: "Crop / Focus",
-                  value: selectedProject.crop,
-                },
-                {
-                  icon: LuMapPin,
-                  label: "Location",
-                  value: selectedProject.location,
-                },
-                {
-                  icon: FiCheckCircle,
-                  label: "Project Status",
-                  value: selectedProject.status,
-                },
-              ].map((fact) => {
-                const Icon = fact.icon;
-                return (
-                  <div
-                    key={fact.label}
-                    className="flex items-center gap-3"
-                  >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e3efd9] text-[#286b42]">
-                      <Icon size={18} />
-                    </span>
-                    <div>
-                      <p className="text-[9px] text-[#7a8577]">
-                        {fact.label}
-                      </p>
-                      <p className="mt-0.5 text-[11px] font-semibold leading-4 text-[#35473a]">
-                        {fact.value}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </aside>
+
+{/* Project facts */}
+<aside className="flex flex-col gap-4 rounded-xl bg-[#f4f7ed] p-4 sm:p-5">
+
+  {/* Project information */}
+  {[
+    {
+      icon: LuHouse,
+      label: "Project Type",
+      value: selectedProject.type,
+    },
+    {
+      icon: LuSprout,
+      label: "Crop / Focus",
+      value: selectedProject.crop,
+    },
+    {
+      icon: LuMapPin,
+      label: "Location",
+      value: selectedProject.location,
+    },
+    {
+      icon: FiCheckCircle,
+      label: "Project Status",
+      value: selectedProject.status,
+    },
+  ].map((fact) => {
+    const Icon = fact.icon;
+
+    return (
+      <div key={fact.label} className="flex items-center gap-3">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e3efd9] text-[#286b42]">
+          <Icon size={18} />
+        </span>
+
+        <div className="min-w-0">
+          <p className="text-[9px] text-[#7a8577]">
+            {fact.label}
+          </p>
+          <p className="mt-0.5 text-[11px] font-semibold leading-4 text-[#35473a]">
+            {fact.value}
+          </p>
+        </div>
+      </div>
+    );
+  })}
+
+  {/* Project process */}
+  <div className="border-t border-[#dce6d5] pt-4">
+    <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[#286b42]">
+      Project Process
+    </h3>
+
+    <div className="space-y-3">
+      {selectedProject.process.map((p, i) => (
+        <div key={i} className="flex items-start gap-3">
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#e3f0dc] text-[10px] font-bold text-[#075332]">
+            {i + 1}
+          </span>
+
+          <span className="pt-1 text-xs leading-5 text-[#35473a]">
+            {p}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</aside>
+
           </motion.div>
         </section>
 

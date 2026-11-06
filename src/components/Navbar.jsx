@@ -140,13 +140,14 @@ export default function Navbar({
           href="/"
           onClick={closeMenu}
           aria-label="Fresh Agriculture home"
-          className="shrink-0"
+          className="shrink-0 flex gap-3 items-center"
         >
           <img
             src={logoSrc}
             alt="Fresh Agriculture by Green Bio-Tech"
             className="h-14 object-contain  mix-blend-hue"
           />
+        <span className=" text-[9px] sm:text-xs font-medium text-green-900">Fresh Agriculture <br /> By Green Biotech</span>
         </Link>
 
         {/* Desktop Navigation */}

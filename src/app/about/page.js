@@ -239,7 +239,7 @@ const teamMembers = [
   },
   {
     image: photos.sr_data_analysts_smo,
-    role: "Sr. Data Analysis | SMO",
+    role: "IT & Management Head",
     name: "Suraj Singh Mahar",
     description:
       "Suraj Singh Mahar manages data analytics and digital communications. He analyzes agricultural data, prepares performance reports, supports business decisions, and strengthens the company's digital presence through social media optimization and online marketing.",
@@ -366,9 +366,7 @@ export default function AboutPage() {
                 variants={fadeUp}
                 className="mt-5 max-w-[460px] text-sm leading-6 text-[#657064] sm:text-base sm:leading-7"
               >
-                Fresh Agriculture by Green Bio-Tech brings together agricultural
-                solutions, practical knowledge, and modern farming approaches to
-                support growers and agricultural communities.
+                Fresh Agriculture by Green Bio-Tech brings together agricultural solutions, practical knowledge, and modern farming approaches to support growers and agricultural communities. Recognized as an emerging leader in India's agriculture technology sector, we are committed to driving innovation and building a smarter, more sustainable future for Indian agriculture.
               </motion.p>
 
               {/* CTA BUTTON */}

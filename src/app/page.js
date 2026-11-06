@@ -475,6 +475,36 @@ export default function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [showVideoNote, setShowVideoNote] = useState(false);
 
+const [direction, setDirection] = useState(1);
+const [isPaused, setIsPaused] = useState(false);
+
+const VISIBLE_COUNT = 4;
+
+const moveProjects = (dir) => {
+  setDirection(dir);
+
+  setProjectIndex((prev) => {
+    return (prev + dir + projects.length) % projects.length;
+  });
+};
+
+// Get projects with infinite wrapping
+const visibleProjects = Array.from(
+  { length: Math.min(VISIBLE_COUNT, projects.length) },
+  (_, index) => projects[(projectIndex + index) % projects.length]
+);
+
+// Auto play
+useEffect(() => {
+  if (isPaused || projects.length <= VISIBLE_COUNT) return;
+
+  const interval = setInterval(() => {
+    moveProjects(1);
+  }, 1500);
+
+  return () => clearInterval(interval);
+}, [isPaused, projects.length]);
+
   const filteredServices =
     serviceFilter === "All"
       ? services
@@ -516,11 +546,6 @@ export default function HomePage() {
   const visibleProductCount =
     screenSize === "lg" ? 5 : screenSize === "md" ? 3 : 2;
 
-  const visibleProjects = Array.from(
-    { length: Math.min(visibleProjectCount, projects.length) },
-    (_, index) => projects[(projectIndex + index) % projects.length],
-  );
-
   const visibleProducts = Array.from(
     { length: Math.min(visibleProductCount, products.length) },
     (_, index) => products[(productIndex + index) % products.length],
@@ -528,11 +553,6 @@ export default function HomePage() {
 
   const testimonial = testimonials[testimonialIndex];
 
-  function moveProjects(direction) {
-    setProjectIndex(
-      (current) => (current + direction + projects.length) % projects.length,
-    );
-  }
 
   function moveProducts(direction) {
     setProductIndex(
@@ -847,67 +867,103 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* FEATURED PROJECTS */}
-        <section id="projects" className="px-4 py-8 sm:px-8 lg:px-12">
-          <div className="mx-auto max-w-7xl">
-            <SectionHeading
-              eyebrow="Featured Projects"
-              title="Real Projects. Real Impact."
-              description="Explore agricultural project types and practical farming solutions across different sectors."
-              link="View All Projects"
-              href="/projects"
-            />
 
-            <div className="relative">
-              <button
-                type="button"
-                aria-label="Previous projects"
-                onClick={() => moveProjects(-1)}
-                className={`absolute -left-3 top-1/2 z-10 -translate-y-1/2 ${iconButton}`}
+{/* FEATURED PROJECTS */}
+<section id="projects" className="px-4 py-8 sm:px-8 lg:px-12">
+  <div className="mx-auto max-w-7xl">
+    <SectionHeading
+      eyebrow="Featured Projects"
+      title="Real Projects. Real Impact."
+      description="Explore agricultural project types and practical farming solutions across different sectors."
+      link="View All Projects"
+      href="/projects"
+    />
+
+    <div
+      className="relative mt-8"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Previous button */}
+      <button
+        type="button"
+        aria-label="Previous projects"
+        onClick={() => moveProjects(-1)}
+        className={`absolute -left-3 top-1/2 z-20 -translate-y-1/2 ${iconButton}`}
+      >
+        <LuChevronLeft size={19} />
+      </button>
+
+      {/* Carousel */}
+      <div className="overflow-hidden px-1 py-2">
+        <motion.div
+          className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+          animate={{
+            x: 0,
+          }}
+        >
+          <AnimatePresence mode="popLayout" initial={false}>
+            {visibleProjects.map((project, index) => (
+              <motion.div
+                key={`${project.title}-${projectIndex}-${index}`}
+                initial={{
+                  opacity: 0,
+                  x: direction > 0 ? 45 : -45,
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  x: direction > 0 ? -45 : 45,
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="min-w-0"
               >
-                <LuChevronLeft size={19} />
-              </button>
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
 
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                {visibleProjects.map((project, index) => (
-                  <motion.div
-                    key={`${project.title}-${projectIndex}-${index}`}
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <ProjectCard project={project} />
-                  </motion.div>
-                ))}
-              </div>
+      {/* Next button */}
+      <button
+        type="button"
+        aria-label="Next projects"
+        onClick={() => moveProjects(1)}
+        className={`absolute -right-3 top-1/2 z-20 -translate-y-1/2 ${iconButton}`}
+      >
+        <LuChevronRight size={19} />
+      </button>
+    </div>
 
-              <button
-                type="button"
-                aria-label="Next projects"
-                onClick={() => moveProjects(1)}
-                className={`absolute -right-3 top-1/2 z-10 -translate-y-1/2 ${iconButton}`}
-              >
-                <LuChevronRight size={19} />
-              </button>
-            </div>
+    {/* Carousel indicators */}
+    <div className="mt-5 flex justify-center gap-1.5">
+      {projects.map((project, index) => (
+        <button
+          key={project.title}
+          type="button"
+          aria-label={`Show project starting at ${project.title}`}
+          onClick={() => {
+            setDirection(index >= projectIndex ? 1 : -1);
+            setProjectIndex(index);
+          }}
+          className={`h-1.5 rounded-full transition-all duration-300 ${
+            projectIndex === index
+              ? "w-6 bg-[#075332]"
+              : "w-1.5 bg-[#cbd8c8] hover:bg-[#70977b]"
+          }`}
+        />
+      ))}
+    </div>
+  </div>
+</section>
 
-            <div className="mt-4 flex justify-center gap-1.5">
-              {projects.map((project, index) => (
-                <button
-                  key={project.title}
-                  type="button"
-                  aria-label={`Show project group ${index + 1}`}
-                  onClick={() => setProjectIndex(index)}
-                  className={`h-1.5 rounded-full transition-all ${
-                    projectIndex === index
-                      ? "w-6 bg-[#075332]"
-                      : "w-1.5 bg-[#cbd8c8] hover:bg-[#70977b]"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* PROCESS */}
         <section className="relative overflow-hidden px-4 py-16 sm:px-8 sm:py-20 lg:px-12">

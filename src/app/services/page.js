@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   LuArrowRight,
   LuArrowUpRight,
@@ -544,16 +544,40 @@ export default function ServicesPage() {
   const [activeServiceId, setActiveServiceId] = useState("project-amc");
   const [activeThumbnail, setActiveThumbnail] = useState(0);
   const [showAllServices, setShowAllServices] = useState(false);
-
+  const featuredServiceRef = useRef(null);
+  
   const activeService =
     services.find((service) => service.id === activeServiceId) || services[0];
 
   const ActiveIcon = activeService.icon;
 
-  function selectService(service) {
-    setActiveServiceId(service.id);
+const selectService = (service) => {
+  setActiveServiceId(service.id);
+  setActiveThumbnail(0);
+
+  // Scroll to featured service
+  setTimeout(() => {
+    featuredServiceRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, 100);
+};
+
+useEffect(() => {
+  if (!activeService?.gallery?.length || activeService.gallery.length <= 1) {
     setActiveThumbnail(0);
+    return;
   }
+
+  const interval = setInterval(() => {
+    setActiveThumbnail((prev) => 
+      (prev + 1) % activeService.gallery.length
+    );
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [activeService.id, activeService.gallery.length]);
 
   function moveThumbnail(direction) {
     setActiveThumbnail((current) => {
@@ -798,7 +822,11 @@ export default function ServicesPage() {
         </section>
 
         {/* FEATURED SERVICE */}
-        <section className="px-4 pb-12 pt-3 sm:px-8 lg:px-12">
+        <section
+  ref={featuredServiceRef}
+  id="featured-service"
+  className="scroll-mt-6 px-4 pb-12 pt-3 sm:px-8 lg:px-12"
+>
           <motion.div
             key={activeService.id}
             initial={{ opacity: 0, y: 14 }}
@@ -851,12 +879,18 @@ export default function ServicesPage() {
               </div>
 
               <div className="relative min-h-[310px] overflow-hidden rounded-xl sm:min-h-[390px]">
-                <img
-                  key={`${activeService.id}-${activeThumbnail}`}
-                  src={activeService.gallery[activeThumbnail]}
-                  alt={activeService.title}
-                  className="absolute inset-0 h-full w-full object-cover transition duration-500"
-                />
+               <AnimatePresence mode="wait">
+  <motion.img
+    key={`${activeService.id}-${activeThumbnail}`}
+    src={activeService.gallery[activeThumbnail]}
+    alt={activeService.title}
+    initial={{ opacity: 0, scale: 1.04 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.7, ease: "easeInOut" }}
+    className="absolute inset-0 h-full w-full object-cover"
+  />
+</AnimatePresence>
 
                 <div className="absolute inset-x-3 bottom-3 flex flex-wrap gap-2 sm:inset-x-4 sm:bottom-4">
                   {activeService.highlights.map((highlight) => {
